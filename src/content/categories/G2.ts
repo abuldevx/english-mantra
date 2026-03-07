@@ -6,9 +6,9 @@ export const categoryG2: PatternCategory = {
   name: "WH- Information Questions",
   name_bn: "WH- তথ্যমূলক প্রশ্ন",
   description:
-    "Learn how to ask information questions using what, where, when, why, and how in English.",
+    "Learn how to ask information questions using what, where, when, why, how, who, whose, and which — in present, past, and future tenses, plus extended forms like how many, how much, how long, how far, how often, and how old.",
   description_bn:
-    "ইংরেজিতে what, where, when, why, এবং how ব্যবহার করে তথ্যমূলক প্রশ্ন করতে শিখুন।",
+    "বর্তমান, অতীত এবং ভবিষ্যৎ কালে what, where, when, why, how, who, whose, এবং which ব্যবহার করে তথ্যমূলক প্রশ্ন করতে শিখুন — সাথে how many, how much, how long, how far, how often, এবং how old-এর মতো বর্ধিত রূপও।",
   icon: "🔍",
   group: "G",
   groupName: "All Question Types",
@@ -835,6 +835,3148 @@ export const categoryG2: PatternCategory = {
       combinableWith: ["G2.4"],
       responsePatterns: [],
       banglaStructureMap: "কী হয়েছে? / সমস্যা কী? (What's the matter?)",
+    },
+
+    // ===== Block A: Missing Present-Tense WH-words (G2.8–G2.12) =====
+
+    {
+      id: "G2.8",
+      formula: "Who is [PERSON]?",
+      formula_bn: "[ব্যক্তি] কে?",
+      patternName: "Asking Who (Identity)",
+      patternName_bn: "কে জিজ্ঞেস করা (পরিচয়)",
+      slots: [
+        {
+          name: "PERSON",
+          description: "A person or role you want to identify or learn about",
+          description_bn:
+            "একজন ব্যক্তি বা ভূমিকা যাকে আপনি চিনতে বা জানতে চান",
+          acceptedTypes: ["person", "noun_phrase"],
+          examples: ["that man", "your teacher", "the new manager"],
+        },
+      ],
+      examples: [
+        {
+          en: "Who is that man?",
+          bn: "ওই লোকটা কে?",
+          slotValues: { PERSON: "that man" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Who is your best friend?",
+          bn: "তোমার সবচেয়ে ভালো বন্ধু কে?",
+          slotValues: { PERSON: "your best friend" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Who is the head chef here?",
+          bn: "এখানে প্রধান শেফ কে?",
+          slotValues: { PERSON: "the head chef here" },
+          topicArea: "food",
+        },
+        {
+          en: "Who is your class teacher?",
+          bn: "তোমার ক্লাস টিচার কে?",
+          slotValues: { PERSON: "your class teacher" },
+          topicArea: "education",
+        },
+        {
+          en: "Who is the tour guide?",
+          bn: "ট্যুর গাইড কে?",
+          slotValues: { PERSON: "the tour guide" },
+          topicArea: "travel",
+        },
+        {
+          en: "Who is the new manager?",
+          bn: "নতুন ম্যানেজার কে?",
+          slotValues: { PERSON: "the new manager" },
+          topicArea: "work",
+        },
+        {
+          en: "Who is your doctor?",
+          bn: "তোমার ডাক্তার কে?",
+          slotValues: { PERSON: "your doctor" },
+          topicArea: "health",
+        },
+        {
+          en: "Who is the shop owner?",
+          bn: "দোকানের মালিক কে?",
+          slotValues: { PERSON: "the shop owner" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Who is that woman in the red dress?",
+          bn: "লাল জামা পরা ওই মহিলা কে?",
+          slotValues: { PERSON: "that woman in the red dress" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Who is your favorite singer?",
+          bn: "তোমার প্রিয় গায়ক কে?",
+          slotValues: { PERSON: "your favorite singer" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Who is the waiter serving us?",
+          bn: "আমাদের সার্ভ করা ওয়েটার কে?",
+          slotValues: { PERSON: "the waiter serving us" },
+          topicArea: "food",
+        },
+        {
+          en: "Who is the principal of your school?",
+          bn: "তোমার স্কুলের প্রিন্সিপাল কে?",
+          slotValues: { PERSON: "the principal of your school" },
+          topicArea: "education",
+        },
+        {
+          en: "Who is your travel partner?",
+          bn: "তোমার ভ্রমণসঙ্গী কে?",
+          slotValues: { PERSON: "your travel partner" },
+          topicArea: "travel",
+        },
+        {
+          en: "Who is the team leader?",
+          bn: "টিম লিডার কে?",
+          slotValues: { PERSON: "the team leader" },
+          topicArea: "work",
+        },
+        {
+          en: "Who is the pharmacist here?",
+          bn: "এখানে ফার্মাসিস্ট কে?",
+          slotValues: { PERSON: "the pharmacist here" },
+          topicArea: "health",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Used to ask about a person's identity or role. 'Who' always refers to people, never things.",
+      usageNote_bn:
+        "'Who' কারো পরিচয় বা ভূমিকা সম্পর্কে জিজ্ঞেস করতে ব্যবহৃত। 'Who' সবসময় মানুষের জন্য, জিনিসের জন্য নয়।",
+      combinableWith: ["G2.1", "G2.17"],
+      responsePatterns: [],
+      banglaStructureMap: "[PERSON] (ব্যক্তি) + কে? (Who)",
+    },
+    {
+      id: "G2.9",
+      formula: "What are [THINGS]?",
+      formula_bn: "[জিনিসগুলো] কী?",
+      patternName: "Asking What (Plural)",
+      patternName_bn: "কী জিজ্ঞেস করা (বহুবচন)",
+      slots: [
+        {
+          name: "THINGS",
+          description: "A plural noun or noun phrase you want to know about",
+          description_bn:
+            "একটি বহুবচন বিশেষ্য বা বিশেষ্য পদবন্ধ যা সম্পর্কে আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["these pills", "the main ingredients", "your plans"],
+        },
+      ],
+      examples: [
+        {
+          en: "What are these things on the table?",
+          bn: "টেবিলের উপর এই জিনিসগুলো কী?",
+          slotValues: { THINGS: "these things on the table" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What are the main ingredients?",
+          bn: "প্রধান উপকরণগুলো কী?",
+          slotValues: { THINGS: "the main ingredients" },
+          topicArea: "food",
+        },
+        {
+          en: "What are the best places to visit?",
+          bn: "ঘুরে দেখার সেরা জায়গাগুলো কী?",
+          slotValues: { THINGS: "the best places to visit" },
+          topicArea: "travel",
+        },
+        {
+          en: "What are the exam topics?",
+          bn: "পরীক্ষার বিষয়গুলো কী?",
+          slotValues: { THINGS: "the exam topics" },
+          topicArea: "education",
+        },
+        {
+          en: "What are your job responsibilities?",
+          bn: "তোমার কাজের দায়িত্বগুলো কী?",
+          slotValues: { THINGS: "your job responsibilities" },
+          topicArea: "work",
+        },
+        {
+          en: "What are the side effects of this medicine?",
+          bn: "এই ওষুধের পার্শ্বপ্রতিক্রিয়াগুলো কী?",
+          slotValues: { THINGS: "the side effects of this medicine" },
+          topicArea: "health",
+        },
+        {
+          en: "What are the available sizes?",
+          bn: "কোন কোন সাইজ পাওয়া যায়?",
+          slotValues: { THINGS: "the available sizes" },
+          topicArea: "shopping",
+        },
+        {
+          en: "What are your hobbies?",
+          bn: "তোমার শখগুলো কী?",
+          slotValues: { THINGS: "your hobbies" },
+          topicArea: "relationships",
+        },
+        {
+          en: "What are the rules here?",
+          bn: "এখানে নিয়মগুলো কী?",
+          slotValues: { THINGS: "the rules here" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What are today's specials?",
+          bn: "আজকের স্পেশালগুলো কী?",
+          slotValues: { THINGS: "today's specials" },
+          topicArea: "food",
+        },
+        {
+          en: "What are the travel requirements?",
+          bn: "ভ্রমণের জন্য কী কী দরকার?",
+          slotValues: { THINGS: "the travel requirements" },
+          topicArea: "travel",
+        },
+        {
+          en: "What are the course options?",
+          bn: "কোর্সের অপশনগুলো কী?",
+          slotValues: { THINGS: "the course options" },
+          topicArea: "education",
+        },
+        {
+          en: "What are the office hours?",
+          bn: "অফিসের সময়সূচি কী?",
+          slotValues: { THINGS: "the office hours" },
+          topicArea: "work",
+        },
+        {
+          en: "What are the symptoms of dengue?",
+          bn: "ডেঙ্গুর লক্ষণগুলো কী?",
+          slotValues: { THINGS: "the symptoms of dengue" },
+          topicArea: "health",
+        },
+        {
+          en: "What are the payment options?",
+          bn: "পেমেন্টের অপশনগুলো কী?",
+          slotValues: { THINGS: "the payment options" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Plural version of 'What is'. Used when asking about multiple things. Use 'are' with plural nouns.",
+      usageNote_bn:
+        "'What is'-এর বহুবচন রূপ। একাধিক জিনিস সম্পর্কে জিজ্ঞেস করতে ব্যবহৃত। বহুবচন বিশেষ্যের সাথে 'are' ব্যবহার করুন।",
+      combinableWith: ["G2.1", "G2.14"],
+      responsePatterns: [],
+      banglaStructureMap: "[THINGS] (বহুবচন বিশেষ্য) + কী? (What)",
+    },
+    {
+      id: "G2.10",
+      formula: "Where are [THINGS]?",
+      formula_bn: "[জিনিসগুলো] কোথায়?",
+      patternName: "Asking Where (Plural)",
+      patternName_bn: "কোথায় জিজ্ঞেস করা (বহুবচন)",
+      slots: [
+        {
+          name: "THINGS",
+          description:
+            "A plural noun or noun phrase whose location you want to know",
+          description_bn:
+            "একটি বহুবচন বিশেষ্য বা বিশেষ্য পদবন্ধ যার অবস্থান আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["my keys", "the meeting rooms", "your friends"],
+        },
+      ],
+      examples: [
+        {
+          en: "Where are my keys?",
+          bn: "আমার চাবিগুলো কোথায়?",
+          slotValues: { THINGS: "my keys" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where are the forks and spoons?",
+          bn: "কাঁটা চামচ আর চামচগুলো কোথায়?",
+          slotValues: { THINGS: "the forks and spoons" },
+          topicArea: "food",
+        },
+        {
+          en: "Where are the boarding gates?",
+          bn: "বোর্ডিং গেটগুলো কোথায়?",
+          slotValues: { THINGS: "the boarding gates" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where are the textbooks?",
+          bn: "পাঠ্যবইগুলো কোথায়?",
+          slotValues: { THINGS: "the textbooks" },
+          topicArea: "education",
+        },
+        {
+          en: "Where are the meeting rooms?",
+          bn: "মিটিং রুমগুলো কোথায়?",
+          slotValues: { THINGS: "the meeting rooms" },
+          topicArea: "work",
+        },
+        {
+          en: "Where are the medicines?",
+          bn: "ওষুধগুলো কোথায়?",
+          slotValues: { THINGS: "the medicines" },
+          topicArea: "health",
+        },
+        {
+          en: "Where are the changing rooms?",
+          bn: "চেঞ্জিং রুমগুলো কোথায়?",
+          slotValues: { THINGS: "the changing rooms" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Where are your parents?",
+          bn: "তোমার বাবা-মা কোথায়?",
+          slotValues: { THINGS: "your parents" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Where are the towels?",
+          bn: "তোয়ালেগুলো কোথায়?",
+          slotValues: { THINGS: "the towels" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where are the fresh vegetables?",
+          bn: "তাজা সবজিগুলো কোথায়?",
+          slotValues: { THINGS: "the fresh vegetables" },
+          topicArea: "food",
+        },
+        {
+          en: "Where are the taxis?",
+          bn: "ট্যাক্সিগুলো কোথায়?",
+          slotValues: { THINGS: "the taxis" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where are the library books?",
+          bn: "লাইব্রেরির বইগুলো কোথায়?",
+          slotValues: { THINGS: "the library books" },
+          topicArea: "education",
+        },
+        {
+          en: "Where are the project files?",
+          bn: "প্রজেক্টের ফাইলগুলো কোথায়?",
+          slotValues: { THINGS: "the project files" },
+          topicArea: "work",
+        },
+        {
+          en: "Where are the first aid kits?",
+          bn: "ফার্স্ট এইড কিটগুলো কোথায়?",
+          slotValues: { THINGS: "the first aid kits" },
+          topicArea: "health",
+        },
+        {
+          en: "Where are the kids?",
+          bn: "বাচ্চারা কোথায়?",
+          slotValues: { THINGS: "the kids" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Plural version of 'Where is'. Used when asking about the location of multiple things or people.",
+      usageNote_bn:
+        "'Where is'-এর বহুবচন রূপ। একাধিক জিনিস বা মানুষের অবস্থান জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.2", "G2.16"],
+      responsePatterns: [],
+      banglaStructureMap: "[THINGS] (বহুবচন বিশেষ্য) + কোথায়? (Where)",
+    },
+    {
+      id: "G2.11",
+      formula: "Whose [THING] is this?",
+      formula_bn: "এটা কার [জিনিস]?",
+      patternName: "Asking Whose (Possession)",
+      patternName_bn: "কার জিজ্ঞেস করা (মালিকানা)",
+      slots: [
+        {
+          name: "THING",
+          description: "A noun describing the object whose owner you want to know",
+          description_bn:
+            "একটি বিশেষ্য যা সেই জিনিসকে বর্ণনা করে যার মালিক আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["bag", "phone", "umbrella"],
+        },
+      ],
+      examples: [
+        {
+          en: "Whose bag is this?",
+          bn: "এটা কার ব্যাগ?",
+          slotValues: { THING: "bag" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Whose lunchbox is this?",
+          bn: "এটা কার লাঞ্চবক্স?",
+          slotValues: { THING: "lunchbox" },
+          topicArea: "food",
+        },
+        {
+          en: "Whose suitcase is this?",
+          bn: "এটা কার সুটকেস?",
+          slotValues: { THING: "suitcase" },
+          topicArea: "travel",
+        },
+        {
+          en: "Whose notebook is this?",
+          bn: "এটা কার খাতা?",
+          slotValues: { THING: "notebook" },
+          topicArea: "education",
+        },
+        {
+          en: "Whose desk is this?",
+          bn: "এটা কার ডেস্ক?",
+          slotValues: { THING: "desk" },
+          topicArea: "work",
+        },
+        {
+          en: "Whose prescription is this?",
+          bn: "এটা কার প্রেসক্রিপশন?",
+          slotValues: { THING: "prescription" },
+          topicArea: "health",
+        },
+        {
+          en: "Whose receipt is this?",
+          bn: "এটা কার রসিদ?",
+          slotValues: { THING: "receipt" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Whose phone is this?",
+          bn: "এটা কার ফোন?",
+          slotValues: { THING: "phone" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Whose umbrella is this?",
+          bn: "এটা কার ছাতা?",
+          slotValues: { THING: "umbrella" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Whose water bottle is this?",
+          bn: "এটা কার পানির বোতল?",
+          slotValues: { THING: "water bottle" },
+          topicArea: "food",
+        },
+        {
+          en: "Whose passport is this?",
+          bn: "এটা কার পাসপোর্ট?",
+          slotValues: { THING: "passport" },
+          topicArea: "travel",
+        },
+        {
+          en: "Whose homework is this?",
+          bn: "এটা কার হোমওয়ার্ক?",
+          slotValues: { THING: "homework" },
+          topicArea: "education",
+        },
+        {
+          en: "Whose laptop is this?",
+          bn: "এটা কার ল্যাপটপ?",
+          slotValues: { THING: "laptop" },
+          topicArea: "work",
+        },
+        {
+          en: "Whose medicine is this?",
+          bn: "এটা কার ওষুধ?",
+          slotValues: { THING: "medicine" },
+          topicArea: "health",
+        },
+        {
+          en: "Whose jacket is this?",
+          bn: "এটা কার জ্যাকেট?",
+          slotValues: { THING: "jacket" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'Whose' asks about ownership or possession. Don't confuse it with 'who's' (= who is).",
+      usageNote_bn:
+        "'Whose' মালিকানা জানতে চায়। 'who's' (= who is)-এর সাথে গুলিয়ে ফেলবেন না।",
+      combinableWith: ["G2.8"],
+      responsePatterns: [],
+      banglaStructureMap: "এটা + কার (Whose) + [THING] (জিনিস)?",
+    },
+    {
+      id: "G2.12",
+      formula: "Which [THING] do you [ACTION]?",
+      formula_bn: "তুমি কোন [জিনিস] [কাজ] করো?",
+      patternName: "Asking Which (Selection)",
+      patternName_bn: "কোনটি জিজ্ঞেস করা (নির্বাচন)",
+      slots: [
+        {
+          name: "THING",
+          description:
+            "A noun describing the category of items to choose from",
+          description_bn:
+            "একটি বিশেষ্য যা পছন্দের বিকল্পগুলোর ধরন বর্ণনা করে",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["color", "subject", "route"],
+        },
+        {
+          name: "ACTION",
+          description: "Base form of a verb or verb phrase",
+          description_bn: "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["like", "prefer", "want"],
+        },
+      ],
+      examples: [
+        {
+          en: "Which color do you like?",
+          bn: "তুমি কোন রং পছন্দ করো?",
+          slotValues: { THING: "color", ACTION: "like" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Which dish do you recommend?",
+          bn: "তুমি কোন খাবার রেকমেন্ড করো?",
+          slotValues: { THING: "dish", ACTION: "recommend" },
+          topicArea: "food",
+        },
+        {
+          en: "Which route do you take?",
+          bn: "তুমি কোন রাস্তা দিয়ে যাও?",
+          slotValues: { THING: "route", ACTION: "take" },
+          topicArea: "travel",
+        },
+        {
+          en: "Which subject do you enjoy?",
+          bn: "তুমি কোন বিষয় উপভোগ করো?",
+          slotValues: { THING: "subject", ACTION: "enjoy" },
+          topicArea: "education",
+        },
+        {
+          en: "Which shift do you prefer?",
+          bn: "তুমি কোন শিফট পছন্দ করো?",
+          slotValues: { THING: "shift", ACTION: "prefer" },
+          topicArea: "work",
+        },
+        {
+          en: "Which hospital do you go to?",
+          bn: "তুমি কোন হাসপাতালে যাও?",
+          slotValues: { THING: "hospital", ACTION: "go to" },
+          topicArea: "health",
+        },
+        {
+          en: "Which brand do you trust?",
+          bn: "তুমি কোন ব্র্যান্ড বিশ্বাস করো?",
+          slotValues: { THING: "brand", ACTION: "trust" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Which friend do you call the most?",
+          bn: "তুমি কোন বন্ধুকে সবচেয়ে বেশি ফোন করো?",
+          slotValues: { THING: "friend", ACTION: "call the most" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Which phone do you use?",
+          bn: "তুমি কোন ফোন ব্যবহার করো?",
+          slotValues: { THING: "phone", ACTION: "use" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Which restaurant do you visit often?",
+          bn: "তুমি কোন রেস্তোরাঁয় প্রায়ই যাও?",
+          slotValues: { THING: "restaurant", ACTION: "visit often" },
+          topicArea: "food",
+        },
+        {
+          en: "Which airline do you fly with?",
+          bn: "তুমি কোন এয়ারলাইনসে উড়ো?",
+          slotValues: { THING: "airline", ACTION: "fly with" },
+          topicArea: "travel",
+        },
+        {
+          en: "Which book do you want to read?",
+          bn: "তুমি কোন বই পড়তে চাও?",
+          slotValues: { THING: "book", ACTION: "want to read" },
+          topicArea: "education",
+        },
+        {
+          en: "Which project do you work on?",
+          bn: "তুমি কোন প্রজেক্টে কাজ করো?",
+          slotValues: { THING: "project", ACTION: "work on" },
+          topicArea: "work",
+        },
+        {
+          en: "Which vitamin do you take?",
+          bn: "তুমি কোন ভিটামিন খাও?",
+          slotValues: { THING: "vitamin", ACTION: "take" },
+          topicArea: "health",
+        },
+        {
+          en: "Which store do you shop at?",
+          bn: "তুমি কোন দোকানে কেনাকাটা করো?",
+          slotValues: { THING: "store", ACTION: "shop at" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'Which' is used when choosing from a specific or limited set of options. Compare with 'what' which is more open-ended.",
+      usageNote_bn:
+        "'Which' নির্দিষ্ট বা সীমিত বিকল্প থেকে বেছে নেওয়ার সময় ব্যবহৃত। 'What' আরও খোলা প্রশ্নের জন্য।",
+      combinableWith: ["G2.1", "G2.9"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি + কোন (Which) + [THING] (জিনিস) + [ACTION] (কাজ) + করো?",
+    },
+
+    // ===== Block B: Past Tense "be" Questions (G2.13–G2.17) =====
+
+    {
+      id: "G2.13",
+      formula: "What was [THING]?",
+      formula_bn: "[জিনিস] কী ছিল?",
+      patternName: "Asking What Was",
+      patternName_bn: "কী ছিল জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "THING",
+          description:
+            "A singular noun or noun phrase about a past situation",
+          description_bn:
+            "অতীতের পরিস্থিতি সম্পর্কে একটি একবচন বিশেষ্য বা বিশেষ্য পদবন্ধ",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["the problem", "his answer", "the score"],
+        },
+      ],
+      examples: [
+        {
+          en: "What was the problem?",
+          bn: "সমস্যাটা কী ছিল?",
+          slotValues: { THING: "the problem" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What was the last dish you ordered?",
+          bn: "তুমি শেষ কোন খাবার অর্ডার করেছিলে?",
+          slotValues: { THING: "the last dish you ordered" },
+          topicArea: "food",
+        },
+        {
+          en: "What was the flight number?",
+          bn: "ফ্লাইট নম্বরটা কী ছিল?",
+          slotValues: { THING: "the flight number" },
+          topicArea: "travel",
+        },
+        {
+          en: "What was the exam result?",
+          bn: "পরীক্ষার ফলাফল কী ছিল?",
+          slotValues: { THING: "the exam result" },
+          topicArea: "education",
+        },
+        {
+          en: "What was the meeting about?",
+          bn: "মিটিংটা কী নিয়ে ছিল?",
+          slotValues: { THING: "the meeting about" },
+          topicArea: "work",
+        },
+        {
+          en: "What was the diagnosis?",
+          bn: "রোগ নির্ণয়টা কী ছিল?",
+          slotValues: { THING: "the diagnosis" },
+          topicArea: "health",
+        },
+        {
+          en: "What was the original price?",
+          bn: "আসল দাম কত ছিল?",
+          slotValues: { THING: "the original price" },
+          topicArea: "shopping",
+        },
+        {
+          en: "What was his reaction?",
+          bn: "তার প্রতিক্রিয়া কী ছিল?",
+          slotValues: { THING: "his reaction" },
+          topicArea: "relationships",
+        },
+        {
+          en: "What was the weather like yesterday?",
+          bn: "গতকাল আবহাওয়া কেমন ছিল?",
+          slotValues: { THING: "the weather like yesterday" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What was the name of the restaurant?",
+          bn: "রেস্তোরাঁর নাম কী ছিল?",
+          slotValues: { THING: "the name of the restaurant" },
+          topicArea: "food",
+        },
+        {
+          en: "What was the hotel name?",
+          bn: "হোটেলের নাম কী ছিল?",
+          slotValues: { THING: "the hotel name" },
+          topicArea: "travel",
+        },
+        {
+          en: "What was the homework?",
+          bn: "হোমওয়ার্কটা কী ছিল?",
+          slotValues: { THING: "the homework" },
+          topicArea: "education",
+        },
+        {
+          en: "What was the deadline?",
+          bn: "ডেডলাইনটা কী ছিল?",
+          slotValues: { THING: "the deadline" },
+          topicArea: "work",
+        },
+        {
+          en: "What was the medicine for?",
+          bn: "ওষুধটা কীসের জন্য ছিল?",
+          slotValues: { THING: "the medicine for" },
+          topicArea: "health",
+        },
+        {
+          en: "What was the discount?",
+          bn: "ডিসকাউন্টটা কত ছিল?",
+          slotValues: { THING: "the discount" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Past tense of 'What is'. Used to ask about things in the past. 'Was' is used with singular nouns and 'it'.",
+      usageNote_bn:
+        "'What is'-এর অতীত রূপ। অতীতের জিনিস সম্পর্কে জিজ্ঞেস করতে ব্যবহৃত। একবচন বিশেষ্য এবং 'it'-এর সাথে 'was' ব্যবহার হয়।",
+      combinableWith: ["G2.1", "G2.14"],
+      responsePatterns: [],
+      banglaStructureMap: "[THING] (বিশেষ্য) + কী ছিল? (What was)",
+    },
+    {
+      id: "G2.14",
+      formula: "What were [THINGS]?",
+      formula_bn: "[জিনিসগুলো] কী ছিল?",
+      patternName: "Asking What Were",
+      patternName_bn: "কী ছিল জিজ্ঞেস করা (বহুবচন)",
+      slots: [
+        {
+          name: "THINGS",
+          description:
+            "A plural noun or noun phrase about a past situation",
+          description_bn:
+            "অতীতের পরিস্থিতি সম্পর্কে একটি বহুবচন বিশেষ্য বা বিশেষ্য পদবন্ধ",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["the results", "the symptoms", "your options"],
+        },
+      ],
+      examples: [
+        {
+          en: "What were the results?",
+          bn: "ফলাফলগুলো কী ছিল?",
+          slotValues: { THINGS: "the results" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What were the ingredients in that curry?",
+          bn: "ওই তরকারিতে উপকরণগুলো কী ছিল?",
+          slotValues: { THINGS: "the ingredients in that curry" },
+          topicArea: "food",
+        },
+        {
+          en: "What were the travel options?",
+          bn: "ভ্রমণের অপশনগুলো কী ছিল?",
+          slotValues: { THINGS: "the travel options" },
+          topicArea: "travel",
+        },
+        {
+          en: "What were the questions on the test?",
+          bn: "পরীক্ষায় প্রশ্নগুলো কী ছিল?",
+          slotValues: { THINGS: "the questions on the test" },
+          topicArea: "education",
+        },
+        {
+          en: "What were the main issues discussed?",
+          bn: "আলোচিত প্রধান বিষয়গুলো কী ছিল?",
+          slotValues: { THINGS: "the main issues discussed" },
+          topicArea: "work",
+        },
+        {
+          en: "What were the symptoms?",
+          bn: "লক্ষণগুলো কী ছিল?",
+          slotValues: { THINGS: "the symptoms" },
+          topicArea: "health",
+        },
+        {
+          en: "What were the prices like?",
+          bn: "দামগুলো কেমন ছিল?",
+          slotValues: { THINGS: "the prices like" },
+          topicArea: "shopping",
+        },
+        {
+          en: "What were her reasons for leaving?",
+          bn: "তার চলে যাওয়ার কারণগুলো কী ছিল?",
+          slotValues: { THINGS: "her reasons for leaving" },
+          topicArea: "relationships",
+        },
+        {
+          en: "What were the rules of the game?",
+          bn: "খেলার নিয়মগুলো কী ছিল?",
+          slotValues: { THINGS: "the rules of the game" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What were the dishes at the party?",
+          bn: "পার্টিতে খাবারগুলো কী ছিল?",
+          slotValues: { THINGS: "the dishes at the party" },
+          topicArea: "food",
+        },
+        {
+          en: "What were the places you visited?",
+          bn: "তুমি যেসব জায়গায় গিয়েছিলে সেগুলো কী ছিল?",
+          slotValues: { THINGS: "the places you visited" },
+          topicArea: "travel",
+        },
+        {
+          en: "What were your favorite subjects?",
+          bn: "তোমার প্রিয় বিষয়গুলো কী ছিল?",
+          slotValues: { THINGS: "your favorite subjects" },
+          topicArea: "education",
+        },
+        {
+          en: "What were the key decisions?",
+          bn: "মূল সিদ্ধান্তগুলো কী ছিল?",
+          slotValues: { THINGS: "the key decisions" },
+          topicArea: "work",
+        },
+        {
+          en: "What were the test results?",
+          bn: "পরীক্ষার ফলাফলগুলো কী ছিল?",
+          slotValues: { THINGS: "the test results" },
+          topicArea: "health",
+        },
+        {
+          en: "What were the best deals?",
+          bn: "সেরা অফারগুলো কী ছিল?",
+          slotValues: { THINGS: "the best deals" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Past tense of 'What are'. Used with plural nouns and 'you/they/we'. Bangla doesn't distinguish was/were — both translate to 'ছিল'.",
+      usageNote_bn:
+        "'What are'-এর অতীত রূপ। বহুবচন বিশেষ্য এবং you/they/we-এর সাথে 'were' ব্যবহার হয়। বাংলায় was/were দুটোই 'ছিল'।",
+      combinableWith: ["G2.9", "G2.13"],
+      responsePatterns: [],
+      banglaStructureMap: "[THINGS] (বহুবচন বিশেষ্য) + কী ছিল? (What were)",
+    },
+    {
+      id: "G2.15",
+      formula: "Where was [THING]?",
+      formula_bn: "[জিনিস] কোথায় ছিল?",
+      patternName: "Asking Where Was",
+      patternName_bn: "কোথায় ছিল জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "THING",
+          description:
+            "A singular noun or noun phrase whose past location you want to know",
+          description_bn:
+            "একটি একবচন বিশেষ্য বা বিশেষ্য পদবন্ধ যার অতীত অবস্থান আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["the party", "the old market", "my phone"],
+        },
+      ],
+      examples: [
+        {
+          en: "Where was the party?",
+          bn: "পার্টিটা কোথায় ছিল?",
+          slotValues: { THING: "the party" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where was the food stall?",
+          bn: "খাবারের দোকানটা কোথায় ছিল?",
+          slotValues: { THING: "the food stall" },
+          topicArea: "food",
+        },
+        {
+          en: "Where was the bus stop?",
+          bn: "বাস স্টপটা কোথায় ছিল?",
+          slotValues: { THING: "the bus stop" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where was the classroom?",
+          bn: "ক্লাসরুমটা কোথায় ছিল?",
+          slotValues: { THING: "the classroom" },
+          topicArea: "education",
+        },
+        {
+          en: "Where was the old office?",
+          bn: "পুরনো অফিসটা কোথায় ছিল?",
+          slotValues: { THING: "the old office" },
+          topicArea: "work",
+        },
+        {
+          en: "Where was the pharmacy?",
+          bn: "ফার্মেসিটা কোথায় ছিল?",
+          slotValues: { THING: "the pharmacy" },
+          topicArea: "health",
+        },
+        {
+          en: "Where was the sale?",
+          bn: "সেলটা কোথায় ছিল?",
+          slotValues: { THING: "the sale" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Where was the wedding?",
+          bn: "বিয়েটা কোথায় ছিল?",
+          slotValues: { THING: "the wedding" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Where was my phone?",
+          bn: "আমার ফোনটা কোথায় ছিল?",
+          slotValues: { THING: "my phone" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where was the bakery you mentioned?",
+          bn: "তুমি যে বেকারির কথা বলেছিলে সেটা কোথায় ছিল?",
+          slotValues: { THING: "the bakery you mentioned" },
+          topicArea: "food",
+        },
+        {
+          en: "Where was the hotel?",
+          bn: "হোটেলটা কোথায় ছিল?",
+          slotValues: { THING: "the hotel" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where was the library?",
+          bn: "লাইব্রেরিটা কোথায় ছিল?",
+          slotValues: { THING: "the library" },
+          topicArea: "education",
+        },
+        {
+          en: "Where was the conference?",
+          bn: "কনফারেন্সটা কোথায় ছিল?",
+          slotValues: { THING: "the conference" },
+          topicArea: "work",
+        },
+        {
+          en: "Where was the clinic?",
+          bn: "ক্লিনিকটা কোথায় ছিল?",
+          slotValues: { THING: "the clinic" },
+          topicArea: "health",
+        },
+        {
+          en: "Where was the shopping mall?",
+          bn: "শপিং মলটা কোথায় ছিল?",
+          slotValues: { THING: "the shopping mall" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Past tense of 'Where is'. Used to ask about past locations. 'Was' is for singular nouns.",
+      usageNote_bn:
+        "'Where is'-এর অতীত রূপ। অতীতের অবস্থান জিজ্ঞেস করতে ব্যবহৃত। একবচনের জন্য 'was'।",
+      combinableWith: ["G2.2", "G2.16"],
+      responsePatterns: [],
+      banglaStructureMap: "[THING] (বিশেষ্য) + কোথায় ছিল? (Where was)",
+    },
+    {
+      id: "G2.16",
+      formula: "Where were [THINGS]?",
+      formula_bn: "[জিনিসগুলো] কোথায় ছিল?",
+      patternName: "Asking Where Were",
+      patternName_bn: "কোথায় ছিল জিজ্ঞেস করা (বহুবচন)",
+      slots: [
+        {
+          name: "THINGS",
+          description:
+            "A plural noun or noun phrase whose past location you want to know",
+          description_bn:
+            "একটি বহুবচন বিশেষ্য বা বিশেষ্য পদবন্ধ যার অতীত অবস্থান আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["the guests", "my files", "the kids"],
+        },
+      ],
+      examples: [
+        {
+          en: "Where were the guests?",
+          bn: "অতিথিরা কোথায় ছিল?",
+          slotValues: { THINGS: "the guests" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where were the snacks?",
+          bn: "স্ন্যাকসগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the snacks" },
+          topicArea: "food",
+        },
+        {
+          en: "Where were the tickets?",
+          bn: "টিকেটগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the tickets" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where were the students?",
+          bn: "ছাত্ররা কোথায় ছিল?",
+          slotValues: { THINGS: "the students" },
+          topicArea: "education",
+        },
+        {
+          en: "Where were the documents?",
+          bn: "কাগজপত্রগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the documents" },
+          topicArea: "work",
+        },
+        {
+          en: "Where were the reports?",
+          bn: "রিপোর্টগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the reports" },
+          topicArea: "health",
+        },
+        {
+          en: "Where were the shoes you wanted?",
+          bn: "তুমি যে জুতা চেয়েছিলে সেগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the shoes you wanted" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Where were the kids yesterday?",
+          bn: "বাচ্চারা গতকাল কোথায় ছিল?",
+          slotValues: { THINGS: "the kids yesterday" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Where were my glasses?",
+          bn: "আমার চশমাটা কোথায় ছিল?",
+          slotValues: { THINGS: "my glasses" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where were the leftovers?",
+          bn: "বাকি খাবারগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the leftovers" },
+          topicArea: "food",
+        },
+        {
+          en: "Where were the suitcases?",
+          bn: "সুটকেসগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the suitcases" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where were the answer sheets?",
+          bn: "উত্তরপত্রগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the answer sheets" },
+          topicArea: "education",
+        },
+        {
+          en: "Where were the files I asked for?",
+          bn: "আমি যে ফাইলগুলো চেয়েছিলাম সেগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the files I asked for" },
+          topicArea: "work",
+        },
+        {
+          en: "Where were the bandages?",
+          bn: "ব্যান্ডেজগুলো কোথায় ছিল?",
+          slotValues: { THINGS: "the bandages" },
+          topicArea: "health",
+        },
+        {
+          en: "Where were your parents during the event?",
+          bn: "অনুষ্ঠানের সময় তোমার বাবা-মা কোথায় ছিল?",
+          slotValues: { THINGS: "your parents during the event" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Past tense of 'Where are'. Used with plural nouns and 'you/they/we'.",
+      usageNote_bn:
+        "'Where are'-এর অতীত রূপ। বহুবচন বিশেষ্য এবং you/they/we-এর সাথে 'were' ব্যবহার হয়।",
+      combinableWith: ["G2.10", "G2.15"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "[THINGS] (বহুবচন বিশেষ্য) + কোথায় ছিল? (Where were)",
+    },
+    {
+      id: "G2.17",
+      formula: "Who was [PERSON]?",
+      formula_bn: "[ব্যক্তি] কে ছিল?",
+      patternName: "Asking Who Was",
+      patternName_bn: "কে ছিল জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "PERSON",
+          description:
+            "A person or role you want to identify from the past",
+          description_bn:
+            "একজন ব্যক্তি বা ভূমিকা যাকে আপনি অতীত থেকে চিনতে চান",
+          acceptedTypes: ["person", "noun_phrase"],
+          examples: ["that caller", "the previous owner", "your first teacher"],
+        },
+      ],
+      examples: [
+        {
+          en: "Who was that caller?",
+          bn: "ফোনে কে ছিল?",
+          slotValues: { PERSON: "that caller" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Who was the cook at the party?",
+          bn: "পার্টিতে রাঁধুনি কে ছিল?",
+          slotValues: { PERSON: "the cook at the party" },
+          topicArea: "food",
+        },
+        {
+          en: "Who was the driver?",
+          bn: "ড্রাইভার কে ছিল?",
+          slotValues: { PERSON: "the driver" },
+          topicArea: "travel",
+        },
+        {
+          en: "Who was your first teacher?",
+          bn: "তোমার প্রথম শিক্ষক কে ছিল?",
+          slotValues: { PERSON: "your first teacher" },
+          topicArea: "education",
+        },
+        {
+          en: "Who was the previous manager?",
+          bn: "আগের ম্যানেজার কে ছিল?",
+          slotValues: { PERSON: "the previous manager" },
+          topicArea: "work",
+        },
+        {
+          en: "Who was the doctor on duty?",
+          bn: "ডিউটিতে ডাক্তার কে ছিল?",
+          slotValues: { PERSON: "the doctor on duty" },
+          topicArea: "health",
+        },
+        {
+          en: "Who was the salesperson?",
+          bn: "সেলসপার্সন কে ছিল?",
+          slotValues: { PERSON: "the salesperson" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Who was your childhood best friend?",
+          bn: "তোমার ছোটবেলার সবচেয়ে ভালো বন্ধু কে ছিল?",
+          slotValues: { PERSON: "your childhood best friend" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Who was at the door?",
+          bn: "দরজায় কে ছিল?",
+          slotValues: { PERSON: "at the door" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Who was the waiter last time?",
+          bn: "গতবার ওয়েটার কে ছিল?",
+          slotValues: { PERSON: "the waiter last time" },
+          topicArea: "food",
+        },
+        {
+          en: "Who was the tour guide in Cox's Bazar?",
+          bn: "কক্সবাজারে ট্যুর গাইড কে ছিল?",
+          slotValues: { PERSON: "the tour guide in Cox's Bazar" },
+          topicArea: "travel",
+        },
+        {
+          en: "Who was the class monitor?",
+          bn: "ক্লাস মনিটর কে ছিল?",
+          slotValues: { PERSON: "the class monitor" },
+          topicArea: "education",
+        },
+        {
+          en: "Who was the project lead before?",
+          bn: "আগে প্রজেক্ট লিড কে ছিল?",
+          slotValues: { PERSON: "the project lead before" },
+          topicArea: "work",
+        },
+        {
+          en: "Who was the nurse?",
+          bn: "নার্স কে ছিল?",
+          slotValues: { PERSON: "the nurse" },
+          topicArea: "health",
+        },
+        {
+          en: "Who was your neighbor before?",
+          bn: "আগে তোমার প্রতিবেশী কে ছিল?",
+          slotValues: { PERSON: "your neighbor before" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Past tense of 'Who is'. Used to ask about someone's identity in the past.",
+      usageNote_bn:
+        "'Who is'-এর অতীত রূপ। অতীতে কারো পরিচয় জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.8", "G2.22"],
+      responsePatterns: [],
+      banglaStructureMap: "[PERSON] (ব্যক্তি) + কে ছিল? (Who was)",
+    },
+
+    // ===== Block C: Past Tense "did" Questions (G2.18–G2.22) =====
+
+    {
+      id: "G2.18",
+      formula: "When did you [ACTION]?",
+      formula_bn: "তুমি কখন [কাজ] করেছিলে?",
+      patternName: "Asking When (Past)",
+      patternName_bn: "কখন জিজ্ঞেস করা (অতীত)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (past action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে অতীত কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["arrive", "start the job", "move here"],
+        },
+      ],
+      examples: [
+        {
+          en: "When did you arrive?",
+          bn: "তুমি কখন এসেছিলে?",
+          slotValues: { ACTION: "arrive" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "When did you eat lunch?",
+          bn: "তুমি কখন দুপুরের খাবার খেয়েছিলে?",
+          slotValues: { ACTION: "eat lunch" },
+          topicArea: "food",
+        },
+        {
+          en: "When did you book the ticket?",
+          bn: "তুমি কখন টিকেট বুক করেছিলে?",
+          slotValues: { ACTION: "book the ticket" },
+          topicArea: "travel",
+        },
+        {
+          en: "When did you finish the exam?",
+          bn: "তুমি কখন পরীক্ষা শেষ করেছিলে?",
+          slotValues: { ACTION: "finish the exam" },
+          topicArea: "education",
+        },
+        {
+          en: "When did you start this job?",
+          bn: "তুমি কখন এই চাকরি শুরু করেছিলে?",
+          slotValues: { ACTION: "start this job" },
+          topicArea: "work",
+        },
+        {
+          en: "When did you see the doctor?",
+          bn: "তুমি কখন ডাক্তার দেখিয়েছিলে?",
+          slotValues: { ACTION: "see the doctor" },
+          topicArea: "health",
+        },
+        {
+          en: "When did you buy this shirt?",
+          bn: "তুমি কখন এই শার্টটা কিনেছিলে?",
+          slotValues: { ACTION: "buy this shirt" },
+          topicArea: "shopping",
+        },
+        {
+          en: "When did you meet her?",
+          bn: "তুমি কখন তার সাথে দেখা করেছিলে?",
+          slotValues: { ACTION: "meet her" },
+          topicArea: "relationships",
+        },
+        {
+          en: "When did you wake up today?",
+          bn: "তুমি আজ কখন ঘুম থেকে উঠেছিলে?",
+          slotValues: { ACTION: "wake up today" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "When did you order the food?",
+          bn: "তুমি কখন খাবার অর্ডার করেছিলে?",
+          slotValues: { ACTION: "order the food" },
+          topicArea: "food",
+        },
+        {
+          en: "When did you come back from the trip?",
+          bn: "তুমি কখন ট্রিপ থেকে ফিরেছিলে?",
+          slotValues: { ACTION: "come back from the trip" },
+          topicArea: "travel",
+        },
+        {
+          en: "When did you submit the assignment?",
+          bn: "তুমি কখন অ্যাসাইনমেন্ট জমা দিয়েছিলে?",
+          slotValues: { ACTION: "submit the assignment" },
+          topicArea: "education",
+        },
+        {
+          en: "When did you get the promotion?",
+          bn: "তুমি কখন প্রমোশন পেয়েছিলে?",
+          slotValues: { ACTION: "get the promotion" },
+          topicArea: "work",
+        },
+        {
+          en: "When did you take the medicine?",
+          bn: "তুমি কখন ওষুধ খেয়েছিলে?",
+          slotValues: { ACTION: "take the medicine" },
+          topicArea: "health",
+        },
+        {
+          en: "When did you last talk to him?",
+          bn: "তুমি শেষবার কখন তার সাথে কথা বলেছিলে?",
+          slotValues: { ACTION: "last talk to him" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Past tense of 'When do you'. Uses 'did' + base form of verb. In English, 'did' carries the past meaning, so the main verb stays in base form.",
+      usageNote_bn:
+        "'When do you'-এর অতীত রূপ। 'did' + ক্রিয়ার মূল রূপ ব্যবহার হয়। বাংলায় অতীত কাল ক্রিয়ার রূপ পরিবর্তনে (করেছিলে) প্রকাশ হয়, আলাদা সাহায্যকারী শব্দ দিয়ে নয়।",
+      combinableWith: ["G2.3", "G2.25"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কখন (Subject + When) + [ACTION] (ক্রিয়া) + করেছিলে? (Past Verb)",
+    },
+    {
+      id: "G2.19",
+      formula: "Why did you [ACTION]?",
+      formula_bn: "তুমি কেন [কাজ] করেছিলে?",
+      patternName: "Asking Why (Past)",
+      patternName_bn: "কেন জিজ্ঞেস করা (অতীত)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (past action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে অতীত কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["leave early", "change your mind", "sell the car"],
+        },
+      ],
+      examples: [
+        {
+          en: "Why did you leave early?",
+          bn: "তুমি কেন তাড়াতাড়ি চলে গিয়েছিলে?",
+          slotValues: { ACTION: "leave early" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Why did you skip breakfast?",
+          bn: "তুমি কেন সকালের নাস্তা বাদ দিয়েছিলে?",
+          slotValues: { ACTION: "skip breakfast" },
+          topicArea: "food",
+        },
+        {
+          en: "Why did you cancel the trip?",
+          bn: "তুমি কেন ট্রিপ বাতিল করেছিলে?",
+          slotValues: { ACTION: "cancel the trip" },
+          topicArea: "travel",
+        },
+        {
+          en: "Why did you drop the course?",
+          bn: "তুমি কেন কোর্স ছেড়ে দিয়েছিলে?",
+          slotValues: { ACTION: "drop the course" },
+          topicArea: "education",
+        },
+        {
+          en: "Why did you quit the job?",
+          bn: "তুমি কেন চাকরি ছেড়ে দিয়েছিলে?",
+          slotValues: { ACTION: "quit the job" },
+          topicArea: "work",
+        },
+        {
+          en: "Why did you miss the appointment?",
+          bn: "তুমি কেন অ্যাপয়েন্টমেন্ট মিস করেছিলে?",
+          slotValues: { ACTION: "miss the appointment" },
+          topicArea: "health",
+        },
+        {
+          en: "Why did you return the product?",
+          bn: "তুমি কেন পণ্যটা ফেরত দিয়েছিলে?",
+          slotValues: { ACTION: "return the product" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Why did you argue with him?",
+          bn: "তুমি কেন তার সাথে তর্ক করেছিলে?",
+          slotValues: { ACTION: "argue with him" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Why did you change your mind?",
+          bn: "তুমি কেন মত পাল্টেছিলে?",
+          slotValues: { ACTION: "change your mind" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Why did you order so much food?",
+          bn: "তুমি কেন এত খাবার অর্ডার করেছিলে?",
+          slotValues: { ACTION: "order so much food" },
+          topicArea: "food",
+        },
+        {
+          en: "Why did you take the long route?",
+          bn: "তুমি কেন লম্বা রাস্তা দিয়ে গিয়েছিলে?",
+          slotValues: { ACTION: "take the long route" },
+          topicArea: "travel",
+        },
+        {
+          en: "Why did you fail the test?",
+          bn: "তুমি কেন পরীক্ষায় ফেল করেছিলে?",
+          slotValues: { ACTION: "fail the test" },
+          topicArea: "education",
+        },
+        {
+          en: "Why did you work overtime?",
+          bn: "তুমি কেন ওভারটাইম করেছিলে?",
+          slotValues: { ACTION: "work overtime" },
+          topicArea: "work",
+        },
+        {
+          en: "Why did you stop taking the medicine?",
+          bn: "তুমি কেন ওষুধ খাওয়া বন্ধ করেছিলে?",
+          slotValues: { ACTION: "stop taking the medicine" },
+          topicArea: "health",
+        },
+        {
+          en: "Why did you buy such an expensive phone?",
+          bn: "তুমি কেন এত দামি ফোন কিনেছিলে?",
+          slotValues: { ACTION: "buy such an expensive phone" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Past tense of 'Why do you'. Used to ask reasons for past actions. Can sound confrontational depending on tone.",
+      usageNote_bn:
+        "'Why do you'-এর অতীত রূপ। অতীত কাজের কারণ জিজ্ঞেস করতে ব্যবহৃত। স্বরভঙ্গির উপর নির্ভর করে কখনো তিরস্কারমূলক শোনাতে পারে।",
+      combinableWith: ["G2.4", "G2.26"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কেন (Subject + Why) + [ACTION] (ক্রিয়া) + করেছিলে? (Past Verb)",
+    },
+    {
+      id: "G2.20",
+      formula: "How did you [ACTION]?",
+      formula_bn: "তুমি কীভাবে [কাজ] করেছিলে?",
+      patternName: "Asking How (Past)",
+      patternName_bn: "কীভাবে জিজ্ঞেস করা (অতীত)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (past action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে অতীত কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["learn English", "fix the car", "get the job"],
+        },
+      ],
+      examples: [
+        {
+          en: "How did you get here?",
+          bn: "তুমি কীভাবে এখানে এসেছিলে?",
+          slotValues: { ACTION: "get here" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How did you make this cake?",
+          bn: "তুমি কীভাবে এই কেক বানিয়েছিলে?",
+          slotValues: { ACTION: "make this cake" },
+          topicArea: "food",
+        },
+        {
+          en: "How did you find the hotel?",
+          bn: "তুমি কীভাবে হোটেল খুঁজে পেয়েছিলে?",
+          slotValues: { ACTION: "find the hotel" },
+          topicArea: "travel",
+        },
+        {
+          en: "How did you pass the exam?",
+          bn: "তুমি কীভাবে পরীক্ষায় পাশ করেছিলে?",
+          slotValues: { ACTION: "pass the exam" },
+          topicArea: "education",
+        },
+        {
+          en: "How did you get the job?",
+          bn: "তুমি কীভাবে চাকরি পেয়েছিলে?",
+          slotValues: { ACTION: "get the job" },
+          topicArea: "work",
+        },
+        {
+          en: "How did you recover so fast?",
+          bn: "তুমি কীভাবে এত তাড়াতাড়ি সুস্থ হয়েছিলে?",
+          slotValues: { ACTION: "recover so fast" },
+          topicArea: "health",
+        },
+        {
+          en: "How did you get such a good deal?",
+          bn: "তুমি কীভাবে এত ভালো দাম পেয়েছিলে?",
+          slotValues: { ACTION: "get such a good deal" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How did you meet your wife?",
+          bn: "তুমি কীভাবে তোমার স্ত্রীর সাথে দেখা হয়েছিল?",
+          slotValues: { ACTION: "meet your wife" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How did you fix the problem?",
+          bn: "তুমি কীভাবে সমস্যাটা ঠিক করেছিলে?",
+          slotValues: { ACTION: "fix the problem" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How did you learn to cook biryani?",
+          bn: "তুমি কীভাবে বিরিয়ানি রান্না শিখেছিলে?",
+          slotValues: { ACTION: "learn to cook biryani" },
+          topicArea: "food",
+        },
+        {
+          en: "How did you book the flight?",
+          bn: "তুমি কীভাবে ফ্লাইট বুক করেছিলে?",
+          slotValues: { ACTION: "book the flight" },
+          topicArea: "travel",
+        },
+        {
+          en: "How did you learn English?",
+          bn: "তুমি কীভাবে ইংরেজি শিখেছিলে?",
+          slotValues: { ACTION: "learn English" },
+          topicArea: "education",
+        },
+        {
+          en: "How did you finish the project so quickly?",
+          bn: "তুমি কীভাবে এত তাড়াতাড়ি প্রজেক্ট শেষ করেছিলে?",
+          slotValues: { ACTION: "finish the project so quickly" },
+          topicArea: "work",
+        },
+        {
+          en: "How did you lose so much weight?",
+          bn: "তুমি কীভাবে এত ওজন কমিয়েছিলে?",
+          slotValues: { ACTION: "lose so much weight" },
+          topicArea: "health",
+        },
+        {
+          en: "How did you convince your parents?",
+          bn: "তুমি কীভাবে তোমার বাবা-মাকে রাজি করেছিলে?",
+          slotValues: { ACTION: "convince your parents" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Past tense of 'How do you'. Used to ask about the method or way something was done in the past.",
+      usageNote_bn:
+        "'How do you'-এর অতীত রূপ। অতীতে কীভাবে কিছু করা হয়েছিল তা জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.5", "G2.27"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কীভাবে (Subject + How) + [ACTION] (ক্রিয়া) + করেছিলে? (Past Verb)",
+    },
+    {
+      id: "G2.21",
+      formula: "What did you [ACTION]?",
+      formula_bn: "তুমি কী [কাজ] করেছিলে?",
+      patternName: "Asking What (Past Action)",
+      patternName_bn: "কী জিজ্ঞেস করা (অতীত কাজ)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a transitive verb or verb phrase ('what' is asked as the object)",
+          description_bn:
+            "সকর্মক ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ ('কী' বস্তু হিসেবে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["eat for dinner", "buy at the store", "do last night"],
+        },
+      ],
+      examples: [
+        {
+          en: "What did you do yesterday?",
+          bn: "তুমি গতকাল কী করেছিলে?",
+          slotValues: { ACTION: "do yesterday" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What did you eat for dinner?",
+          bn: "তুমি রাতের খাবারে কী খেয়েছিলে?",
+          slotValues: { ACTION: "eat for dinner" },
+          topicArea: "food",
+        },
+        {
+          en: "What did you see in Sylhet?",
+          bn: "তুমি সিলেটে কী দেখেছিলে?",
+          slotValues: { ACTION: "see in Sylhet" },
+          topicArea: "travel",
+        },
+        {
+          en: "What did you study in college?",
+          bn: "তুমি কলেজে কী পড়েছিলে?",
+          slotValues: { ACTION: "study in college" },
+          topicArea: "education",
+        },
+        {
+          en: "What did you discuss in the meeting?",
+          bn: "তুমি মিটিংয়ে কী আলোচনা করেছিলে?",
+          slotValues: { ACTION: "discuss in the meeting" },
+          topicArea: "work",
+        },
+        {
+          en: "What did you tell the doctor?",
+          bn: "তুমি ডাক্তারকে কী বলেছিলে?",
+          slotValues: { ACTION: "tell the doctor" },
+          topicArea: "health",
+        },
+        {
+          en: "What did you buy at the mall?",
+          bn: "তুমি মলে কী কিনেছিলে?",
+          slotValues: { ACTION: "buy at the mall" },
+          topicArea: "shopping",
+        },
+        {
+          en: "What did you say to her?",
+          bn: "তুমি তাকে কী বলেছিলে?",
+          slotValues: { ACTION: "say to her" },
+          topicArea: "relationships",
+        },
+        {
+          en: "What did you bring?",
+          bn: "তুমি কী এনেছিলে?",
+          slotValues: { ACTION: "bring" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What did you cook today?",
+          bn: "তুমি আজ কী রান্না করেছিলে?",
+          slotValues: { ACTION: "cook today" },
+          topicArea: "food",
+        },
+        {
+          en: "What did you pack for the trip?",
+          bn: "তুমি ট্রিপের জন্য কী কী প্যাক করেছিলে?",
+          slotValues: { ACTION: "pack for the trip" },
+          topicArea: "travel",
+        },
+        {
+          en: "What did you learn today?",
+          bn: "তুমি আজ কী শিখেছিলে?",
+          slotValues: { ACTION: "learn today" },
+          topicArea: "education",
+        },
+        {
+          en: "What did you write in the report?",
+          bn: "তুমি রিপোর্টে কী লিখেছিলে?",
+          slotValues: { ACTION: "write in the report" },
+          topicArea: "work",
+        },
+        {
+          en: "What did you take for the headache?",
+          bn: "মাথাব্যথার জন্য কী খেয়েছিলে?",
+          slotValues: { ACTION: "take for the headache" },
+          topicArea: "health",
+        },
+        {
+          en: "What did you give her for her birthday?",
+          bn: "তুমি তার জন্মদিনে কী দিয়েছিলে?",
+          slotValues: { ACTION: "give her for her birthday" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to ask about a specific past action or its object. 'What' functions as the object of the verb.",
+      usageNote_bn:
+        "একটি নির্দিষ্ট অতীত কাজ বা তার বস্তু সম্পর্কে জিজ্ঞেস করতে ব্যবহৃত। 'What' ক্রিয়ার কর্ম হিসেবে কাজ করে।",
+      combinableWith: ["G2.1", "G2.23"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কী (Subject + What) + [ACTION] (ক্রিয়া) + করেছিলে? (Past Verb)",
+    },
+    {
+      id: "G2.22",
+      formula: "Who [PAST ACTION]?",
+      formula_bn: "কে [অতীত কাজ] করেছিল?",
+      patternName: "Asking Who Did It",
+      patternName_bn: "কে করেছিল জিজ্ঞেস করা (কর্তা)",
+      slots: [
+        {
+          name: "PAST ACTION",
+          description:
+            "A verb in simple past form describing an action (asking who did it)",
+          description_bn:
+            "সাধারণ অতীত কালের ক্রিয়া (কে করেছিল তা জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["broke the window", "cooked this", "called you"],
+        },
+      ],
+      examples: [
+        {
+          en: "Who broke the glass?",
+          bn: "কে গ্লাস ভেঙেছে?",
+          slotValues: { "PAST ACTION": "broke the glass" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Who cooked this food?",
+          bn: "কে এই খাবার রান্না করেছে?",
+          slotValues: { "PAST ACTION": "cooked this food" },
+          topicArea: "food",
+        },
+        {
+          en: "Who booked the hotel?",
+          bn: "কে হোটেল বুক করেছে?",
+          slotValues: { "PAST ACTION": "booked the hotel" },
+          topicArea: "travel",
+        },
+        {
+          en: "Who answered the question?",
+          bn: "কে প্রশ্নের উত্তর দিয়েছে?",
+          slotValues: { "PAST ACTION": "answered the question" },
+          topicArea: "education",
+        },
+        {
+          en: "Who finished the report?",
+          bn: "কে রিপোর্ট শেষ করেছে?",
+          slotValues: { "PAST ACTION": "finished the report" },
+          topicArea: "work",
+        },
+        {
+          en: "Who called the ambulance?",
+          bn: "কে অ্যাম্বুলেন্স ডেকেছে?",
+          slotValues: { "PAST ACTION": "called the ambulance" },
+          topicArea: "health",
+        },
+        {
+          en: "Who bought this gift?",
+          bn: "কে এই উপহার কিনেছে?",
+          slotValues: { "PAST ACTION": "bought this gift" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Who told you that?",
+          bn: "কে তোমাকে এটা বলেছে?",
+          slotValues: { "PAST ACTION": "told you that" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Who left the door open?",
+          bn: "কে দরজা খোলা রেখেছে?",
+          slotValues: { "PAST ACTION": "left the door open" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Who ate the last piece of cake?",
+          bn: "কে কেকের শেষ টুকরোটা খেয়েছে?",
+          slotValues: { "PAST ACTION": "ate the last piece of cake" },
+          topicArea: "food",
+        },
+        {
+          en: "Who drove the car?",
+          bn: "কে গাড়ি চালিয়েছে?",
+          slotValues: { "PAST ACTION": "drove the car" },
+          topicArea: "travel",
+        },
+        {
+          en: "Who wrote this essay?",
+          bn: "কে এই রচনা লিখেছে?",
+          slotValues: { "PAST ACTION": "wrote this essay" },
+          topicArea: "education",
+        },
+        {
+          en: "Who sent this email?",
+          bn: "কে এই ইমেইল পাঠিয়েছে?",
+          slotValues: { "PAST ACTION": "sent this email" },
+          topicArea: "work",
+        },
+        {
+          en: "Who took the medicine?",
+          bn: "কে ওষুধ খেয়েছে?",
+          slotValues: { "PAST ACTION": "took the medicine" },
+          topicArea: "health",
+        },
+        {
+          en: "Who invited them?",
+          bn: "কে তাদের দাওয়াত দিয়েছে?",
+          slotValues: { "PAST ACTION": "invited them" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "When 'who' is the SUBJECT (the doer), we do NOT use 'did'. We say 'Who broke it?' NOT 'Who did break it?'. The verb is in simple past form.",
+      usageNote_bn:
+        "যখন 'who' কর্তা (যে কাজটি করেছে), তখন 'did' ব্যবহার হয় না। আমরা বলি 'Who broke it?' — 'Who did break it?' নয়। ক্রিয়া সরাসরি অতীত কালে থাকে।",
+      combinableWith: ["G2.8", "G2.17"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "কে (Who) + [PAST ACTION] (অতীত ক্রিয়া) + করেছিল?",
+    },
+
+    // ===== Block D: Future Tense "will" Questions (G2.23–G2.27) =====
+
+    {
+      id: "G2.23",
+      formula: "What will you [ACTION]?",
+      formula_bn: "তুমি কী [কাজ] করবে?",
+      patternName: "Asking What (Future)",
+      patternName_bn: "কী জিজ্ঞেস করা (ভবিষ্যৎ)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (future action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে ভবিষ্যৎ কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["do tomorrow", "eat for lunch", "study next"],
+        },
+      ],
+      examples: [
+        {
+          en: "What will you do tomorrow?",
+          bn: "তুমি আগামীকাল কী করবে?",
+          slotValues: { ACTION: "do tomorrow" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What will you cook tonight?",
+          bn: "তুমি আজ রাতে কী রান্না করবে?",
+          slotValues: { ACTION: "cook tonight" },
+          topicArea: "food",
+        },
+        {
+          en: "What will you do on vacation?",
+          bn: "তুমি ছুটিতে কী করবে?",
+          slotValues: { ACTION: "do on vacation" },
+          topicArea: "travel",
+        },
+        {
+          en: "What will you study next semester?",
+          bn: "তুমি পরের সেমিস্টারে কী পড়বে?",
+          slotValues: { ACTION: "study next semester" },
+          topicArea: "education",
+        },
+        {
+          en: "What will you do after the meeting?",
+          bn: "মিটিংয়ের পরে তুমি কী করবে?",
+          slotValues: { ACTION: "do after the meeting" },
+          topicArea: "work",
+        },
+        {
+          en: "What will you tell the doctor?",
+          bn: "তুমি ডাক্তারকে কী বলবে?",
+          slotValues: { ACTION: "tell the doctor" },
+          topicArea: "health",
+        },
+        {
+          en: "What will you buy for the party?",
+          bn: "তুমি পার্টির জন্য কী কিনবে?",
+          slotValues: { ACTION: "buy for the party" },
+          topicArea: "shopping",
+        },
+        {
+          en: "What will you give her for her birthday?",
+          bn: "তুমি তার জন্মদিনে কী দেবে?",
+          slotValues: { ACTION: "give her for her birthday" },
+          topicArea: "relationships",
+        },
+        {
+          en: "What will you wear to the event?",
+          bn: "তুমি অনুষ্ঠানে কী পরবে?",
+          slotValues: { ACTION: "wear to the event" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What will you order?",
+          bn: "তুমি কী অর্ডার করবে?",
+          slotValues: { ACTION: "order" },
+          topicArea: "food",
+        },
+        {
+          en: "What will you pack for the trip?",
+          bn: "তুমি ট্রিপের জন্য কী প্যাক করবে?",
+          slotValues: { ACTION: "pack for the trip" },
+          topicArea: "travel",
+        },
+        {
+          en: "What will you do after graduation?",
+          bn: "গ্র্যাজুয়েশনের পরে তুমি কী করবে?",
+          slotValues: { ACTION: "do after graduation" },
+          topicArea: "education",
+        },
+        {
+          en: "What will you present in the meeting?",
+          bn: "তুমি মিটিংয়ে কী উপস্থাপন করবে?",
+          slotValues: { ACTION: "present in the meeting" },
+          topicArea: "work",
+        },
+        {
+          en: "What will you eat if you're on a diet?",
+          bn: "ডায়েটে থাকলে তুমি কী খাবে?",
+          slotValues: { ACTION: "eat if you're on a diet" },
+          topicArea: "health",
+        },
+        {
+          en: "What will you say to him?",
+          bn: "তুমি তাকে কী বলবে?",
+          slotValues: { ACTION: "say to him" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to ask about future actions or plans. 'Will' + base form of verb expresses future tense.",
+      usageNote_bn:
+        "ভবিষ্যৎ কাজ বা পরিকল্পনা সম্পর্কে জিজ্ঞেস করতে ব্যবহৃত। বাংলায় ভবিষ্যৎ কাল ক্রিয়ার রূপ পরিবর্তনে (করবে) প্রকাশ হয়।",
+      combinableWith: ["G2.1", "G2.21"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কী (Subject + What) + [ACTION] (ক্রিয়া) + করবে? (Future Verb)",
+    },
+    {
+      id: "G2.24",
+      formula: "Where will you [ACTION]?",
+      formula_bn: "তুমি কোথায় [কাজ] করবে?",
+      patternName: "Asking Where (Future)",
+      patternName_bn: "কোথায় জিজ্ঞেস করা (ভবিষ্যৎ)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (future action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে ভবিষ্যৎ কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["go", "stay", "have the party"],
+        },
+      ],
+      examples: [
+        {
+          en: "Where will you go after this?",
+          bn: "এরপর তুমি কোথায় যাবে?",
+          slotValues: { ACTION: "go after this" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where will you eat tonight?",
+          bn: "আজ রাতে তুমি কোথায় খাবে?",
+          slotValues: { ACTION: "eat tonight" },
+          topicArea: "food",
+        },
+        {
+          en: "Where will you travel next year?",
+          bn: "আগামী বছর তুমি কোথায় ভ্রমণ করবে?",
+          slotValues: { ACTION: "travel next year" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where will you study?",
+          bn: "তুমি কোথায় পড়বে?",
+          slotValues: { ACTION: "study" },
+          topicArea: "education",
+        },
+        {
+          en: "Where will you work after graduation?",
+          bn: "গ্র্যাজুয়েশনের পরে তুমি কোথায় কাজ করবে?",
+          slotValues: { ACTION: "work after graduation" },
+          topicArea: "work",
+        },
+        {
+          en: "Where will you go for the checkup?",
+          bn: "তুমি চেকআপের জন্য কোথায় যাবে?",
+          slotValues: { ACTION: "go for the checkup" },
+          topicArea: "health",
+        },
+        {
+          en: "Where will you buy the gift?",
+          bn: "তুমি উপহারটা কোথায় কিনবে?",
+          slotValues: { ACTION: "buy the gift" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Where will you meet her?",
+          bn: "তুমি তার সাথে কোথায় দেখা করবে?",
+          slotValues: { ACTION: "meet her" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Where will you stay tonight?",
+          bn: "আজ রাতে তুমি কোথায় থাকবে?",
+          slotValues: { ACTION: "stay tonight" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Where will you have lunch?",
+          bn: "তুমি দুপুরের খাবার কোথায় খাবে?",
+          slotValues: { ACTION: "have lunch" },
+          topicArea: "food",
+        },
+        {
+          en: "Where will you go for your honeymoon?",
+          bn: "তুমি হানিমুনে কোথায় যাবে?",
+          slotValues: { ACTION: "go for your honeymoon" },
+          topicArea: "travel",
+        },
+        {
+          en: "Where will you take the training?",
+          bn: "তুমি ট্রেনিং কোথায় নেবে?",
+          slotValues: { ACTION: "take the training" },
+          topicArea: "education",
+        },
+        {
+          en: "Where will you hold the conference?",
+          bn: "তুমি কনফারেন্স কোথায় করবে?",
+          slotValues: { ACTION: "hold the conference" },
+          topicArea: "work",
+        },
+        {
+          en: "Where will you get the surgery done?",
+          bn: "তুমি অপারেশন কোথায় করাবে?",
+          slotValues: { ACTION: "get the surgery done" },
+          topicArea: "health",
+        },
+        {
+          en: "Where will you celebrate your anniversary?",
+          bn: "তুমি বার্ষিকী কোথায় উদযাপন করবে?",
+          slotValues: { ACTION: "celebrate your anniversary" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to ask about future locations or destinations. Combines 'where' + 'will' for future plans.",
+      usageNote_bn:
+        "ভবিষ্যৎ অবস্থান বা গন্তব্য সম্পর্কে জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.2", "G2.15"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কোথায় (Subject + Where) + [ACTION] (ক্রিয়া) + করবে? (Future Verb)",
+    },
+    {
+      id: "G2.25",
+      formula: "When will you [ACTION]?",
+      formula_bn: "তুমি কখন [কাজ] করবে?",
+      patternName: "Asking When (Future)",
+      patternName_bn: "কখন জিজ্ঞেস করা (ভবিষ্যৎ)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (future action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে ভবিষ্যৎ কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["come back", "finish the work", "get married"],
+        },
+      ],
+      examples: [
+        {
+          en: "When will you come back?",
+          bn: "তুমি কখন ফিরবে?",
+          slotValues: { ACTION: "come back" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "When will you have dinner?",
+          bn: "তুমি কখন রাতের খাবার খাবে?",
+          slotValues: { ACTION: "have dinner" },
+          topicArea: "food",
+        },
+        {
+          en: "When will you leave for the airport?",
+          bn: "তুমি কখন এয়ারপোর্টের উদ্দেশ্যে রওনা দেবে?",
+          slotValues: { ACTION: "leave for the airport" },
+          topicArea: "travel",
+        },
+        {
+          en: "When will you finish your thesis?",
+          bn: "তুমি কখন থিসিস শেষ করবে?",
+          slotValues: { ACTION: "finish your thesis" },
+          topicArea: "education",
+        },
+        {
+          en: "When will you submit the report?",
+          bn: "তুমি কখন রিপোর্ট জমা দেবে?",
+          slotValues: { ACTION: "submit the report" },
+          topicArea: "work",
+        },
+        {
+          en: "When will you see the specialist?",
+          bn: "তুমি কখন স্পেশালিস্ট দেখাবে?",
+          slotValues: { ACTION: "see the specialist" },
+          topicArea: "health",
+        },
+        {
+          en: "When will you go shopping?",
+          bn: "তুমি কখন কেনাকাটা করতে যাবে?",
+          slotValues: { ACTION: "go shopping" },
+          topicArea: "shopping",
+        },
+        {
+          en: "When will you visit your parents?",
+          bn: "তুমি কখন বাবা-মাকে দেখতে যাবে?",
+          slotValues: { ACTION: "visit your parents" },
+          topicArea: "relationships",
+        },
+        {
+          en: "When will you wake up tomorrow?",
+          bn: "তুমি আগামীকাল কখন উঠবে?",
+          slotValues: { ACTION: "wake up tomorrow" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "When will you try the new restaurant?",
+          bn: "তুমি কখন নতুন রেস্তোরাঁটা ট্রাই করবে?",
+          slotValues: { ACTION: "try the new restaurant" },
+          topicArea: "food",
+        },
+        {
+          en: "When will you book the tickets?",
+          bn: "তুমি কখন টিকেট বুক করবে?",
+          slotValues: { ACTION: "book the tickets" },
+          topicArea: "travel",
+        },
+        {
+          en: "When will you start the new course?",
+          bn: "তুমি কখন নতুন কোর্স শুরু করবে?",
+          slotValues: { ACTION: "start the new course" },
+          topicArea: "education",
+        },
+        {
+          en: "When will you take a day off?",
+          bn: "তুমি কখন একদিন ছুটি নেবে?",
+          slotValues: { ACTION: "take a day off" },
+          topicArea: "work",
+        },
+        {
+          en: "When will you start exercising?",
+          bn: "তুমি কখন ব্যায়াম শুরু করবে?",
+          slotValues: { ACTION: "start exercising" },
+          topicArea: "health",
+        },
+        {
+          en: "When will you get married?",
+          bn: "তুমি কখন বিয়ে করবে?",
+          slotValues: { ACTION: "get married" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Future tense of 'When do you'. Used to ask about the timing of future events and plans.",
+      usageNote_bn:
+        "'When do you'-এর ভবিষ্যৎ রূপ। ভবিষ্যৎ ঘটনা এবং পরিকল্পনার সময় জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.3", "G2.18"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কখন (Subject + When) + [ACTION] (ক্রিয়া) + করবে? (Future Verb)",
+    },
+    {
+      id: "G2.26",
+      formula: "Why will you [ACTION]?",
+      formula_bn: "তুমি কেন [কাজ] করবে?",
+      patternName: "Asking Why (Future)",
+      patternName_bn: "কেন জিজ্ঞেস করা (ভবিষ্যৎ)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (future action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে ভবিষ্যৎ কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["leave so early", "change jobs", "sell the house"],
+        },
+      ],
+      examples: [
+        {
+          en: "Why will you leave so early?",
+          bn: "তুমি কেন এত তাড়াতাড়ি চলে যাবে?",
+          slotValues: { ACTION: "leave so early" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Why will you skip dinner?",
+          bn: "তুমি কেন রাতের খাবার বাদ দেবে?",
+          slotValues: { ACTION: "skip dinner" },
+          topicArea: "food",
+        },
+        {
+          en: "Why will you travel alone?",
+          bn: "তুমি কেন একা ভ্রমণ করবে?",
+          slotValues: { ACTION: "travel alone" },
+          topicArea: "travel",
+        },
+        {
+          en: "Why will you drop the course?",
+          bn: "তুমি কেন কোর্স ছেড়ে দেবে?",
+          slotValues: { ACTION: "drop the course" },
+          topicArea: "education",
+        },
+        {
+          en: "Why will you change jobs?",
+          bn: "তুমি কেন চাকরি বদলাবে?",
+          slotValues: { ACTION: "change jobs" },
+          topicArea: "work",
+        },
+        {
+          en: "Why will you stop the treatment?",
+          bn: "তুমি কেন চিকিৎসা বন্ধ করবে?",
+          slotValues: { ACTION: "stop the treatment" },
+          topicArea: "health",
+        },
+        {
+          en: "Why will you buy a new phone?",
+          bn: "তুমি কেন নতুন ফোন কিনবে?",
+          slotValues: { ACTION: "buy a new phone" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Why will you move away from your family?",
+          bn: "তুমি কেন পরিবার থেকে দূরে চলে যাবে?",
+          slotValues: { ACTION: "move away from your family" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Why will you sell the house?",
+          bn: "তুমি কেন বাড়ি বিক্রি করবে?",
+          slotValues: { ACTION: "sell the house" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Why will you eat out when there's food at home?",
+          bn: "বাসায় খাবার থাকতে তুমি কেন বাইরে খাবে?",
+          slotValues: { ACTION: "eat out when there's food at home" },
+          topicArea: "food",
+        },
+        {
+          en: "Why will you go to Dhaka in this heat?",
+          bn: "এই গরমে তুমি কেন ঢাকা যাবে?",
+          slotValues: { ACTION: "go to Dhaka in this heat" },
+          topicArea: "travel",
+        },
+        {
+          en: "Why will you take an extra semester?",
+          bn: "তুমি কেন অতিরিক্ত সেমিস্টার নেবে?",
+          slotValues: { ACTION: "take an extra semester" },
+          topicArea: "education",
+        },
+        {
+          en: "Why will you work on the weekend?",
+          bn: "তুমি কেন সাপ্তাহিক ছুটিতে কাজ করবে?",
+          slotValues: { ACTION: "work on the weekend" },
+          topicArea: "work",
+        },
+        {
+          en: "Why will you avoid the surgery?",
+          bn: "তুমি কেন অপারেশন এড়িয়ে যাবে?",
+          slotValues: { ACTION: "avoid the surgery" },
+          topicArea: "health",
+        },
+        {
+          en: "Why will you not invite them?",
+          bn: "তুমি কেন তাদের দাওয়াত দেবে না?",
+          slotValues: { ACTION: "not invite them" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Future tense of 'Why do you'. Used to ask reasons for future actions or decisions.",
+      usageNote_bn:
+        "'Why do you'-এর ভবিষ্যৎ রূপ। ভবিষ্যৎ কাজ বা সিদ্ধান্তের কারণ জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.4", "G2.19"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কেন (Subject + Why) + [ACTION] (ক্রিয়া) + করবে? (Future Verb)",
+    },
+    {
+      id: "G2.27",
+      formula: "How will you [ACTION]?",
+      formula_bn: "তুমি কীভাবে [কাজ] করবে?",
+      patternName: "Asking How (Future)",
+      patternName_bn: "কীভাবে জিজ্ঞেস করা (ভবিষ্যৎ)",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase (future action being asked about)",
+          description_bn:
+            "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ (যে ভবিষ্যৎ কাজ সম্পর্কে জিজ্ঞেস করা হচ্ছে)",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["get there", "pay for it", "manage everything"],
+        },
+      ],
+      examples: [
+        {
+          en: "How will you get there?",
+          bn: "তুমি কীভাবে সেখানে যাবে?",
+          slotValues: { ACTION: "get there" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How will you cook for so many people?",
+          bn: "তুমি কীভাবে এত মানুষের জন্য রান্না করবে?",
+          slotValues: { ACTION: "cook for so many people" },
+          topicArea: "food",
+        },
+        {
+          en: "How will you travel to Cox's Bazar?",
+          bn: "তুমি কীভাবে কক্সবাজার যাবে?",
+          slotValues: { ACTION: "travel to Cox's Bazar" },
+          topicArea: "travel",
+        },
+        {
+          en: "How will you prepare for the exam?",
+          bn: "তুমি কীভাবে পরীক্ষার জন্য প্রস্তুতি নেবে?",
+          slotValues: { ACTION: "prepare for the exam" },
+          topicArea: "education",
+        },
+        {
+          en: "How will you handle the new project?",
+          bn: "তুমি কীভাবে নতুন প্রজেক্ট সামলাবে?",
+          slotValues: { ACTION: "handle the new project" },
+          topicArea: "work",
+        },
+        {
+          en: "How will you manage without the medication?",
+          bn: "ওষুধ ছাড়া তুমি কীভাবে চলবে?",
+          slotValues: { ACTION: "manage without the medication" },
+          topicArea: "health",
+        },
+        {
+          en: "How will you pay for it?",
+          bn: "তুমি কীভাবে এটার টাকা দেবে?",
+          slotValues: { ACTION: "pay for it" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How will you convince your parents?",
+          bn: "তুমি কীভাবে বাবা-মাকে রাজি করাবে?",
+          slotValues: { ACTION: "convince your parents" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How will you fix this?",
+          bn: "তুমি কীভাবে এটা ঠিক করবে?",
+          slotValues: { ACTION: "fix this" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How will you serve so many guests?",
+          bn: "তুমি কীভাবে এত অতিথি আপ্যায়ন করবে?",
+          slotValues: { ACTION: "serve so many guests" },
+          topicArea: "food",
+        },
+        {
+          en: "How will you carry all this luggage?",
+          bn: "তুমি কীভাবে এত মালপত্র বহন করবে?",
+          slotValues: { ACTION: "carry all this luggage" },
+          topicArea: "travel",
+        },
+        {
+          en: "How will you complete the assignment on time?",
+          bn: "তুমি কীভাবে সময়মতো অ্যাসাইনমেন্ট শেষ করবে?",
+          slotValues: { ACTION: "complete the assignment on time" },
+          topicArea: "education",
+        },
+        {
+          en: "How will you balance work and study?",
+          bn: "তুমি কীভাবে কাজ এবং পড়ালেখা সামলাবে?",
+          slotValues: { ACTION: "balance work and study" },
+          topicArea: "work",
+        },
+        {
+          en: "How will you stay healthy during winter?",
+          bn: "তুমি কীভাবে শীতকালে সুস্থ থাকবে?",
+          slotValues: { ACTION: "stay healthy during winter" },
+          topicArea: "health",
+        },
+        {
+          en: "How will you take care of the baby?",
+          bn: "তুমি কীভাবে বাচ্চার দেখাশোনা করবে?",
+          slotValues: { ACTION: "take care of the baby" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Future tense of 'How do you'. Used to ask about methods or plans for future actions.",
+      usageNote_bn:
+        "'How do you'-এর ভবিষ্যৎ রূপ। ভবিষ্যৎ কাজের পদ্ধতি বা পরিকল্পনা জিজ্ঞেস করতে ব্যবহৃত।",
+      combinableWith: ["G2.5", "G2.20"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কীভাবে (Subject + How) + [ACTION] (ক্রিয়া) + করবে? (Future Verb)",
+    },
+
+    // ===== Block E: Extended WH Forms (G2.28–G2.33) =====
+
+    {
+      id: "G2.28",
+      formula: "How many [THINGS] do you [ACTION]?",
+      formula_bn: "তুমি কতগুলো [জিনিস] [কাজ] করো?",
+      patternName: "Asking How Many",
+      patternName_bn: "কতগুলো জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "THINGS",
+          description: "A countable plural noun you want to know the quantity of",
+          description_bn:
+            "একটি গণনাযোগ্য বহুবচন বিশেষ্য যার সংখ্যা আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["cups of tea", "books", "classes"],
+        },
+        {
+          name: "ACTION",
+          description: "Base form of a verb or verb phrase",
+          description_bn: "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["drink", "have", "take"],
+        },
+      ],
+      examples: [
+        {
+          en: "How many cups of tea do you drink a day?",
+          bn: "তুমি দিনে কত কাপ চা খাও?",
+          slotValues: { THINGS: "cups of tea", ACTION: "drink a day" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How many meals do you eat a day?",
+          bn: "তুমি দিনে কয়বেলা খাও?",
+          slotValues: { THINGS: "meals", ACTION: "eat a day" },
+          topicArea: "food",
+        },
+        {
+          en: "How many countries do you want to visit?",
+          bn: "তুমি কতগুলো দেশ ঘুরতে চাও?",
+          slotValues: { THINGS: "countries", ACTION: "want to visit" },
+          topicArea: "travel",
+        },
+        {
+          en: "How many subjects do you study?",
+          bn: "তুমি কতগুলো বিষয় পড়ো?",
+          slotValues: { THINGS: "subjects", ACTION: "study" },
+          topicArea: "education",
+        },
+        {
+          en: "How many hours do you work a day?",
+          bn: "তুমি দিনে কত ঘণ্টা কাজ করো?",
+          slotValues: { THINGS: "hours", ACTION: "work a day" },
+          topicArea: "work",
+        },
+        {
+          en: "How many glasses of water do you drink?",
+          bn: "তুমি কত গ্লাস পানি খাও?",
+          slotValues: { THINGS: "glasses of water", ACTION: "drink" },
+          topicArea: "health",
+        },
+        {
+          en: "How many bags do you want to buy?",
+          bn: "তুমি কতগুলো ব্যাগ কিনতে চাও?",
+          slotValues: { THINGS: "bags", ACTION: "want to buy" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How many siblings do you have?",
+          bn: "তোমার কয়জন ভাইবোন আছে?",
+          slotValues: { THINGS: "siblings", ACTION: "have" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How many languages do you speak?",
+          bn: "তুমি কতগুলো ভাষায় কথা বলো?",
+          slotValues: { THINGS: "languages", ACTION: "speak" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How many eggs do you need?",
+          bn: "তোমার কতগুলো ডিম দরকার?",
+          slotValues: { THINGS: "eggs", ACTION: "need" },
+          topicArea: "food",
+        },
+        {
+          en: "How many days do you plan to stay?",
+          bn: "তুমি কতদিন থাকার প্ল্যান করছো?",
+          slotValues: { THINGS: "days", ACTION: "plan to stay" },
+          topicArea: "travel",
+        },
+        {
+          en: "How many students do you teach?",
+          bn: "তুমি কতজন ছাত্র পড়াও?",
+          slotValues: { THINGS: "students", ACTION: "teach" },
+          topicArea: "education",
+        },
+        {
+          en: "How many meetings do you have today?",
+          bn: "তোমার আজ কতগুলো মিটিং আছে?",
+          slotValues: { THINGS: "meetings", ACTION: "have today" },
+          topicArea: "work",
+        },
+        {
+          en: "How many tablets do you take a day?",
+          bn: "তুমি দিনে কতগুলো ট্যাবলেট খাও?",
+          slotValues: { THINGS: "tablets", ACTION: "take a day" },
+          topicArea: "health",
+        },
+        {
+          en: "How many friends do you have in Dhaka?",
+          bn: "ঢাকায় তোমার কতজন বন্ধু আছে?",
+          slotValues: { THINGS: "friends", ACTION: "have in Dhaka" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'How many' is used with countable nouns (things you can count: 1, 2, 3...). Always use plural nouns after 'how many'.",
+      usageNote_bn:
+        "'How many' গণনাযোগ্য বিশেষ্যের সাথে ব্যবহৃত (যেগুলো গোনা যায়: ১, ২, ৩...)। 'How many'-এর পরে সবসময় বহুবচন বিশেষ্য।",
+      combinableWith: ["G2.29"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কতগুলো (How many) + [THINGS] (জিনিস) + [ACTION] (কাজ) + করো?",
+    },
+    {
+      id: "G2.29",
+      formula: "How much [THING] do you [ACTION]?",
+      formula_bn: "তুমি কতটুকু [জিনিস] [কাজ] করো?",
+      patternName: "Asking How Much",
+      patternName_bn: "কতটুকু জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "THING",
+          description:
+            "An uncountable noun you want to know the amount of",
+          description_bn:
+            "একটি অগণনীয় বিশেষ্য যার পরিমাণ আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["water", "money", "time"],
+        },
+        {
+          name: "ACTION",
+          description: "Base form of a verb or verb phrase",
+          description_bn: "ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["drink", "need", "spend"],
+        },
+      ],
+      examples: [
+        {
+          en: "How much time do you spend on your phone?",
+          bn: "তুমি ফোনে কতটুকু সময় কাটাও?",
+          slotValues: { THING: "time", ACTION: "spend on your phone" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How much rice do you eat?",
+          bn: "তুমি কতটুকু ভাত খাও?",
+          slotValues: { THING: "rice", ACTION: "eat" },
+          topicArea: "food",
+        },
+        {
+          en: "How much luggage do you carry?",
+          bn: "তুমি কতটুকু মালপত্র নিয়ে যাও?",
+          slotValues: { THING: "luggage", ACTION: "carry" },
+          topicArea: "travel",
+        },
+        {
+          en: "How much homework do you get every day?",
+          bn: "তুমি প্রতিদিন কতটুকু হোমওয়ার্ক পাও?",
+          slotValues: { THING: "homework", ACTION: "get every day" },
+          topicArea: "education",
+        },
+        {
+          en: "How much money do you earn a month?",
+          bn: "তুমি মাসে কত টাকা আয় করো?",
+          slotValues: { THING: "money", ACTION: "earn a month" },
+          topicArea: "work",
+        },
+        {
+          en: "How much water do you drink daily?",
+          bn: "তুমি প্রতিদিন কতটুকু পানি খাও?",
+          slotValues: { THING: "water", ACTION: "drink daily" },
+          topicArea: "health",
+        },
+        {
+          en: "How much money do you spend on groceries?",
+          bn: "তুমি মুদি কেনায় কত টাকা খরচ করো?",
+          slotValues: { THING: "money", ACTION: "spend on groceries" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How much time do you spend with your family?",
+          bn: "তুমি পরিবারের সাথে কতটুকু সময় কাটাও?",
+          slotValues: { THING: "time", ACTION: "spend with your family" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How much sleep do you get?",
+          bn: "তুমি কতটুকু ঘুমাও?",
+          slotValues: { THING: "sleep", ACTION: "get" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How much sugar do you use in tea?",
+          bn: "তুমি চায়ে কতটুকু চিনি দাও?",
+          slotValues: { THING: "sugar", ACTION: "use in tea" },
+          topicArea: "food",
+        },
+        {
+          en: "How much money do you need for the trip?",
+          bn: "ট্রিপের জন্য তোমার কত টাকা দরকার?",
+          slotValues: { THING: "money", ACTION: "need for the trip" },
+          topicArea: "travel",
+        },
+        {
+          en: "How much practice do you do every day?",
+          bn: "তুমি প্রতিদিন কতটুকু অনুশীলন করো?",
+          slotValues: { THING: "practice", ACTION: "do every day" },
+          topicArea: "education",
+        },
+        {
+          en: "How much overtime do you do?",
+          bn: "তুমি কতটুকু ওভারটাইম করো?",
+          slotValues: { THING: "overtime", ACTION: "do" },
+          topicArea: "work",
+        },
+        {
+          en: "How much salt do you eat?",
+          bn: "তুমি কতটুকু লবণ খাও?",
+          slotValues: { THING: "salt", ACTION: "eat" },
+          topicArea: "health",
+        },
+        {
+          en: "How much effort do you put into your relationship?",
+          bn: "তুমি সম্পর্কে কতটুকু চেষ্টা করো?",
+          slotValues: { THING: "effort", ACTION: "put into your relationship" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'How much' is used with uncountable nouns (water, money, time, rice). Don't confuse with 'how many' (countable).",
+      usageNote_bn:
+        "'How much' অগণনীয় বিশেষ্যের সাথে ব্যবহৃত (পানি, টাকা, সময়, ভাত)। 'How many' (গণনাযোগ্য)-এর সাথে গুলিয়ে ফেলবেন না। বাংলায় কতটুকু (uncountable) vs কতগুলো (countable)।",
+      combinableWith: ["G2.28"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কতটুকু (How much) + [THING] (জিনিস) + [ACTION] (কাজ) + করো?",
+    },
+    {
+      id: "G2.30",
+      formula: "How long does it take to [ACTION]?",
+      formula_bn: "[কাজ] করতে কতক্ষণ লাগে?",
+      patternName: "Asking How Long",
+      patternName_bn: "কতক্ষণ জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase describing an activity whose duration you want to know",
+          description_bn:
+            "একটি ক্রিয়া বা ক্রিয়া পদবন্ধ যার সময়কাল আপনি জানতে চান",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["get to the airport", "cook biryani", "learn English"],
+        },
+      ],
+      examples: [
+        {
+          en: "How long does it take to get ready?",
+          bn: "তৈরি হতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "get ready" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How long does it take to cook biryani?",
+          bn: "বিরিয়ানি রান্না করতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "cook biryani" },
+          topicArea: "food",
+        },
+        {
+          en: "How long does it take to get to the airport?",
+          bn: "এয়ারপোর্টে যেতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "get to the airport" },
+          topicArea: "travel",
+        },
+        {
+          en: "How long does it take to learn English?",
+          bn: "ইংরেজি শিখতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "learn English" },
+          topicArea: "education",
+        },
+        {
+          en: "How long does it take to finish the project?",
+          bn: "প্রজেক্ট শেষ করতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "finish the project" },
+          topicArea: "work",
+        },
+        {
+          en: "How long does it take to recover from a cold?",
+          bn: "ঠান্ডা সারতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "recover from a cold" },
+          topicArea: "health",
+        },
+        {
+          en: "How long does it take to deliver the order?",
+          bn: "অর্ডার ডেলিভারি দিতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "deliver the order" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How long does it take to build trust?",
+          bn: "বিশ্বাস তৈরি করতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "build trust" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How long does it take to walk to the market?",
+          bn: "বাজারে হেঁটে যেতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "walk to the market" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How long does it take to boil an egg?",
+          bn: "ডিম সেদ্ধ করতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "boil an egg" },
+          topicArea: "food",
+        },
+        {
+          en: "How long does it take to get a visa?",
+          bn: "ভিসা পেতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "get a visa" },
+          topicArea: "travel",
+        },
+        {
+          en: "How long does it take to complete this course?",
+          bn: "এই কোর্স শেষ করতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "complete this course" },
+          topicArea: "education",
+        },
+        {
+          en: "How long does it take to get a promotion?",
+          bn: "প্রমোশন পেতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "get a promotion" },
+          topicArea: "work",
+        },
+        {
+          en: "How long does it take to heal a broken bone?",
+          bn: "ভাঙা হাড় জোড়া লাগতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "heal a broken bone" },
+          topicArea: "health",
+        },
+        {
+          en: "How long does it take to make a good friend?",
+          bn: "ভালো বন্ধু তৈরি করতে কতক্ষণ লাগে?",
+          slotValues: { ACTION: "make a good friend" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'How long does it take to...' asks about duration. The answer is usually a time period: 'It takes 30 minutes', 'It takes about 2 hours'.",
+      usageNote_bn:
+        "'How long does it take to...' সময়কাল জিজ্ঞেস করে। উত্তর সাধারণত একটি সময়: '৩০ মিনিট লাগে', 'প্রায় ২ ঘণ্টা লাগে'।",
+      combinableWith: ["G2.5"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "[ACTION] (কাজ) + করতে কতক্ষণ লাগে? (How long does it take)",
+    },
+    {
+      id: "G2.31",
+      formula: "How far is [PLACE]?",
+      formula_bn: "[জায়গা] কত দূরে?",
+      patternName: "Asking How Far",
+      patternName_bn: "কত দূরে জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "PLACE",
+          description: "A place or location whose distance you want to know",
+          description_bn:
+            "একটি জায়গা বা স্থান যার দূরত্ব আপনি জানতে চান",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["the airport", "the hospital", "your office"],
+        },
+      ],
+      examples: [
+        {
+          en: "How far is the bus stop?",
+          bn: "বাস স্টপ কত দূরে?",
+          slotValues: { PLACE: "the bus stop" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How far is the nearest restaurant?",
+          bn: "নিকটতম রেস্তোরাঁ কত দূরে?",
+          slotValues: { PLACE: "the nearest restaurant" },
+          topicArea: "food",
+        },
+        {
+          en: "How far is the airport from here?",
+          bn: "এখান থেকে এয়ারপোর্ট কত দূরে?",
+          slotValues: { PLACE: "the airport from here" },
+          topicArea: "travel",
+        },
+        {
+          en: "How far is the university?",
+          bn: "বিশ্ববিদ্যালয় কত দূরে?",
+          slotValues: { PLACE: "the university" },
+          topicArea: "education",
+        },
+        {
+          en: "How far is your office?",
+          bn: "তোমার অফিস কত দূরে?",
+          slotValues: { PLACE: "your office" },
+          topicArea: "work",
+        },
+        {
+          en: "How far is the hospital?",
+          bn: "হাসপাতাল কত দূরে?",
+          slotValues: { PLACE: "the hospital" },
+          topicArea: "health",
+        },
+        {
+          en: "How far is the shopping mall?",
+          bn: "শপিং মল কত দূরে?",
+          slotValues: { PLACE: "the shopping mall" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How far is your parents' house?",
+          bn: "তোমার বাবা-মার বাড়ি কত দূরে?",
+          slotValues: { PLACE: "your parents' house" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How far is the market?",
+          bn: "বাজার কত দূরে?",
+          slotValues: { PLACE: "the market" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How far is the bakery?",
+          bn: "বেকারি কত দূরে?",
+          slotValues: { PLACE: "the bakery" },
+          topicArea: "food",
+        },
+        {
+          en: "How far is Cox's Bazar from Dhaka?",
+          bn: "ঢাকা থেকে কক্সবাজার কত দূরে?",
+          slotValues: { PLACE: "Cox's Bazar from Dhaka" },
+          topicArea: "travel",
+        },
+        {
+          en: "How far is the library?",
+          bn: "লাইব্রেরি কত দূরে?",
+          slotValues: { PLACE: "the library" },
+          topicArea: "education",
+        },
+        {
+          en: "How far is the branch office?",
+          bn: "শাখা অফিস কত দূরে?",
+          slotValues: { PLACE: "the branch office" },
+          topicArea: "work",
+        },
+        {
+          en: "How far is the pharmacy?",
+          bn: "ফার্মেসি কত দূরে?",
+          slotValues: { PLACE: "the pharmacy" },
+          topicArea: "health",
+        },
+        {
+          en: "How far is the new store?",
+          bn: "নতুন দোকানটা কত দূরে?",
+          slotValues: { PLACE: "the new store" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'How far' asks about distance. The answer is usually a distance or travel time: '5 kilometers', '10 minutes by car'.",
+      usageNote_bn:
+        "'How far' দূরত্ব জিজ্ঞেস করে। উত্তর সাধারণত দূরত্ব বা যাতায়াতের সময়: '৫ কিলোমিটার', 'গাড়িতে ১০ মিনিট'।",
+      combinableWith: ["G2.2"],
+      responsePatterns: [],
+      banglaStructureMap: "[PLACE] (জায়গা) + কত দূরে? (How far)",
+    },
+    {
+      id: "G2.32",
+      formula: "How often do you [ACTION]?",
+      formula_bn: "তুমি কত ঘন ঘন [কাজ] করো?",
+      patternName: "Asking How Often",
+      patternName_bn: "কত ঘন ঘন জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "ACTION",
+          description:
+            "Base form of a verb or verb phrase describing a repeated activity",
+          description_bn:
+            "একটি পুনরাবৃত্ত কাজ বর্ণনাকারী ক্রিয়ার মূল রূপ বা ক্রিয়া পদবন্ধ",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["exercise", "eat out", "visit your parents"],
+        },
+      ],
+      examples: [
+        {
+          en: "How often do you exercise?",
+          bn: "তুমি কত ঘন ঘন ব্যায়াম করো?",
+          slotValues: { ACTION: "exercise" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How often do you eat out?",
+          bn: "তুমি কত ঘন ঘন বাইরে খাও?",
+          slotValues: { ACTION: "eat out" },
+          topicArea: "food",
+        },
+        {
+          en: "How often do you travel abroad?",
+          bn: "তুমি কত ঘন ঘন বিদেশ যাও?",
+          slotValues: { ACTION: "travel abroad" },
+          topicArea: "travel",
+        },
+        {
+          en: "How often do you read books?",
+          bn: "তুমি কত ঘন ঘন বই পড়ো?",
+          slotValues: { ACTION: "read books" },
+          topicArea: "education",
+        },
+        {
+          en: "How often do you work overtime?",
+          bn: "তুমি কত ঘন ঘন ওভারটাইম করো?",
+          slotValues: { ACTION: "work overtime" },
+          topicArea: "work",
+        },
+        {
+          en: "How often do you see a doctor?",
+          bn: "তুমি কত ঘন ঘন ডাক্তার দেখাও?",
+          slotValues: { ACTION: "see a doctor" },
+          topicArea: "health",
+        },
+        {
+          en: "How often do you go shopping?",
+          bn: "তুমি কত ঘন ঘন কেনাকাটা করতে যাও?",
+          slotValues: { ACTION: "go shopping" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How often do you visit your parents?",
+          bn: "তুমি কত ঘন ঘন বাবা-মাকে দেখতে যাও?",
+          slotValues: { ACTION: "visit your parents" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How often do you clean your room?",
+          bn: "তুমি কত ঘন ঘন ঘর পরিষ্কার করো?",
+          slotValues: { ACTION: "clean your room" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How often do you cook at home?",
+          bn: "তুমি কত ঘন ঘন বাসায় রান্না করো?",
+          slotValues: { ACTION: "cook at home" },
+          topicArea: "food",
+        },
+        {
+          en: "How often do you take vacations?",
+          bn: "তুমি কত ঘন ঘন ছুটি নাও?",
+          slotValues: { ACTION: "take vacations" },
+          topicArea: "travel",
+        },
+        {
+          en: "How often do you practice English?",
+          bn: "তুমি কত ঘন ঘন ইংরেজি অনুশীলন করো?",
+          slotValues: { ACTION: "practice English" },
+          topicArea: "education",
+        },
+        {
+          en: "How often do you have meetings?",
+          bn: "তুমি কত ঘন ঘন মিটিং করো?",
+          slotValues: { ACTION: "have meetings" },
+          topicArea: "work",
+        },
+        {
+          en: "How often do you check your blood pressure?",
+          bn: "তুমি কত ঘন ঘন রক্তচাপ মাপো?",
+          slotValues: { ACTION: "check your blood pressure" },
+          topicArea: "health",
+        },
+        {
+          en: "How often do you call your best friend?",
+          bn: "তুমি কত ঘন ঘন তোমার সেরা বন্ধুকে ফোন করো?",
+          slotValues: { ACTION: "call your best friend" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'How often' asks about frequency. Common answers: 'every day', 'once a week', 'twice a month', 'rarely', 'never'.",
+      usageNote_bn:
+        "'How often' কত ঘন ঘন/কতবার তা জিজ্ঞেস করে। সাধারণ উত্তর: 'প্রতিদিন', 'সপ্তাহে একবার', 'মাসে দুবার', 'কদাচিৎ', 'কখনোই না'।",
+      combinableWith: ["G2.3", "G2.5"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "তুমি কত ঘন ঘন (How often) + [ACTION] (ক্রিয়া) + করো? (Verb)",
+    },
+    {
+      id: "G2.33",
+      formula: "How old is [PERSON/THING]?",
+      formula_bn: "[ব্যক্তি/জিনিস]-র বয়স কত?",
+      patternName: "Asking How Old",
+      patternName_bn: "বয়স জিজ্ঞেস করা",
+      slots: [
+        {
+          name: "PERSON/THING",
+          description:
+            "A person or thing whose age you want to know",
+          description_bn:
+            "একজন ব্যক্তি বা জিনিস যার বয়স আপনি জানতে চান",
+          acceptedTypes: ["person", "noun", "noun_phrase"],
+          examples: ["your daughter", "this building", "the company"],
+        },
+      ],
+      examples: [
+        {
+          en: "How old is your child?",
+          bn: "তোমার বাচ্চার বয়স কত?",
+          slotValues: { "PERSON/THING": "your child" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How old is this restaurant?",
+          bn: "এই রেস্তোরাঁর বয়স কত?",
+          slotValues: { "PERSON/THING": "this restaurant" },
+          topicArea: "food",
+        },
+        {
+          en: "How old is this historical monument?",
+          bn: "এই ঐতিহাসিক স্মৃতিস্তম্ভের বয়স কত?",
+          slotValues: { "PERSON/THING": "this historical monument" },
+          topicArea: "travel",
+        },
+        {
+          en: "How old is your teacher?",
+          bn: "তোমার শিক্ষকের বয়স কত?",
+          slotValues: { "PERSON/THING": "your teacher" },
+          topicArea: "education",
+        },
+        {
+          en: "How old is the company?",
+          bn: "কোম্পানির বয়স কত?",
+          slotValues: { "PERSON/THING": "the company" },
+          topicArea: "work",
+        },
+        {
+          en: "How old is the patient?",
+          bn: "রোগীর বয়স কত?",
+          slotValues: { "PERSON/THING": "the patient" },
+          topicArea: "health",
+        },
+        {
+          en: "How old is this phone model?",
+          bn: "এই ফোন মডেলটা কত পুরনো?",
+          slotValues: { "PERSON/THING": "this phone model" },
+          topicArea: "shopping",
+        },
+        {
+          en: "How old is your grandmother?",
+          bn: "তোমার দাদি/নানির বয়স কত?",
+          slotValues: { "PERSON/THING": "your grandmother" },
+          topicArea: "relationships",
+        },
+        {
+          en: "How old is this house?",
+          bn: "এই বাড়িটা কত পুরনো?",
+          slotValues: { "PERSON/THING": "this house" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "How old is this recipe?",
+          bn: "এই রেসিপিটা কত পুরনো?",
+          slotValues: { "PERSON/THING": "this recipe" },
+          topicArea: "food",
+        },
+        {
+          en: "How old is the Lalbagh Fort?",
+          bn: "লালবাগ কেল্লার বয়স কত?",
+          slotValues: { "PERSON/THING": "the Lalbagh Fort" },
+          topicArea: "travel",
+        },
+        {
+          en: "How old is this university?",
+          bn: "এই বিশ্ববিদ্যালয়টা কত পুরনো?",
+          slotValues: { "PERSON/THING": "this university" },
+          topicArea: "education",
+        },
+        {
+          en: "How old is the CEO?",
+          bn: "সিইও-র বয়স কত?",
+          slotValues: { "PERSON/THING": "the CEO" },
+          topicArea: "work",
+        },
+        {
+          en: "How old is the baby?",
+          bn: "বাচ্চাটার বয়স কত?",
+          slotValues: { "PERSON/THING": "the baby" },
+          topicArea: "health",
+        },
+        {
+          en: "How old is your younger brother?",
+          bn: "তোমার ছোট ভাইয়ের বয়স কত?",
+          slotValues: { "PERSON/THING": "your younger brother" },
+          topicArea: "relationships",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'How old' asks about age. Can be used for people, animals, buildings, and things. Answer: 'He is 25 years old' or 'It's 100 years old'.",
+      usageNote_bn:
+        "'How old' বয়স জিজ্ঞেস করে। মানুষ, প্রাণী, ভবন এবং জিনিসের জন্য ব্যবহার করা যায়। উত্তর: 'তার বয়স ২৫' বা 'এটা ১০০ বছর পুরনো'।",
+      combinableWith: ["G2.8", "G2.1"],
+      responsePatterns: [],
+      banglaStructureMap:
+        "[PERSON/THING] (ব্যক্তি/জিনিস) + -র বয়স কত? (How old)",
     },
   ],
 };
