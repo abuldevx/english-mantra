@@ -1,0 +1,655 @@
+import { PatternCategory } from "@/types/pattern";
+
+export const categoryX3: PatternCategory = {
+  id: "X3",
+  slug: "subject-verb-agreement",
+  name: "Subject-Verb Agreement",
+  name_bn: "কর্তা-ক্রিয়া সামঞ্জস্য",
+  description:
+    "Fix subject-verb agreement errors. In Bangla, verbs don't change form for he/she/it, but in English they must match.",
+  description_bn:
+    "কর্তা-ক্রিয়া সামঞ্জস্যের ভুল ঠিক করুন। বাংলায় ক্রিয়া সে/তিনি/এটার জন্য পরিবর্তন হয় না, কিন্তু ইংরেজিতে মিলতে হবে।",
+  icon: "✓",
+  group: "X",
+  groupName: "Common Mistakes by Bangla Speakers",
+  groupName_bn: "বাংলা ভাষীদের সাধারণ ভুল",
+  difficulty: "beginner",
+  patterns: [
+    {
+      id: "X3.1",
+      formula: "[HE/SHE/IT] [VERB+S] [COMPLEMENT]",
+      formula_bn: "[সে/এটা] [ক্রিয়া+S] [পরিপূরক]",
+      patternName: "Third Person Singular -s",
+      patternName_bn: "তৃতীয় পুরুষ একবচন -s",
+      slots: [
+        {
+          name: "HE/SHE/IT",
+          description: "A third person singular subject",
+          description_bn: "তৃতীয় পুরুষ একবচন কর্তা",
+          acceptedTypes: ["person", "noun"],
+          examples: ["he", "she", "it"],
+        },
+        {
+          name: "VERB+S",
+          description:
+            "A verb in the simple present tense with -s/-es ending for third person singular",
+          description_bn:
+            "তৃতীয় পুরুষ একবচনের জন্য -s/-es যুক্ত সাধারণ বর্তমান কালের ক্রিয়া",
+          acceptedTypes: ["verb"],
+          examples: ["goes", "works", "costs"],
+        },
+        {
+          name: "COMPLEMENT",
+          description: "The rest of the sentence",
+          description_bn: "বাক্যের বাকি অংশ",
+          acceptedTypes: ["noun_phrase", "adjective", "adverb"],
+          examples: ["to school", "at a bank", "a lot"],
+        },
+      ],
+      examples: [
+        {
+          en: "He goes to school.",
+          bn: "সে স্কুলে যায়।",
+          slotValues: { "HE/SHE/IT": "he", "VERB+S": "goes", COMPLEMENT: "to school" },
+          topicArea: "education",
+        },
+        {
+          en: "She works at a bank.",
+          bn: "সে একটি ব্যাংকে কাজ করে।",
+          slotValues: { "HE/SHE/IT": "she", "VERB+S": "works", COMPLEMENT: "at a bank" },
+          topicArea: "work",
+        },
+        {
+          en: "It costs a lot.",
+          bn: "এটার দাম অনেক বেশি।",
+          slotValues: { "HE/SHE/IT": "it", "VERB+S": "costs", COMPLEMENT: "a lot" },
+          topicArea: "shopping",
+        },
+        {
+          en: "He plays cricket.",
+          bn: "সে ক্রিকেট খেলে।",
+          slotValues: { "HE/SHE/IT": "he", "VERB+S": "plays", COMPLEMENT: "cricket" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She speaks English.",
+          bn: "সে ইংরেজি বলে।",
+          slotValues: { "HE/SHE/IT": "she", "VERB+S": "speaks", COMPLEMENT: "English" },
+          topicArea: "education",
+        },
+        {
+          en: "It takes time.",
+          bn: "এটায় সময় লাগে।",
+          slotValues: { "HE/SHE/IT": "it", "VERB+S": "takes", COMPLEMENT: "time" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He likes tea.",
+          bn: "সে চা পছন্দ করে।",
+          slotValues: { "HE/SHE/IT": "he", "VERB+S": "likes", COMPLEMENT: "tea" },
+          topicArea: "food",
+        },
+        {
+          en: "She lives in Dhaka.",
+          bn: "সে ঢাকায় থাকে।",
+          slotValues: { "HE/SHE/IT": "she", "VERB+S": "lives", COMPLEMENT: "in Dhaka" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "It looks beautiful.",
+          bn: "এটা দেখতে সুন্দর।",
+          slotValues: { "HE/SHE/IT": "it", "VERB+S": "looks", COMPLEMENT: "beautiful" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He runs every morning.",
+          bn: "সে প্রতিদিন সকালে দৌড়ায়।",
+          slotValues: { "HE/SHE/IT": "he", "VERB+S": "runs", COMPLEMENT: "every morning" },
+          topicArea: "health",
+        },
+        {
+          en: "She cooks well.",
+          bn: "সে ভালো রান্না করে।",
+          slotValues: { "HE/SHE/IT": "she", "VERB+S": "cooks", COMPLEMENT: "well" },
+          topicArea: "food",
+        },
+        {
+          en: "It seems difficult.",
+          bn: "এটা কঠিন মনে হচ্ছে।",
+          slotValues: { "HE/SHE/IT": "it", "VERB+S": "seems", COMPLEMENT: "difficult" },
+          topicArea: "education",
+        },
+        {
+          en: "He drives carefully.",
+          bn: "সে সাবধানে গাড়ি চালায়।",
+          slotValues: { "HE/SHE/IT": "he", "VERB+S": "drives", COMPLEMENT: "carefully" },
+          topicArea: "travel",
+        },
+        {
+          en: "She teaches math.",
+          bn: "সে গণিত পড়ায়।",
+          slotValues: { "HE/SHE/IT": "she", "VERB+S": "teaches", COMPLEMENT: "math" },
+          topicArea: "education",
+        },
+        {
+          en: "It rains a lot here.",
+          bn: "এখানে অনেক বৃষ্টি হয়।",
+          slotValues: { "HE/SHE/IT": "it", "VERB+S": "rains", COMPLEMENT: "a lot here" },
+          topicArea: "daily_life",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "In Bangla, the verb 'যায়' (goes) is the same whether you say 'সে যায়' (he goes) or 'তারা যায়' (they go). But in English, when the subject is he/she/it or any single person/thing, you MUST add -s or -es to the verb in present tense. Wrong: 'He go to school.' Correct: 'He goes to school.'",
+      usageNote_bn:
+        "বাংলায় 'যায়' ক্রিয়াটি একই থাকে — 'সে যায়' বা 'তারা যায়'। কিন্তু ইংরেজিতে কর্তা যখন he/she/it বা কোনো একক ব্যক্তি/বস্তু হয়, তখন বর্তমান কালে ক্রিয়ায় অবশ্যই -s বা -es যোগ করতে হবে। ভুল: 'He go to school।' সঠিক: 'He goes to school।'",
+    },
+    {
+      id: "X3.2",
+      formula: "[SUBJECT] [AM/IS/ARE/WAS/WERE] [COMPLEMENT]",
+      formula_bn: "[কর্তা] [AM/IS/ARE/WAS/WERE] [পরিপূরক]",
+      patternName: "Be-Verb Agreement",
+      patternName_bn: "Be-ক্রিয়ার সামঞ্জস্য",
+      slots: [
+        {
+          name: "SUBJECT",
+          description: "The subject of the sentence",
+          description_bn: "বাক্যের কর্তা",
+          acceptedTypes: ["person", "noun", "noun_phrase"],
+          examples: ["I", "he", "they"],
+        },
+        {
+          name: "AM/IS/ARE/WAS/WERE",
+          description:
+            "The correct form of 'be': I am/was, he/she/it is/was, we/you/they are/were",
+          description_bn:
+            "'be'-এর সঠিক রূপ: I am/was, he/she/it is/was, we/you/they are/were",
+          acceptedTypes: ["verb"],
+          examples: ["am", "is", "are", "was", "were"],
+        },
+        {
+          name: "COMPLEMENT",
+          description: "An adjective, noun, or phrase that describes the subject",
+          description_bn: "কর্তাকে বর্ণনা করে এমন বিশেষণ, বিশেষ্য, বা পদবন্ধ",
+          acceptedTypes: ["adjective", "noun", "noun_phrase"],
+          examples: ["happy", "a teacher", "at home"],
+        },
+      ],
+      examples: [
+        {
+          en: "I am happy.",
+          bn: "আমি খুশি।",
+          slotValues: { SUBJECT: "I", "AM/IS/ARE/WAS/WERE": "am", COMPLEMENT: "happy" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He is a teacher.",
+          bn: "সে একজন শিক্ষক।",
+          slotValues: { SUBJECT: "he", "AM/IS/ARE/WAS/WERE": "is", COMPLEMENT: "a teacher" },
+          topicArea: "work",
+        },
+        {
+          en: "They are at home.",
+          bn: "তারা বাড়িতে আছে।",
+          slotValues: { SUBJECT: "they", "AM/IS/ARE/WAS/WERE": "are", COMPLEMENT: "at home" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She is my sister.",
+          bn: "সে আমার বোন।",
+          slotValues: { SUBJECT: "she", "AM/IS/ARE/WAS/WERE": "is", COMPLEMENT: "my sister" },
+          topicArea: "relationships",
+        },
+        {
+          en: "We are ready.",
+          bn: "আমরা প্রস্তুত।",
+          slotValues: { SUBJECT: "we", "AM/IS/ARE/WAS/WERE": "are", COMPLEMENT: "ready" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I was tired yesterday.",
+          bn: "আমি গতকাল ক্লান্ত ছিলাম।",
+          slotValues: { SUBJECT: "I", "AM/IS/ARE/WAS/WERE": "was", COMPLEMENT: "tired yesterday" },
+          topicArea: "health",
+        },
+        {
+          en: "He was late for class.",
+          bn: "সে ক্লাসে দেরি করেছিল।",
+          slotValues: { SUBJECT: "he", "AM/IS/ARE/WAS/WERE": "was", COMPLEMENT: "late for class" },
+          topicArea: "education",
+        },
+        {
+          en: "They were happy to see us.",
+          bn: "তারা আমাদের দেখে খুশি হয়েছিল।",
+          slotValues: { SUBJECT: "they", "AM/IS/ARE/WAS/WERE": "were", COMPLEMENT: "happy to see us" },
+          topicArea: "relationships",
+        },
+        {
+          en: "We were at the park.",
+          bn: "আমরা পার্কে ছিলাম।",
+          slotValues: { SUBJECT: "we", "AM/IS/ARE/WAS/WERE": "were", COMPLEMENT: "at the park" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "It is cold today.",
+          bn: "আজকে ঠান্ডা।",
+          slotValues: { SUBJECT: "it", "AM/IS/ARE/WAS/WERE": "is", COMPLEMENT: "cold today" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "You are very kind.",
+          bn: "তুমি খুব দয়ালু।",
+          slotValues: { SUBJECT: "you", "AM/IS/ARE/WAS/WERE": "are", COMPLEMENT: "very kind" },
+          topicArea: "relationships",
+        },
+        {
+          en: "She was a good student.",
+          bn: "সে একজন ভালো ছাত্রী ছিল।",
+          slotValues: { SUBJECT: "she", "AM/IS/ARE/WAS/WERE": "was", COMPLEMENT: "a good student" },
+          topicArea: "education",
+        },
+        {
+          en: "The kids are playing outside.",
+          bn: "বাচ্চারা বাইরে খেলছে।",
+          slotValues: { SUBJECT: "the kids", "AM/IS/ARE/WAS/WERE": "are", COMPLEMENT: "playing outside" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I am from Bangladesh.",
+          bn: "আমি বাংলাদেশ থেকে।",
+          slotValues: { SUBJECT: "I", "AM/IS/ARE/WAS/WERE": "am", COMPLEMENT: "from Bangladesh" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The food was delicious.",
+          bn: "খাবারটা সুস্বাদু ছিল।",
+          slotValues: { SUBJECT: "the food", "AM/IS/ARE/WAS/WERE": "was", COMPLEMENT: "delicious" },
+          topicArea: "food",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "In Bangla, 'ছিল' (was/were) is the same for all subjects. But in English, you must match the be-verb to the subject: I am/was, he/she/it is/was, you/we/they are/were. Wrong: 'They was happy.' Correct: 'They were happy.' Wrong: 'He are a teacher.' Correct: 'He is a teacher.'",
+      usageNote_bn:
+        "বাংলায় 'ছিল' সব কর্তার জন্য একই। কিন্তু ইংরেজিতে be-ক্রিয়া কর্তার সাথে মিলতে হবে: I am/was, he/she/it is/was, you/we/they are/were। ভুল: 'They was happy।' সঠিক: 'They were happy।' ভুল: 'He are a teacher।' সঠিক: 'He is a teacher।'",
+    },
+    {
+      id: "X3.3",
+      formula: "[UNCOUNTABLE NOUN] is [COMPLEMENT]",
+      formula_bn: "[অগণনীয় বিশেষ্য] হলো [পরিপূরক]",
+      patternName: "Uncountable Nouns Take Singular Verbs",
+      patternName_bn: "অগণনীয় বিশেষ্যে একবচন ক্রিয়া",
+      slots: [
+        {
+          name: "UNCOUNTABLE NOUN",
+          description:
+            "A noun that cannot be counted and always takes a singular verb",
+          description_bn:
+            "একটি বিশেষ্য যা গোনা যায় না এবং সবসময় একবচন ক্রিয়া নেয়",
+          acceptedTypes: ["noun"],
+          examples: ["information", "news", "furniture"],
+        },
+        {
+          name: "COMPLEMENT",
+          description: "An adjective or phrase that describes the uncountable noun",
+          description_bn: "অগণনীয় বিশেষ্যকে বর্ণনা করে এমন বিশেষণ বা পদবন্ধ",
+          acceptedTypes: ["adjective", "adjective_phrase"],
+          examples: ["correct", "shocking", "expensive"],
+        },
+      ],
+      examples: [
+        {
+          en: "The information is correct.",
+          bn: "তথ্যটি সঠিক।",
+          slotValues: { "UNCOUNTABLE NOUN": "the information", COMPLEMENT: "correct" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The news is shocking.",
+          bn: "খবরটি চমকে দেওয়ার মতো।",
+          slotValues: { "UNCOUNTABLE NOUN": "the news", COMPLEMENT: "shocking" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The furniture is expensive.",
+          bn: "আসবাবপত্রটি দামি।",
+          slotValues: { "UNCOUNTABLE NOUN": "the furniture", COMPLEMENT: "expensive" },
+          topicArea: "shopping",
+        },
+        {
+          en: "The advice is helpful.",
+          bn: "পরামর্শটি সহায়ক।",
+          slotValues: { "UNCOUNTABLE NOUN": "the advice", COMPLEMENT: "helpful" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The equipment is ready.",
+          bn: "সরঞ্জামটি প্রস্তুত।",
+          slotValues: { "UNCOUNTABLE NOUN": "the equipment", COMPLEMENT: "ready" },
+          topicArea: "work",
+        },
+        {
+          en: "The homework is difficult.",
+          bn: "হোমওয়ার্কটি কঠিন।",
+          slotValues: { "UNCOUNTABLE NOUN": "the homework", COMPLEMENT: "difficult" },
+          topicArea: "education",
+        },
+        {
+          en: "The traffic is terrible.",
+          bn: "যানজট ভয়ংকর।",
+          slotValues: { "UNCOUNTABLE NOUN": "the traffic", COMPLEMENT: "terrible" },
+          topicArea: "travel",
+        },
+        {
+          en: "The luggage is heavy.",
+          bn: "লাগেজটি ভারী।",
+          slotValues: { "UNCOUNTABLE NOUN": "the luggage", COMPLEMENT: "heavy" },
+          topicArea: "travel",
+        },
+        {
+          en: "The weather is nice.",
+          bn: "আবহাওয়া সুন্দর।",
+          slotValues: { "UNCOUNTABLE NOUN": "the weather", COMPLEMENT: "nice" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The knowledge is useful.",
+          bn: "জ্ঞানটি কার্যকর।",
+          slotValues: { "UNCOUNTABLE NOUN": "the knowledge", COMPLEMENT: "useful" },
+          topicArea: "education",
+        },
+        {
+          en: "The progress is slow.",
+          bn: "অগ্রগতি ধীর।",
+          slotValues: { "UNCOUNTABLE NOUN": "the progress", COMPLEMENT: "slow" },
+          topicArea: "work",
+        },
+        {
+          en: "The research is interesting.",
+          bn: "গবেষণাটি আকর্ষণীয়।",
+          slotValues: { "UNCOUNTABLE NOUN": "the research", COMPLEMENT: "interesting" },
+          topicArea: "education",
+        },
+        {
+          en: "The evidence is clear.",
+          bn: "প্রমাণটি স্পষ্ট।",
+          slotValues: { "UNCOUNTABLE NOUN": "the evidence", COMPLEMENT: "clear" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The data is available.",
+          bn: "ডেটা পাওয়া যাচ্ছে।",
+          slotValues: { "UNCOUNTABLE NOUN": "the data", COMPLEMENT: "available" },
+          topicArea: "work",
+        },
+        {
+          en: "The bread is fresh.",
+          bn: "রুটিটি তাজা।",
+          slotValues: { "UNCOUNTABLE NOUN": "the bread", COMPLEMENT: "fresh" },
+          topicArea: "food",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Many English nouns that look plural or feel plural are actually uncountable and take singular verbs. Bangla speakers often say 'The information are wrong' because 'information' feels like multiple pieces. But in English, words like information, news, furniture, advice, luggage, equipment, homework, traffic, knowledge, evidence, research, and bread are uncountable — they always use 'is', never 'are'. Wrong: 'The information are wrong.' Correct: 'The information is wrong.'",
+      usageNote_bn:
+        "অনেক ইংরেজি বিশেষ্য দেখতে বহুবচন মনে হলেও আসলে অগণনীয় এবং একবচন ক্রিয়া নেয়। বাংলা ভাষীরা প্রায়ই 'The information are wrong' বলে কারণ 'information' অনেকগুলো তথ্য মনে হয়। কিন্তু ইংরেজিতে information, news, furniture, advice, luggage, equipment, homework, traffic, knowledge, evidence, research, bread — এগুলো অগণনীয় — সবসময় 'is' হবে, 'are' নয়। ভুল: 'The information are wrong।' সঠিক: 'The information is wrong।'",
+    },
+    {
+      id: "X3.4",
+      formula: "There [IS/ARE] [NOUN]",
+      formula_bn: "[NOUN] আছে",
+      patternName: "There Is vs There Are",
+      patternName_bn: "There Is বনাম There Are",
+      slots: [
+        {
+          name: "IS/ARE",
+          description:
+            "'is' for singular/uncountable nouns, 'are' for plural nouns",
+          description_bn:
+            "একবচন/অগণনীয় বিশেষ্যের জন্য 'is', বহুবচন বিশেষ্যের জন্য 'are'",
+          acceptedTypes: ["verb"],
+          examples: ["is", "are"],
+        },
+        {
+          name: "NOUN",
+          description: "A noun or noun phrase — singular or plural",
+          description_bn: "একটি বিশেষ্য বা বিশেষ্য পদবন্ধ — একবচন বা বহুবচন",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["a book", "many people", "some water"],
+        },
+      ],
+      examples: [
+        {
+          en: "There is a book on the table.",
+          bn: "টেবিলে একটি বই আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "a book on the table" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "There are many people in the park.",
+          bn: "পার্কে অনেক মানুষ আছে।",
+          slotValues: { "IS/ARE": "are", NOUN: "many people in the park" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "There is some water in the glass.",
+          bn: "গ্লাসে কিছু পানি আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "some water in the glass" },
+          topicArea: "food",
+        },
+        {
+          en: "There are two chairs in the room.",
+          bn: "ঘরে দুটো চেয়ার আছে।",
+          slotValues: { "IS/ARE": "are", NOUN: "two chairs in the room" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "There is a problem with the plan.",
+          bn: "পরিকল্পনায় একটি সমস্যা আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "a problem with the plan" },
+          topicArea: "work",
+        },
+        {
+          en: "There are three students absent today.",
+          bn: "আজকে তিনজন ছাত্র অনুপস্থিত।",
+          slotValues: { "IS/ARE": "are", NOUN: "three students absent today" },
+          topicArea: "education",
+        },
+        {
+          en: "There is a hospital nearby.",
+          bn: "কাছেই একটি হাসপাতাল আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "a hospital nearby" },
+          topicArea: "health",
+        },
+        {
+          en: "There are many cars on the road.",
+          bn: "রাস্তায় অনেক গাড়ি আছে।",
+          slotValues: { "IS/ARE": "are", NOUN: "many cars on the road" },
+          topicArea: "travel",
+        },
+        {
+          en: "There is no time left.",
+          bn: "আর কোনো সময় নেই।",
+          slotValues: { "IS/ARE": "is", NOUN: "no time left" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "There are several options available.",
+          bn: "কয়েকটি বিকল্প পাওয়া যাচ্ছে।",
+          slotValues: { "IS/ARE": "are", NOUN: "several options available" },
+          topicArea: "work",
+        },
+        {
+          en: "There is a cat under the bed.",
+          bn: "বিছানার নিচে একটি বিড়াল আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "a cat under the bed" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "There are five members in my family.",
+          bn: "আমার পরিবারে পাঁচজন সদস্য আছে।",
+          slotValues: { "IS/ARE": "are", NOUN: "five members in my family" },
+          topicArea: "relationships",
+        },
+        {
+          en: "There is some milk in the fridge.",
+          bn: "ফ্রিজে কিছু দুধ আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "some milk in the fridge" },
+          topicArea: "food",
+        },
+        {
+          en: "There are lots of trees here.",
+          bn: "এখানে অনেক গাছ আছে।",
+          slotValues: { "IS/ARE": "are", NOUN: "lots of trees here" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "There is a good restaurant nearby.",
+          bn: "কাছেই একটি ভালো রেস্তোরাঁ আছে।",
+          slotValues: { "IS/ARE": "is", NOUN: "a good restaurant nearby" },
+          topicArea: "food",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "In Bangla, 'আছে' (there is/are) doesn't change for singular or plural. But in English, you must use 'there is' for singular and uncountable nouns, and 'there are' for plural nouns. Wrong: 'There is many people.' Correct: 'There are many people.' Wrong: 'There are a book on the table.' Correct: 'There is a book on the table.'",
+      usageNote_bn:
+        "বাংলায় 'আছে' একবচন বা বহুবচনে পরিবর্তন হয় না। কিন্তু ইংরেজিতে একবচন ও অগণনীয় বিশেষ্যের জন্য 'there is' এবং বহুবচন বিশেষ্যের জন্য 'there are' ব্যবহার করতে হবে। ভুল: 'There is many people।' সঠিক: 'There are many people।' ভুল: 'There are a book on the table।' সঠিক: 'There is a book on the table।'",
+    },
+    {
+      id: "X3.5",
+      formula: "[SUBJECT] [DON'T/DOESN'T] [VERB]",
+      formula_bn: "[কর্তা] [DON'T/DOESN'T] [ক্রিয়া]",
+      patternName: "Don't vs Doesn't",
+      patternName_bn: "Don't বনাম Doesn't",
+      slots: [
+        {
+          name: "SUBJECT",
+          description: "The subject of the sentence",
+          description_bn: "বাক্যের কর্তা",
+          acceptedTypes: ["person", "noun"],
+          examples: ["he", "she", "I", "they"],
+        },
+        {
+          name: "DON'T/DOESN'T",
+          description:
+            "'doesn't' for he/she/it (third person singular), 'don't' for I/you/we/they",
+          description_bn:
+            "he/she/it (তৃতীয় পুরুষ একবচন) এর জন্য 'doesn't', I/you/we/they-এর জন্য 'don't'",
+          acceptedTypes: ["verb"],
+          examples: ["don't", "doesn't"],
+        },
+        {
+          name: "VERB",
+          description: "The base form of the verb (no -s ending)",
+          description_bn: "ক্রিয়ার মূল রূপ (-s ছাড়া)",
+          acceptedTypes: ["verb"],
+          examples: ["like", "work", "understand"],
+        },
+      ],
+      examples: [
+        {
+          en: "He doesn't like spicy food.",
+          bn: "সে ঝাল খাবার পছন্দ করে না।",
+          slotValues: { SUBJECT: "he", "DON'T/DOESN'T": "doesn't", VERB: "like spicy food" },
+          topicArea: "food",
+        },
+        {
+          en: "She doesn't work on weekends.",
+          bn: "সে সপ্তাহান্তে কাজ করে না।",
+          slotValues: { SUBJECT: "she", "DON'T/DOESN'T": "doesn't", VERB: "work on weekends" },
+          topicArea: "work",
+        },
+        {
+          en: "It doesn't matter.",
+          bn: "এটা কোনো ব্যাপার না।",
+          slotValues: { SUBJECT: "it", "DON'T/DOESN'T": "doesn't", VERB: "matter" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I don't understand.",
+          bn: "আমি বুঝতে পারছি না।",
+          slotValues: { SUBJECT: "I", "DON'T/DOESN'T": "don't", VERB: "understand" },
+          topicArea: "education",
+        },
+        {
+          en: "They don't agree.",
+          bn: "তারা রাজি না।",
+          slotValues: { SUBJECT: "they", "DON'T/DOESN'T": "don't", VERB: "agree" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "We don't have time.",
+          bn: "আমাদের সময় নেই।",
+          slotValues: { SUBJECT: "we", "DON'T/DOESN'T": "don't", VERB: "have time" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He doesn't know.",
+          bn: "সে জানে না।",
+          slotValues: { SUBJECT: "he", "DON'T/DOESN'T": "doesn't", VERB: "know" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She doesn't speak Bengali.",
+          bn: "সে বাংলা বলে না।",
+          slotValues: { SUBJECT: "she", "DON'T/DOESN'T": "doesn't", VERB: "speak Bengali" },
+          topicArea: "education",
+        },
+        {
+          en: "It doesn't look right.",
+          bn: "এটা ঠিক দেখাচ্ছে না।",
+          slotValues: { SUBJECT: "it", "DON'T/DOESN'T": "doesn't", VERB: "look right" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I don't think so.",
+          bn: "আমি তা মনে করি না।",
+          slotValues: { SUBJECT: "I", "DON'T/DOESN'T": "don't", VERB: "think so" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "They don't want to go.",
+          bn: "তারা যেতে চায় না।",
+          slotValues: { SUBJECT: "they", "DON'T/DOESN'T": "don't", VERB: "want to go" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He doesn't drive.",
+          bn: "সে গাড়ি চালায় না।",
+          slotValues: { SUBJECT: "he", "DON'T/DOESN'T": "doesn't", VERB: "drive" },
+          topicArea: "travel",
+        },
+        {
+          en: "She doesn't eat meat.",
+          bn: "সে মাংস খায় না।",
+          slotValues: { SUBJECT: "she", "DON'T/DOESN'T": "doesn't", VERB: "eat meat" },
+          topicArea: "food",
+        },
+        {
+          en: "We don't need help.",
+          bn: "আমাদের সাহায্য দরকার নেই।",
+          slotValues: { SUBJECT: "we", "DON'T/DOESN'T": "don't", VERB: "need help" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "It doesn't make sense.",
+          bn: "এটা অর্থবোধক না।",
+          slotValues: { SUBJECT: "it", "DON'T/DOESN'T": "doesn't", VERB: "make sense" },
+          topicArea: "daily_life",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "In Bangla, 'না' (not) is the same for all subjects. But in English, you must use 'doesn't' for he/she/it and 'don't' for I/you/we/they. Also, the main verb stays in base form after doesn't/don't — no -s ending! Wrong: 'He don't like tea.' Correct: 'He doesn't like tea.' Wrong: 'He doesn't likes tea.' Correct: 'He doesn't like tea.'",
+      usageNote_bn:
+        "বাংলায় 'না' সব কর্তার জন্য একই। কিন্তু ইংরেজিতে he/she/it-এর জন্য 'doesn't' এবং I/you/we/they-এর জন্য 'don't' ব্যবহার করতে হবে। এছাড়া, doesn't/don't-এর পরে মূল ক্রিয়া মূল রূপে থাকে — কোনো -s যুক্ত হবে না! ভুল: 'He don't like tea।' সঠিক: 'He doesn't like tea।' ভুল: 'He doesn't likes tea।' সঠিক: 'He doesn't like tea।'",
+    },
+  ],
+};

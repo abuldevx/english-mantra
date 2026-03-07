@@ -1,0 +1,626 @@
+import { PatternCategory } from "@/types/pattern";
+
+export const categoryR1: PatternCategory = {
+  id: "R1",
+  slug: "listing-enumerating",
+  name: "Listing & Enumerating",
+  name_bn: "তালিকা ও গণনা",
+  description:
+    "Organize your ideas in a clear sequence using listing and enumerating patterns.",
+  description_bn:
+    "তালিকা ও গণনার প্যাটার্ন ব্যবহার করে আপনার ধারণাগুলো পরিষ্কার ক্রমে সাজান।",
+  icon: "📋",
+  group: "R",
+  groupName: "Logical & Discourse Patterns",
+  groupName_bn: "যৌক্তিক ও বক্তৃতা প্যাটার্ন",
+  difficulty: "intermediate",
+  patterns: [
+    {
+      id: "R1.1",
+      formula: "First of all, [CLAUSE]",
+      formula_bn: "প্রথমত, [উপবাক্য]",
+      patternName: "First Point",
+      patternName_bn: "প্রথম বিষয়",
+      slots: [
+        {
+          name: "CLAUSE",
+          description: "A complete statement introducing your first point",
+          description_bn: "আপনার প্রথম বিষয় উপস্থাপনকারী একটি সম্পূর্ণ বাক্য",
+          acceptedTypes: ["clause"],
+          examples: [
+            "we need to plan",
+            "I want to thank everyone",
+            "let me explain the background",
+          ],
+        },
+      ],
+      examples: [
+        {
+          en: "First of all, we need to plan.",
+          bn: "প্রথমত, আমাদের পরিকল্পনা করা দরকার।",
+          slotValues: { CLAUSE: "we need to plan" },
+          topicArea: "work",
+        },
+        {
+          en: "First of all, I want to thank everyone.",
+          bn: "প্রথমত, আমি সবাইকে ধন্যবাদ জানাতে চাই।",
+          slotValues: { CLAUSE: "I want to thank everyone" },
+          topicArea: "work",
+        },
+        {
+          en: "First of all, let me introduce myself.",
+          bn: "প্রথমত, আমাকে নিজের পরিচয় দিতে দিন।",
+          slotValues: { CLAUSE: "let me introduce myself" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "First of all, we should check the budget.",
+          bn: "প্রথমত, আমাদের বাজেট যাচাই করা উচিত।",
+          slotValues: { CLAUSE: "we should check the budget" },
+          topicArea: "work",
+        },
+        {
+          en: "First of all, you need to register online.",
+          bn: "প্রথমত, আপনাকে অনলাইনে নিবন্ধন করতে হবে।",
+          slotValues: { CLAUSE: "you need to register online" },
+          topicArea: "education",
+        },
+        {
+          en: "First of all, the food here is excellent.",
+          bn: "প্রথমত, এখানকার খাবার চমৎকার।",
+          slotValues: { CLAUSE: "the food here is excellent" },
+          topicArea: "food",
+        },
+        {
+          en: "First of all, I want to clarify something.",
+          bn: "প্রথমত, আমি একটি বিষয় পরিষ্কার করতে চাই।",
+          slotValues: { CLAUSE: "I want to clarify something" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "First of all, we should consider the risks.",
+          bn: "প্রথমত, আমাদের ঝুঁকিগুলো বিবেচনা করা উচিত।",
+          slotValues: { CLAUSE: "we should consider the risks" },
+          topicArea: "work",
+        },
+        {
+          en: "First of all, the location is very convenient.",
+          bn: "প্রথমত, অবস্থানটি খুবই সুবিধাজনক।",
+          slotValues: { CLAUSE: "the location is very convenient" },
+          topicArea: "travel",
+        },
+        {
+          en: "First of all, you should see a doctor.",
+          bn: "প্রথমত, আপনার ডাক্তার দেখানো উচিত।",
+          slotValues: { CLAUSE: "you should see a doctor" },
+          topicArea: "health",
+        },
+        {
+          en: "First of all, this is not a new problem.",
+          bn: "প্রথমত, এটি নতুন কোনো সমস্যা নয়।",
+          slotValues: { CLAUSE: "this is not a new problem" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "First of all, we need to understand the requirements.",
+          bn: "প্রথমত, আমাদের প্রয়োজনীয়তাগুলো বুঝতে হবে।",
+          slotValues: { CLAUSE: "we need to understand the requirements" },
+          topicArea: "education",
+        },
+        {
+          en: "First of all, safety is our top priority.",
+          bn: "প্রথমত, নিরাপত্তা আমাদের সর্বোচ্চ অগ্রাধিকার।",
+          slotValues: { CLAUSE: "safety is our top priority" },
+          topicArea: "work",
+        },
+        {
+          en: "First of all, I appreciate your patience.",
+          bn: "প্রথমত, আমি আপনার ধৈর্যের প্রশংসা করি।",
+          slotValues: { CLAUSE: "I appreciate your patience" },
+          topicArea: "relationships",
+        },
+        {
+          en: "First of all, the price is very reasonable.",
+          bn: "প্রথমত, দামটি খুবই যুক্তিসঙ্গত।",
+          slotValues: { CLAUSE: "the price is very reasonable" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "polite",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to introduce the first point in a series. Often followed by 'Secondly' or 'Next' to continue the list.",
+      usageNote_bn:
+        "একটি ধারাবাহিকের প্রথম বিষয় উপস্থাপন করতে ব্যবহৃত হয়। তালিকা চালিয়ে যেতে প্রায়ই 'Secondly' বা 'Next' দ্বারা অনুসরণ করা হয়।",
+      combinableWith: ["R1.2", "R1.3"],
+      banglaStructureMap:
+        "প্রথমত (Adverb) + [CLAUSE] (Complete statement)",
+    },
+    {
+      id: "R1.2",
+      formula: "Secondly, [CLAUSE]",
+      formula_bn: "দ্বিতীয়ত, [উপবাক্য]",
+      patternName: "Second Point",
+      patternName_bn: "দ্বিতীয় বিষয়",
+      slots: [
+        {
+          name: "CLAUSE",
+          description: "A complete statement for your second point",
+          description_bn: "আপনার দ্বিতীয় বিষয়ের জন্য একটি সম্পূর্ণ বাক্য",
+          acceptedTypes: ["clause"],
+          examples: [
+            "the cost is too high",
+            "we lack experience",
+            "the deadline is tight",
+          ],
+        },
+      ],
+      examples: [
+        {
+          en: "Secondly, the cost is too high.",
+          bn: "দ্বিতীয়ত, খরচটা অনেক বেশি।",
+          slotValues: { CLAUSE: "the cost is too high" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Secondly, we lack experience in this area.",
+          bn: "দ্বিতীয়ত, এই ক্ষেত্রে আমাদের অভিজ্ঞতার অভাব।",
+          slotValues: { CLAUSE: "we lack experience in this area" },
+          topicArea: "work",
+        },
+        {
+          en: "Secondly, the deadline is very tight.",
+          bn: "দ্বিতীয়ত, সময়সীমা খুবই সংকীর্ণ।",
+          slotValues: { CLAUSE: "the deadline is very tight" },
+          topicArea: "work",
+        },
+        {
+          en: "Secondly, the quality could be better.",
+          bn: "দ্বিতীয়ত, মান আরও ভালো হতে পারত।",
+          slotValues: { CLAUSE: "the quality could be better" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Secondly, you should practice every day.",
+          bn: "দ্বিতীয়ত, আপনার প্রতিদিন অনুশীলন করা উচিত।",
+          slotValues: { CLAUSE: "you should practice every day" },
+          topicArea: "education",
+        },
+        {
+          en: "Secondly, the weather might be a problem.",
+          bn: "দ্বিতীয়ত, আবহাওয়া একটি সমস্যা হতে পারে।",
+          slotValues: { CLAUSE: "the weather might be a problem" },
+          topicArea: "travel",
+        },
+        {
+          en: "Secondly, we need more volunteers.",
+          bn: "দ্বিতীয়ত, আমাদের আরও স্বেচ্ছাসেবক দরকার।",
+          slotValues: { CLAUSE: "we need more volunteers" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Secondly, the service was very slow.",
+          bn: "দ্বিতীয়ত, সেবা খুবই ধীর ছিল।",
+          slotValues: { CLAUSE: "the service was very slow" },
+          topicArea: "food",
+        },
+        {
+          en: "Secondly, exercise helps reduce stress.",
+          bn: "দ্বিতীয়ত, ব্যায়াম মানসিক চাপ কমাতে সাহায্য করে।",
+          slotValues: { CLAUSE: "exercise helps reduce stress" },
+          topicArea: "health",
+        },
+        {
+          en: "Secondly, communication is essential.",
+          bn: "দ্বিতীয়ত, যোগাযোগ অপরিহার্য।",
+          slotValues: { CLAUSE: "communication is essential" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Secondly, we should set clear goals.",
+          bn: "দ্বিতীয়ত, আমাদের স্পষ্ট লক্ষ্য নির্ধারণ করা উচিত।",
+          slotValues: { CLAUSE: "we should set clear goals" },
+          topicArea: "work",
+        },
+        {
+          en: "Secondly, the hotel has a great pool.",
+          bn: "দ্বিতীয়ত, হোটেলে একটি চমৎকার সুইমিং পুল আছে।",
+          slotValues: { CLAUSE: "the hotel has a great pool" },
+          topicArea: "travel",
+        },
+        {
+          en: "Secondly, it saves a lot of time.",
+          bn: "দ্বিতীয়ত, এটি অনেক সময় বাঁচায়।",
+          slotValues: { CLAUSE: "it saves a lot of time" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Secondly, the teacher is very helpful.",
+          bn: "দ্বিতীয়ত, শিক্ষক খুবই সহায়ক।",
+          slotValues: { CLAUSE: "the teacher is very helpful" },
+          topicArea: "education",
+        },
+        {
+          en: "Secondly, you need to drink more water.",
+          bn: "দ্বিতীয়ত, আপনাকে আরও বেশি পানি পান করতে হবে।",
+          slotValues: { CLAUSE: "you need to drink more water" },
+          topicArea: "health",
+        },
+      ],
+      formality: "polite",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to introduce the second point after 'First of all' or 'Firstly'. Keeps your argument structured.",
+      usageNote_bn:
+        "'First of all' বা 'Firstly'-এর পরে দ্বিতীয় বিষয় উপস্থাপন করতে ব্যবহৃত হয়। আপনার যুক্তিকে সুগঠিত রাখে।",
+      combinableWith: ["R1.1", "R1.3"],
+      banglaStructureMap:
+        "দ্বিতীয়ত (Adverb) + [CLAUSE] (Complete statement)",
+    },
+    {
+      id: "R1.3",
+      formula: "Finally, [CLAUSE]",
+      formula_bn: "সবশেষে, [উপবাক্য]",
+      patternName: "Final Point",
+      patternName_bn: "শেষ বিষয়",
+      slots: [
+        {
+          name: "CLAUSE",
+          description: "A complete statement for your concluding point",
+          description_bn: "আপনার উপসংহারমূলক বিষয়ের জন্য একটি সম্পূর্ণ বাক্য",
+          acceptedTypes: ["clause"],
+          examples: [
+            "I want to add one more thing",
+            "we should take action",
+            "the results speak for themselves",
+          ],
+        },
+      ],
+      examples: [
+        {
+          en: "Finally, I want to add one more thing.",
+          bn: "সবশেষে, আমি আরও একটি কথা বলতে চাই।",
+          slotValues: { CLAUSE: "I want to add one more thing" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Finally, we should take action immediately.",
+          bn: "সবশেষে, আমাদের অবিলম্বে পদক্ষেপ নেওয়া উচিত।",
+          slotValues: { CLAUSE: "we should take action immediately" },
+          topicArea: "work",
+        },
+        {
+          en: "Finally, the results speak for themselves.",
+          bn: "সবশেষে, ফলাফলই সব বলে দেয়।",
+          slotValues: { CLAUSE: "the results speak for themselves" },
+          topicArea: "education",
+        },
+        {
+          en: "Finally, I'd like to thank the organizers.",
+          bn: "সবশেষে, আমি আয়োজকদের ধন্যবাদ জানাতে চাই।",
+          slotValues: { CLAUSE: "I'd like to thank the organizers" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Finally, don't forget to submit your report.",
+          bn: "সবশেষে, আপনার রিপোর্ট জমা দিতে ভুলবেন না।",
+          slotValues: { CLAUSE: "don't forget to submit your report" },
+          topicArea: "work",
+        },
+        {
+          en: "Finally, the dessert was absolutely delicious.",
+          bn: "সবশেষে, মিষ্টান্নটি একেবারে অসাধারণ ছিল।",
+          slotValues: { CLAUSE: "the dessert was absolutely delicious" },
+          topicArea: "food",
+        },
+        {
+          en: "Finally, rest is just as important as exercise.",
+          bn: "সবশেষে, বিশ্রাম ব্যায়ামের মতোই গুরুত্বপূর্ণ।",
+          slotValues: { CLAUSE: "rest is just as important as exercise" },
+          topicArea: "health",
+        },
+        {
+          en: "Finally, make sure to visit the old town.",
+          bn: "সবশেষে, পুরনো শহরটি অবশ্যই ঘুরে দেখবেন।",
+          slotValues: { CLAUSE: "make sure to visit the old town" },
+          topicArea: "travel",
+        },
+        {
+          en: "Finally, always compare prices before buying.",
+          bn: "সবশেষে, কেনার আগে সবসময় দাম তুলনা করুন।",
+          slotValues: { CLAUSE: "always compare prices before buying" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Finally, trust is the foundation of any relationship.",
+          bn: "সবশেষে, বিশ্বাস যেকোনো সম্পর্কের ভিত্তি।",
+          slotValues: { CLAUSE: "trust is the foundation of any relationship" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Finally, let's schedule the next meeting.",
+          bn: "সবশেষে, চলুন পরবর্তী মিটিংয়ের সময় ঠিক করি।",
+          slotValues: { CLAUSE: "let's schedule the next meeting" },
+          topicArea: "work",
+        },
+        {
+          en: "Finally, the exam will cover chapters one through five.",
+          bn: "সবশেষে, পরীক্ষায় প্রথম থেকে পঞ্চম অধ্যায় পর্যন্ত আসবে।",
+          slotValues: { CLAUSE: "the exam will cover chapters one through five" },
+          topicArea: "education",
+        },
+        {
+          en: "Finally, remember to stay hydrated.",
+          bn: "সবশেষে, পর্যাপ্ত পানি পান করতে মনে রাখবেন।",
+          slotValues: { CLAUSE: "remember to stay hydrated" },
+          topicArea: "health",
+        },
+        {
+          en: "Finally, I hope you all have a wonderful evening.",
+          bn: "সবশেষে, আমি আশা করি আপনাদের সবার একটি চমৎকার সন্ধ্যা কাটবে।",
+          slotValues: { CLAUSE: "I hope you all have a wonderful evening" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Finally, check the return policy before purchasing.",
+          bn: "সবশেষে, কেনার আগে ফেরত নীতি দেখে নিন।",
+          slotValues: { CLAUSE: "check the return policy before purchasing" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "polite",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to introduce the last point in a series. Signals that you are wrapping up your list.",
+      usageNote_bn:
+        "একটি ধারাবাহিকের শেষ বিষয় উপস্থাপন করতে ব্যবহৃত হয়। ইঙ্গিত দেয় যে আপনি আপনার তালিকা শেষ করছেন।",
+      combinableWith: ["R1.1", "R1.2"],
+      banglaStructureMap:
+        "সবশেষে (Adverb) + [CLAUSE] (Complete statement)",
+    },
+    {
+      id: "R1.4",
+      formula: "On top of that, [CLAUSE]",
+      formula_bn: "তার উপরে, [উপবাক্য]",
+      patternName: "Adding to the List",
+      patternName_bn: "তালিকায় যোগ করা",
+      slots: [
+        {
+          name: "CLAUSE",
+          description: "An additional point that strengthens your argument",
+          description_bn: "একটি অতিরিক্ত বিষয় যা আপনার যুক্তিকে শক্তিশালী করে",
+          acceptedTypes: ["clause"],
+          examples: [
+            "the staff was rude",
+            "we got a discount",
+            "it started raining",
+          ],
+        },
+      ],
+      examples: [
+        {
+          en: "On top of that, the staff was rude.",
+          bn: "তার উপরে, কর্মীরা অভদ্র ছিল।",
+          slotValues: { CLAUSE: "the staff was rude" },
+          topicArea: "shopping",
+        },
+        {
+          en: "On top of that, we got a discount.",
+          bn: "তার উপরে, আমরা ছাড় পেয়েছি।",
+          slotValues: { CLAUSE: "we got a discount" },
+          topicArea: "shopping",
+        },
+        {
+          en: "On top of that, it started raining.",
+          bn: "তার উপরে, বৃষ্টি শুরু হলো।",
+          slotValues: { CLAUSE: "it started raining" },
+          topicArea: "travel",
+        },
+        {
+          en: "On top of that, the project was delayed.",
+          bn: "তার উপরে, প্রকল্পটি বিলম্বিত হলো।",
+          slotValues: { CLAUSE: "the project was delayed" },
+          topicArea: "work",
+        },
+        {
+          en: "On top of that, I lost my wallet.",
+          bn: "তার উপরে, আমি আমার মানিব্যাগ হারিয়ে ফেললাম।",
+          slotValues: { CLAUSE: "I lost my wallet" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "On top of that, the course is free.",
+          bn: "তার উপরে, কোর্সটি বিনামূল্যে।",
+          slotValues: { CLAUSE: "the course is free" },
+          topicArea: "education",
+        },
+        {
+          en: "On top of that, the food portions are generous.",
+          bn: "তার উপরে, খাবারের পরিমাণ যথেষ্ট।",
+          slotValues: { CLAUSE: "the food portions are generous" },
+          topicArea: "food",
+        },
+        {
+          en: "On top of that, they offer free delivery.",
+          bn: "তার উপরে, তারা বিনামূল্যে ডেলিভারি দেয়।",
+          slotValues: { CLAUSE: "they offer free delivery" },
+          topicArea: "shopping",
+        },
+        {
+          en: "On top of that, she speaks three languages.",
+          bn: "তার উপরে, সে তিনটি ভাষায় কথা বলে।",
+          slotValues: { CLAUSE: "she speaks three languages" },
+          topicArea: "education",
+        },
+        {
+          en: "On top of that, the view from the hotel was amazing.",
+          bn: "তার উপরে, হোটেল থেকে দৃশ্যটি অসাধারণ ছিল।",
+          slotValues: { CLAUSE: "the view from the hotel was amazing" },
+          topicArea: "travel",
+        },
+        {
+          en: "On top of that, he has years of experience.",
+          bn: "তার উপরে, তার বছরের পর বছর অভিজ্ঞতা আছে।",
+          slotValues: { CLAUSE: "he has years of experience" },
+          topicArea: "work",
+        },
+        {
+          en: "On top of that, the medicine has side effects.",
+          bn: "তার উপরে, ওষুধটির পার্শ্বপ্রতিক্রিয়া আছে।",
+          slotValues: { CLAUSE: "the medicine has side effects" },
+          topicArea: "health",
+        },
+        {
+          en: "On top of that, they were very understanding.",
+          bn: "তার উপরে, তারা খুবই সহানুভূতিশীল ছিল।",
+          slotValues: { CLAUSE: "they were very understanding" },
+          topicArea: "relationships",
+        },
+        {
+          en: "On top of that, the gym is open 24 hours.",
+          bn: "তার উপরে, জিমটি ২৪ ঘণ্টা খোলা।",
+          slotValues: { CLAUSE: "the gym is open 24 hours" },
+          topicArea: "health",
+        },
+        {
+          en: "On top of that, the neighbors are very friendly.",
+          bn: "তার উপরে, প্রতিবেশীরা খুবই বন্ধুত্বপূর্ণ।",
+          slotValues: { CLAUSE: "the neighbors are very friendly" },
+          topicArea: "daily_life",
+        },
+      ],
+      formality: "casual",
+      difficulty: "intermediate",
+      usageNote:
+        "Used to add emphasis to an additional point in a list. Often used when the extra point makes the situation even stronger.",
+      usageNote_bn:
+        "তালিকায় একটি অতিরিক্ত বিষয়ে জোর দিতে ব্যবহৃত হয়। প্রায়ই ব্যবহৃত হয় যখন অতিরিক্ত বিষয়টি পরিস্থিতিকে আরও শক্তিশালী করে।",
+      combinableWith: ["R1.1", "R1.2"],
+      banglaStructureMap:
+        "তার উপরে (Adverb phrase) + [CLAUSE] (Complete statement)",
+    },
+    {
+      id: "R1.5",
+      formula: "Last but not least, [CLAUSE]",
+      formula_bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, [উপবাক্য]",
+      patternName: "Important Final Point",
+      patternName_bn: "গুরুত্বপূর্ণ শেষ বিষয়",
+      slots: [
+        {
+          name: "CLAUSE",
+          description:
+            "A final point that you want to emphasize as equally important",
+          description_bn:
+            "একটি শেষ বিষয় যা আপনি সমান গুরুত্বপূর্ণ হিসেবে জোর দিতে চান",
+          acceptedTypes: ["clause"],
+          examples: [
+            "teamwork makes a difference",
+            "don't forget to have fun",
+            "your health matters most",
+          ],
+        },
+      ],
+      examples: [
+        {
+          en: "Last but not least, teamwork makes a difference.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, দলগত কাজ পার্থক্য তৈরি করে।",
+          slotValues: { CLAUSE: "teamwork makes a difference" },
+          topicArea: "work",
+        },
+        {
+          en: "Last but not least, don't forget to have fun.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, আনন্দ করতে ভুলবেন না।",
+          slotValues: { CLAUSE: "don't forget to have fun" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Last but not least, your health matters most.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, আপনার স্বাস্থ্য সবচেয়ে গুরুত্বপূর্ণ।",
+          slotValues: { CLAUSE: "your health matters most" },
+          topicArea: "health",
+        },
+        {
+          en: "Last but not least, I want to thank my family.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, আমি আমার পরিবারকে ধন্যবাদ জানাতে চাই।",
+          slotValues: { CLAUSE: "I want to thank my family" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Last but not least, always back up your files.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, সবসময় আপনার ফাইল ব্যাকআপ রাখুন।",
+          slotValues: { CLAUSE: "always back up your files" },
+          topicArea: "work",
+        },
+        {
+          en: "Last but not least, the dessert menu is outstanding.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, মিষ্টান্নের মেনু অসাধারণ।",
+          slotValues: { CLAUSE: "the dessert menu is outstanding" },
+          topicArea: "food",
+        },
+        {
+          en: "Last but not least, practice makes perfect.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, অনুশীলনে নিখুঁততা আসে।",
+          slotValues: { CLAUSE: "practice makes perfect" },
+          topicArea: "education",
+        },
+        {
+          en: "Last but not least, the sunset there is breathtaking.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, সেখানকার সূর্যাস্ত মনোমুগ্ধকর।",
+          slotValues: { CLAUSE: "the sunset there is breathtaking" },
+          topicArea: "travel",
+        },
+        {
+          en: "Last but not least, always read the fine print.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, সবসময় সূক্ষ্ম শর্তাবলি পড়ুন।",
+          slotValues: { CLAUSE: "always read the fine print" },
+          topicArea: "shopping",
+        },
+        {
+          en: "Last but not least, sleep is crucial for recovery.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, সুস্থতার জন্য ঘুম অত্যন্ত জরুরি।",
+          slotValues: { CLAUSE: "sleep is crucial for recovery" },
+          topicArea: "health",
+        },
+        {
+          en: "Last but not least, respect is a two-way street.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, সম্মান পারস্পরিক বিষয়।",
+          slotValues: { CLAUSE: "respect is a two-way street" },
+          topicArea: "relationships",
+        },
+        {
+          en: "Last but not least, we need to hire two more people.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, আমাদের আরও দুজন নিয়োগ করতে হবে।",
+          slotValues: { CLAUSE: "we need to hire two more people" },
+          topicArea: "work",
+        },
+        {
+          en: "Last but not least, the library has free Wi-Fi.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, লাইব্রেরিতে বিনামূল্যে ওয়াই-ফাই আছে।",
+          slotValues: { CLAUSE: "the library has free Wi-Fi" },
+          topicArea: "education",
+        },
+        {
+          en: "Last but not least, bring a jacket just in case.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, সতর্কতা হিসেবে একটি জ্যাকেট নিয়ে আসুন।",
+          slotValues: { CLAUSE: "bring a jacket just in case" },
+          topicArea: "travel",
+        },
+        {
+          en: "Last but not least, customer feedback is valuable.",
+          bn: "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয়, গ্রাহকের মতামত মূল্যবান।",
+          slotValues: { CLAUSE: "customer feedback is valuable" },
+          topicArea: "work",
+        },
+      ],
+      formality: "polite",
+      difficulty: "intermediate",
+      usageNote:
+        "A common phrase used to introduce the final item in a list while emphasizing it is still very important.",
+      usageNote_bn:
+        "তালিকার শেষ আইটেম উপস্থাপন করতে ব্যবহৃত একটি সাধারণ বাক্যাংশ, যেখানে জোর দেওয়া হয় যে এটি এখনও খুবই গুরুত্বপূর্ণ।",
+      combinableWith: ["R1.1", "R1.2"],
+      banglaStructureMap:
+        "সর্বশেষ কিন্তু কম গুরুত্বপূর্ণ নয় (Fixed phrase) + [CLAUSE] (Complete statement)",
+    },
+  ],
+};

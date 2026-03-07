@@ -1,0 +1,882 @@
+import { PatternCategory } from "@/types/pattern";
+
+export const categoryX5: PatternCategory = {
+  id: "X5",
+  slug: "word-order-fixes",
+  name: "Word Order Fixes",
+  name_bn: "শব্দ ক্রম সংশোধন",
+  description:
+    "Fix word order mistakes. Bangla uses Subject-Object-Verb (SOV) order, but English uses Subject-Verb-Object (SVO).",
+  description_bn:
+    "শব্দ ক্রমের ভুল ঠিক করুন। বাংলায় কর্তা-কর্ম-ক্রিয়া (SOV) ক্রম ব্যবহার হয়, কিন্তু ইংরেজিতে কর্তা-ক্রিয়া-কর্ম (SVO)।",
+  icon: "🔤",
+  group: "X",
+  groupName: "Common Mistakes by Bangla Speakers",
+  groupName_bn: "বাংলা ভাষীদের সাধারণ ভুল",
+  difficulty: "beginner",
+  patterns: [
+    {
+      id: "X5.1",
+      formula: "[SUBJECT] [VERB] [OBJECT]",
+      formula_bn: "[SUBJECT] [OBJECT] [VERB] করে (বাংলা) → [SUBJECT] [VERB] [OBJECT] (ইংরেজি)",
+      patternName: "Basic SVO Word Order",
+      patternName_bn: "মৌলিক SVO শব্দ ক্রম",
+      slots: [
+        {
+          name: "SUBJECT",
+          description: "The person or thing doing the action",
+          description_bn: "যে ব্যক্তি বা জিনিস কাজটি করছে",
+          acceptedTypes: ["noun", "person"],
+          examples: ["I", "She", "They"],
+        },
+        {
+          name: "VERB",
+          description: "The action word",
+          description_bn: "ক্রিয়া শব্দ",
+          acceptedTypes: ["verb"],
+          examples: ["eat", "read", "speak"],
+        },
+        {
+          name: "OBJECT",
+          description: "The thing receiving the action",
+          description_bn: "যে জিনিস কাজটি গ্রহণ করছে",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["rice", "a book", "English"],
+        },
+      ],
+      examples: [
+        {
+          en: "I eat rice.",
+          bn: "আমি ভাত খাই।",
+          slotValues: { SUBJECT: "I", VERB: "eat", OBJECT: "rice" },
+          topicArea: "food",
+        },
+        {
+          en: "She reads books.",
+          bn: "সে বই পড়ে।",
+          slotValues: { SUBJECT: "She", VERB: "reads", OBJECT: "books" },
+          topicArea: "education",
+        },
+        {
+          en: "They speak English.",
+          bn: "তারা ইংরেজি বলে।",
+          slotValues: { SUBJECT: "They", VERB: "speak", OBJECT: "English" },
+          topicArea: "education",
+        },
+        {
+          en: "I drink water.",
+          bn: "আমি পানি পান করি।",
+          slotValues: { SUBJECT: "I", VERB: "drink", OBJECT: "water" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He drives a car.",
+          bn: "সে গাড়ি চালায়।",
+          slotValues: { SUBJECT: "He", VERB: "drives", OBJECT: "a car" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "We watch television.",
+          bn: "আমরা টেলিভিশন দেখি।",
+          slotValues: { SUBJECT: "We", VERB: "watch", OBJECT: "television" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She teaches math.",
+          bn: "সে গণিত পড়ায়।",
+          slotValues: { SUBJECT: "She", VERB: "teaches", OBJECT: "math" },
+          topicArea: "education",
+        },
+        {
+          en: "I play football.",
+          bn: "আমি ফুটবল খেলি।",
+          slotValues: { SUBJECT: "I", VERB: "play", OBJECT: "football" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He writes emails.",
+          bn: "সে ইমেইল লেখে।",
+          slotValues: { SUBJECT: "He", VERB: "writes", OBJECT: "emails" },
+          topicArea: "work",
+        },
+        {
+          en: "They sell vegetables.",
+          bn: "তারা সবজি বিক্রি করে।",
+          slotValues: { SUBJECT: "They", VERB: "sell", OBJECT: "vegetables" },
+          topicArea: "shopping",
+        },
+        {
+          en: "I love my parents.",
+          bn: "আমি আমার বাবা-মাকে ভালোবাসি।",
+          slotValues: { SUBJECT: "I", VERB: "love", OBJECT: "my parents" },
+          topicArea: "relationships",
+        },
+        {
+          en: "She takes medicine.",
+          bn: "সে ওষুধ খায়।",
+          slotValues: { SUBJECT: "She", VERB: "takes", OBJECT: "medicine" },
+          topicArea: "health",
+        },
+        {
+          en: "We buy groceries.",
+          bn: "আমরা বাজার কিনি।",
+          slotValues: { SUBJECT: "We", VERB: "buy", OBJECT: "groceries" },
+          topicArea: "shopping",
+        },
+        {
+          en: "He carries a backpack.",
+          bn: "সে একটি ব্যাকপ্যাক বহন করে।",
+          slotValues: { SUBJECT: "He", VERB: "carries", OBJECT: "a backpack" },
+          topicArea: "travel",
+        },
+        {
+          en: "I need a ticket.",
+          bn: "আমার একটি টিকিট দরকার।",
+          slotValues: { SUBJECT: "I", VERB: "need", OBJECT: "a ticket" },
+          topicArea: "travel",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Bangla: আমি ভাত খাই (I rice eat). English: I eat rice (Subject + Verb + Object). Always put the verb BEFORE the object.",
+      usageNote_bn:
+        "বাংলা: আমি ভাত খাই (I rice eat)। ইংরেজি: I eat rice (Subject + Verb + Object)। সর্বদা ক্রিয়া কর্মের আগে বসান।",
+      banglaStructureMap:
+        "আমি (কর্তা) + ভাত (কর্ম) + খাই (ক্রিয়া) → I (Subject) + eat (Verb) + rice (Object)",
+    },
+    {
+      id: "X5.2",
+      formula: "[WH-WORD] [DO/DOES/DID] [SUBJECT] [VERB]?",
+      formula_bn: "[SUBJECT] [WH-WORD] [VERB]? (বাংলা) → [WH-WORD] [DO/DOES/DID] [SUBJECT] [VERB]? (ইংরেজি)",
+      patternName: "Question Word Order with Do/Does/Did",
+      patternName_bn: "Do/Does/Did দিয়ে প্রশ্নের শব্দ ক্রম",
+      slots: [
+        {
+          name: "WH-WORD",
+          description: "Question word (Where, What, When, Why, How, Who)",
+          description_bn: "প্রশ্নবোধক শব্দ (Where, What, When, Why, How, Who)",
+          acceptedTypes: ["noun"],
+          examples: ["Where", "What", "When", "Why"],
+        },
+        {
+          name: "DO/DOES/DID",
+          description: "Auxiliary verb matching the tense and subject",
+          description_bn: "কাল এবং কর্তা অনুযায়ী সহায়ক ক্রিয়া",
+          acceptedTypes: ["verb"],
+          examples: ["do", "does", "did"],
+        },
+        {
+          name: "SUBJECT",
+          description: "The person being asked about",
+          description_bn: "যাকে নিয়ে জিজ্ঞাসা করা হচ্ছে",
+          acceptedTypes: ["person", "noun"],
+          examples: ["you", "he", "she", "they"],
+        },
+        {
+          name: "VERB",
+          description: "The base form of the action verb",
+          description_bn: "ক্রিয়ার মূল রূপ",
+          acceptedTypes: ["verb"],
+          examples: ["go", "live", "eat", "work"],
+        },
+      ],
+      examples: [
+        {
+          en: "Where do you live?",
+          bn: "তুমি কোথায় থাকো?",
+          slotValues: {
+            "WH-WORD": "Where",
+            "DO/DOES/DID": "do",
+            SUBJECT: "you",
+            VERB: "live",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "What does she want?",
+          bn: "সে কী চায়?",
+          slotValues: {
+            "WH-WORD": "What",
+            "DO/DOES/DID": "does",
+            SUBJECT: "she",
+            VERB: "want",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "When did you arrive?",
+          bn: "তুমি কখন পৌঁছেছিলে?",
+          slotValues: {
+            "WH-WORD": "When",
+            "DO/DOES/DID": "did",
+            SUBJECT: "you",
+            VERB: "arrive",
+          },
+          topicArea: "travel",
+        },
+        {
+          en: "Why do they study English?",
+          bn: "তারা কেন ইংরেজি পড়ে?",
+          slotValues: {
+            "WH-WORD": "Why",
+            "DO/DOES/DID": "do",
+            SUBJECT: "they",
+            VERB: "study",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "How does he go to work?",
+          bn: "সে কীভাবে কাজে যায়?",
+          slotValues: {
+            "WH-WORD": "How",
+            "DO/DOES/DID": "does",
+            SUBJECT: "he",
+            VERB: "go",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "Where did you buy this?",
+          bn: "তুমি এটা কোথায় কিনেছিলে?",
+          slotValues: {
+            "WH-WORD": "Where",
+            "DO/DOES/DID": "did",
+            SUBJECT: "you",
+            VERB: "buy",
+          },
+          topicArea: "shopping",
+        },
+        {
+          en: "What do you eat for breakfast?",
+          bn: "তুমি সকালের নাশতায় কী খাও?",
+          slotValues: {
+            "WH-WORD": "What",
+            "DO/DOES/DID": "do",
+            SUBJECT: "you",
+            VERB: "eat",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "When does the train leave?",
+          bn: "ট্রেন কখন ছাড়ে?",
+          slotValues: {
+            "WH-WORD": "When",
+            "DO/DOES/DID": "does",
+            SUBJECT: "the train",
+            VERB: "leave",
+          },
+          topicArea: "travel",
+        },
+        {
+          en: "Why did she cry?",
+          bn: "সে কেন কেঁদেছিল?",
+          slotValues: {
+            "WH-WORD": "Why",
+            "DO/DOES/DID": "did",
+            SUBJECT: "she",
+            VERB: "cry",
+          },
+          topicArea: "relationships",
+        },
+        {
+          en: "How do you feel today?",
+          bn: "তুমি আজ কেমন অনুভব করছো?",
+          slotValues: {
+            "WH-WORD": "How",
+            "DO/DOES/DID": "do",
+            SUBJECT: "you",
+            VERB: "feel",
+          },
+          topicArea: "health",
+        },
+        {
+          en: "What does this word mean?",
+          bn: "এই শব্দটির মানে কী?",
+          slotValues: {
+            "WH-WORD": "What",
+            "DO/DOES/DID": "does",
+            SUBJECT: "this word",
+            VERB: "mean",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "Where do they work?",
+          bn: "তারা কোথায় কাজ করে?",
+          slotValues: {
+            "WH-WORD": "Where",
+            "DO/DOES/DID": "do",
+            SUBJECT: "they",
+            VERB: "work",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "How much does it cost?",
+          bn: "এটার দাম কত?",
+          slotValues: {
+            "WH-WORD": "How much",
+            "DO/DOES/DID": "does",
+            SUBJECT: "it",
+            VERB: "cost",
+          },
+          topicArea: "shopping",
+        },
+        {
+          en: "What did you cook today?",
+          bn: "তুমি আজ কী রান্না করেছিলে?",
+          slotValues: {
+            "WH-WORD": "What",
+            "DO/DOES/DID": "did",
+            SUBJECT: "you",
+            VERB: "cook",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "Why do you need a doctor?",
+          bn: "তোমার ডাক্তার কেন দরকার?",
+          slotValues: {
+            "WH-WORD": "Why",
+            "DO/DOES/DID": "do",
+            SUBJECT: "you",
+            VERB: "need",
+          },
+          topicArea: "health",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "In Bangla questions, word order doesn't change much. In English, you MUST use do/does/did and change the order.",
+      usageNote_bn:
+        "বাংলায় প্রশ্নে শব্দ ক্রম খুব বেশি পরিবর্তন হয় না। ইংরেজিতে আপনাকে অবশ্যই do/does/did ব্যবহার করতে হবে এবং ক্রম পরিবর্তন করতে হবে।",
+      banglaStructureMap:
+        "তুমি (Subject) + কোথায় (WH) + থাকো (Verb)? → Where (WH) + do (Aux) + you (Subject) + live (Verb)?",
+    },
+    {
+      id: "X5.3",
+      formula: "[ADJECTIVE] [NOUN]",
+      formula_bn: "[ADJECTIVE] [NOUN]",
+      patternName: "Adjective Before Noun Order",
+      patternName_bn: "বিশেষণ বিশেষ্যের আগে",
+      slots: [
+        {
+          name: "ADJECTIVE",
+          description:
+            "One or more describing words (big, red, beautiful, etc.)",
+          description_bn:
+            "এক বা একাধিক বিশেষণ শব্দ (big, red, beautiful ইত্যাদি)",
+          acceptedTypes: ["adjective", "adjective_phrase"],
+          examples: ["big", "red", "beautiful"],
+        },
+        {
+          name: "NOUN",
+          description: "The thing being described",
+          description_bn: "যে জিনিস বর্ণনা করা হচ্ছে",
+          acceptedTypes: ["noun"],
+          examples: ["car", "house", "girl"],
+        },
+      ],
+      examples: [
+        {
+          en: "I have a red car.",
+          bn: "আমার একটি লাল গাড়ি আছে।",
+          slotValues: { ADJECTIVE: "red", NOUN: "car" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She lives in a big house.",
+          bn: "সে একটি বড় বাড়িতে থাকে।",
+          slotValues: { ADJECTIVE: "big", NOUN: "house" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "He is a tall man.",
+          bn: "সে একজন লম্বা মানুষ।",
+          slotValues: { ADJECTIVE: "tall", NOUN: "man" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I want a cold drink.",
+          bn: "আমি একটি ঠান্ডা পানীয় চাই।",
+          slotValues: { ADJECTIVE: "cold", NOUN: "drink" },
+          topicArea: "food",
+        },
+        {
+          en: "She wore a beautiful dress.",
+          bn: "সে একটি সুন্দর পোশাক পরেছিল।",
+          slotValues: { ADJECTIVE: "beautiful", NOUN: "dress" },
+          topicArea: "shopping",
+        },
+        {
+          en: "We need a new computer.",
+          bn: "আমাদের একটি নতুন কম্পিউটার দরকার।",
+          slotValues: { ADJECTIVE: "new", NOUN: "computer" },
+          topicArea: "work",
+        },
+        {
+          en: "He bought a cheap phone.",
+          bn: "সে একটি সস্তা ফোন কিনেছিল।",
+          slotValues: { ADJECTIVE: "cheap", NOUN: "phone" },
+          topicArea: "shopping",
+        },
+        {
+          en: "I like hot tea.",
+          bn: "আমি গরম চা পছন্দ করি।",
+          slotValues: { ADJECTIVE: "hot", NOUN: "tea" },
+          topicArea: "food",
+        },
+        {
+          en: "She is a good teacher.",
+          bn: "সে একজন ভালো শিক্ষক।",
+          slotValues: { ADJECTIVE: "good", NOUN: "teacher" },
+          topicArea: "education",
+        },
+        {
+          en: "They live on a quiet street.",
+          bn: "তারা একটি শান্ত রাস্তায় থাকে।",
+          slotValues: { ADJECTIVE: "quiet", NOUN: "street" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I need a strong password.",
+          bn: "আমার একটি শক্তিশালী পাসওয়ার্ড দরকার।",
+          slotValues: { ADJECTIVE: "strong", NOUN: "password" },
+          topicArea: "work",
+        },
+        {
+          en: "He has a small bag.",
+          bn: "তার একটি ছোট ব্যাগ আছে।",
+          slotValues: { ADJECTIVE: "small", NOUN: "bag" },
+          topicArea: "travel",
+        },
+        {
+          en: "I saw a big beautiful old house.",
+          bn: "আমি একটি বড় সুন্দর পুরানো বাড়ি দেখেছিলাম।",
+          slotValues: { ADJECTIVE: "big beautiful old", NOUN: "house" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She has long black hair.",
+          bn: "তার লম্বা কালো চুল আছে।",
+          slotValues: { ADJECTIVE: "long black", NOUN: "hair" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "We stayed in a nice clean hotel.",
+          bn: "আমরা একটি সুন্দর পরিষ্কার হোটেলে ছিলাম।",
+          slotValues: { ADJECTIVE: "nice clean", NOUN: "hotel" },
+          topicArea: "travel",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Bangla: লাল গাড়ি (red car) — actually the same! But with multiple adjectives, Bangla and English differ. English: big red car, not red big car.",
+      usageNote_bn:
+        "বাংলা: লাল গাড়ি (red car) — আসলে একই! কিন্তু একাধিক বিশেষণে বাংলা ও ইংরেজি আলাদা। ইংরেজি: big red car, red big car নয়।",
+      banglaStructureMap:
+        "[ADJECTIVE] (বিশেষণ) + [NOUN] (বিশেষ্য) — ইংরেজি ও বাংলায় একই ক্রম",
+    },
+    {
+      id: "X5.4",
+      formula: "[SUBJECT] [DO/DOES/DID] not [VERB] [OBJECT]",
+      formula_bn: "[SUBJECT] [OBJECT] [VERB] না (বাংলা) → [SUBJECT] [DO/DOES/DID] not [VERB] [OBJECT] (ইংরেজি)",
+      patternName: "Negative Sentence Word Order",
+      patternName_bn: "নেতিবাচক বাক্যের শব্দ ক্রম",
+      slots: [
+        {
+          name: "SUBJECT",
+          description: "The person or thing doing the action",
+          description_bn: "যে ব্যক্তি বা জিনিস কাজটি করছে",
+          acceptedTypes: ["noun", "person"],
+          examples: ["I", "He", "She", "We"],
+        },
+        {
+          name: "DO/DOES/DID",
+          description: "Auxiliary verb for negation",
+          description_bn: "নেতিবাচক করার জন্য সহায়ক ক্রিয়া",
+          acceptedTypes: ["verb"],
+          examples: ["do", "does", "did"],
+        },
+        {
+          name: "VERB",
+          description: "The base form of the main verb",
+          description_bn: "মূল ক্রিয়ার base form",
+          acceptedTypes: ["verb"],
+          examples: ["like", "eat", "go", "work"],
+        },
+        {
+          name: "OBJECT",
+          description: "The thing receiving the action",
+          description_bn: "যে জিনিস কাজটি গ্রহণ করছে",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["rice", "coffee", "this movie"],
+        },
+      ],
+      examples: [
+        {
+          en: "I do not like coffee.",
+          bn: "আমি কফি পছন্দ করি না।",
+          slotValues: {
+            SUBJECT: "I",
+            "DO/DOES/DID": "do",
+            VERB: "like",
+            OBJECT: "coffee",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "She does not eat meat.",
+          bn: "সে মাংস খায় না।",
+          slotValues: {
+            SUBJECT: "She",
+            "DO/DOES/DID": "does",
+            VERB: "eat",
+            OBJECT: "meat",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "He did not go to school.",
+          bn: "সে স্কুলে যায়নি।",
+          slotValues: {
+            SUBJECT: "He",
+            "DO/DOES/DID": "did",
+            VERB: "go",
+            OBJECT: "to school",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "We do not have enough time.",
+          bn: "আমাদের যথেষ্ট সময় নেই।",
+          slotValues: {
+            SUBJECT: "We",
+            "DO/DOES/DID": "do",
+            VERB: "have",
+            OBJECT: "enough time",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "They do not speak Bengali.",
+          bn: "তারা বাংলা বলে না।",
+          slotValues: {
+            SUBJECT: "They",
+            "DO/DOES/DID": "do",
+            VERB: "speak",
+            OBJECT: "Bengali",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "I did not buy anything.",
+          bn: "আমি কিছু কিনিনি।",
+          slotValues: {
+            SUBJECT: "I",
+            "DO/DOES/DID": "did",
+            VERB: "buy",
+            OBJECT: "anything",
+          },
+          topicArea: "shopping",
+        },
+        {
+          en: "She does not want tea.",
+          bn: "সে চা চায় না।",
+          slotValues: {
+            SUBJECT: "She",
+            "DO/DOES/DID": "does",
+            VERB: "want",
+            OBJECT: "tea",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "He does not work on Fridays.",
+          bn: "সে শুক্রবারে কাজ করে না।",
+          slotValues: {
+            SUBJECT: "He",
+            "DO/DOES/DID": "does",
+            VERB: "work",
+            OBJECT: "on Fridays",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "I do not understand the question.",
+          bn: "আমি প্রশ্নটি বুঝি না।",
+          slotValues: {
+            SUBJECT: "I",
+            "DO/DOES/DID": "do",
+            VERB: "understand",
+            OBJECT: "the question",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "We did not see anyone there.",
+          bn: "আমরা সেখানে কাউকে দেখিনি।",
+          slotValues: {
+            SUBJECT: "We",
+            "DO/DOES/DID": "did",
+            VERB: "see",
+            OBJECT: "anyone there",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She does not drive a car.",
+          bn: "সে গাড়ি চালায় না।",
+          slotValues: {
+            SUBJECT: "She",
+            "DO/DOES/DID": "does",
+            VERB: "drive",
+            OBJECT: "a car",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I do not feel well.",
+          bn: "আমি ভালো অনুভব করছি না।",
+          slotValues: {
+            SUBJECT: "I",
+            "DO/DOES/DID": "do",
+            VERB: "feel",
+            OBJECT: "well",
+          },
+          topicArea: "health",
+        },
+        {
+          en: "They did not visit us last week.",
+          bn: "তারা গত সপ্তাহে আমাদের দেখতে আসেনি।",
+          slotValues: {
+            SUBJECT: "They",
+            "DO/DOES/DID": "did",
+            VERB: "visit",
+            OBJECT: "us last week",
+          },
+          topicArea: "relationships",
+        },
+        {
+          en: "He does not need help.",
+          bn: "তার সাহায্য দরকার নেই।",
+          slotValues: {
+            SUBJECT: "He",
+            "DO/DOES/DID": "does",
+            VERB: "need",
+            OBJECT: "help",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I did not bring my passport.",
+          bn: "আমি আমার পাসপোর্ট আনিনি।",
+          slotValues: {
+            SUBJECT: "I",
+            "DO/DOES/DID": "did",
+            VERB: "bring",
+            OBJECT: "my passport",
+          },
+          topicArea: "travel",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "In Bangla, 'না' (not) comes AFTER the verb: 'আমি যাই না' (I go not). In English, use 'do/does/did + not' BEFORE the verb: 'I do not go'.",
+      usageNote_bn:
+        "বাংলায় 'না' ক্রিয়ার পরে আসে: 'আমি যাই না'। ইংরেজিতে 'do/does/did + not' ক্রিয়ার আগে ব্যবহার করুন: 'I do not go'।",
+      banglaStructureMap:
+        "আমি (কর্তা) + কফি (কর্ম) + পছন্দ করি না (ক্রিয়া + না) → I (Subject) + do not (Aux + not) + like (Verb) + coffee (Object)",
+    },
+    {
+      id: "X5.5",
+      formula: "[SUBJECT] [ADVERB] [VERB]",
+      formula_bn: "[SUBJECT] [ADVERB] [VERB]",
+      patternName: "Adverb Placement with Frequency Words",
+      patternName_bn: "পৌনঃপুনিক শব্দের সাথে ক্রিয়াবিশেষণের অবস্থান",
+      slots: [
+        {
+          name: "SUBJECT",
+          description: "The person or thing doing the action",
+          description_bn: "যে ব্যক্তি বা জিনিস কাজটি করছে",
+          acceptedTypes: ["noun", "person"],
+          examples: ["I", "She", "He", "We"],
+        },
+        {
+          name: "ADVERB",
+          description:
+            "Frequency adverb (always, usually, often, sometimes, never)",
+          description_bn:
+            "পৌনঃপুনিক ক্রিয়াবিশেষণ (always, usually, often, sometimes, never)",
+          acceptedTypes: ["adverb"],
+          examples: ["always", "usually", "often", "sometimes", "never"],
+        },
+        {
+          name: "VERB",
+          description: "The main verb or be-verb + adjective",
+          description_bn: "মূল ক্রিয়া অথবা be-verb + বিশেষণ",
+          acceptedTypes: ["verb", "verb_phrase"],
+          examples: ["eat", "go", "am late", "is happy"],
+        },
+      ],
+      examples: [
+        {
+          en: "I always wake up early.",
+          bn: "আমি সবসময় তাড়াতাড়ি ঘুম থেকে উঠি।",
+          slotValues: { SUBJECT: "I", ADVERB: "always", VERB: "wake up early" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "She usually eats breakfast at 8.",
+          bn: "সে সাধারণত ৮টায় সকালের নাশতা খায়।",
+          slotValues: {
+            SUBJECT: "She",
+            ADVERB: "usually",
+            VERB: "eats breakfast at 8",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "He is always late.",
+          bn: "সে সবসময় দেরি করে।",
+          slotValues: { SUBJECT: "He", ADVERB: "always", VERB: "is late" },
+          topicArea: "work",
+        },
+        {
+          en: "They often visit their grandparents.",
+          bn: "তারা প্রায়ই তাদের দাদা-দাদিকে দেখতে যায়।",
+          slotValues: {
+            SUBJECT: "They",
+            ADVERB: "often",
+            VERB: "visit their grandparents",
+          },
+          topicArea: "relationships",
+        },
+        {
+          en: "I never drink alcohol.",
+          bn: "আমি কখনো মদ পান করি না।",
+          slotValues: {
+            SUBJECT: "I",
+            ADVERB: "never",
+            VERB: "drink alcohol",
+          },
+          topicArea: "health",
+        },
+        {
+          en: "She sometimes goes shopping on weekends.",
+          bn: "সে মাঝে মাঝে সপ্তাহান্তে কেনাকাটা করতে যায়।",
+          slotValues: {
+            SUBJECT: "She",
+            ADVERB: "sometimes",
+            VERB: "goes shopping on weekends",
+          },
+          topicArea: "shopping",
+        },
+        {
+          en: "We are usually busy on Mondays.",
+          bn: "আমরা সাধারণত সোমবারে ব্যস্ত থাকি।",
+          slotValues: {
+            SUBJECT: "We",
+            ADVERB: "usually",
+            VERB: "are busy on Mondays",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "I always take my medicine on time.",
+          bn: "আমি সবসময় সময়মতো ওষুধ খাই।",
+          slotValues: {
+            SUBJECT: "I",
+            ADVERB: "always",
+            VERB: "take my medicine on time",
+          },
+          topicArea: "health",
+        },
+        {
+          en: "He often reads before bed.",
+          bn: "সে প্রায়ই ঘুমানোর আগে পড়ে।",
+          slotValues: {
+            SUBJECT: "He",
+            ADVERB: "often",
+            VERB: "reads before bed",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "She is never angry.",
+          bn: "সে কখনো রাগ করে না।",
+          slotValues: {
+            SUBJECT: "She",
+            ADVERB: "never",
+            VERB: "is angry",
+          },
+          topicArea: "relationships",
+        },
+        {
+          en: "I usually cook dinner at home.",
+          bn: "আমি সাধারণত বাড়িতে রাতের খাবার রান্না করি।",
+          slotValues: {
+            SUBJECT: "I",
+            ADVERB: "usually",
+            VERB: "cook dinner at home",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "They always travel during summer.",
+          bn: "তারা সবসময় গ্রীষ্মে ভ্রমণ করে।",
+          slotValues: {
+            SUBJECT: "They",
+            ADVERB: "always",
+            VERB: "travel during summer",
+          },
+          topicArea: "travel",
+        },
+        {
+          en: "He sometimes forgets his keys.",
+          bn: "সে মাঝে মাঝে চাবি ভুলে যায়।",
+          slotValues: {
+            SUBJECT: "He",
+            ADVERB: "sometimes",
+            VERB: "forgets his keys",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "We are often tired after work.",
+          bn: "আমরা প্রায়ই কাজের পরে ক্লান্ত থাকি।",
+          slotValues: {
+            SUBJECT: "We",
+            ADVERB: "often",
+            VERB: "are tired after work",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "I never buy expensive clothes.",
+          bn: "আমি কখনো দামি কাপড় কিনি না।",
+          slotValues: {
+            SUBJECT: "I",
+            ADVERB: "never",
+            VERB: "buy expensive clothes",
+          },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Frequency adverbs (always, usually, often, sometimes, never) go BEFORE main verbs but AFTER be-verbs.",
+      usageNote_bn:
+        "পৌনঃপুনিক ক্রিয়াবিশেষণ (always, usually, often, sometimes, never) মূল ক্রিয়ার আগে কিন্তু be-verb-এর পরে বসে।",
+      banglaStructureMap:
+        "[SUBJECT] (কর্তা) + [ADVERB] (ক্রিয়াবিশেষণ) + [VERB] (ক্রিয়া) — ইংরেজিতে adverb ক্রিয়ার আগে বসে",
+    },
+  ],
+};

@@ -1,0 +1,691 @@
+import { PatternCategory } from "@/types/pattern";
+
+export const categoryB11: PatternCategory = {
+  id: "B11",
+  slug: "expressing-possession",
+  name: "Expressing Possession",
+  name_bn: "অধিকার প্রকাশ করা",
+  description:
+    "Learn how to express ownership and possession using have, possessive pronouns, and belong to.",
+  description_bn:
+    "have, সম্বন্ধসূচক সর্বনাম এবং belong to ব্যবহার করে মালিকানা ও অধিকার প্রকাশ করতে শিখুন।",
+  icon: "🤲",
+  group: "B",
+  groupName: "Describing People, Things & Situations",
+  groupName_bn: "মানুষ, জিনিস এবং পরিস্থিতি বর্ণনা",
+  difficulty: "beginner",
+  patterns: [
+    {
+      id: "B11.1",
+      formula: "I have [THING]",
+      formula_bn: "আমার [জিনিস] আছে",
+      patternName: "Possession with 'Have'",
+      patternName_bn: "'Have' দিয়ে অধিকার",
+      slots: [
+        {
+          name: "THING",
+          description: "The thing that is possessed",
+          description_bn: "যে জিনিস আছে",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["a car", "two brothers", "a lot of books"],
+        },
+      ],
+      examples: [
+        {
+          en: "I have a car.",
+          bn: "আমার একটি গাড়ি আছে।",
+          slotValues: { THING: "a car" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I have two brothers.",
+          bn: "আমার দুই ভাই আছে।",
+          slotValues: { THING: "two brothers" },
+          topicArea: "relationships",
+        },
+        {
+          en: "I have a lot of books.",
+          bn: "আমার অনেক বই আছে।",
+          slotValues: { THING: "a lot of books" },
+          topicArea: "education",
+        },
+        {
+          en: "I have a meeting at three o'clock.",
+          bn: "আমার তিনটায় একটি মিটিং আছে।",
+          slotValues: { THING: "a meeting at three o'clock" },
+          topicArea: "work",
+        },
+        {
+          en: "I have a headache.",
+          bn: "আমার মাথাব্যথা আছে।",
+          slotValues: { THING: "a headache" },
+          topicArea: "health",
+        },
+        {
+          en: "I have a reservation at the hotel.",
+          bn: "আমার হোটেলে রিজার্ভেশন আছে।",
+          slotValues: { THING: "a reservation at the hotel" },
+          topicArea: "travel",
+        },
+        {
+          en: "I have enough money for shopping.",
+          bn: "আমার কেনাকাটার জন্য যথেষ্ট টাকা আছে।",
+          slotValues: { THING: "enough money for shopping" },
+          topicArea: "shopping",
+        },
+        {
+          en: "I have a favorite recipe for biryani.",
+          bn: "আমার বিরিয়ানির একটি প্রিয় রেসিপি আছে।",
+          slotValues: { THING: "a favorite recipe for biryani" },
+          topicArea: "food",
+        },
+        {
+          en: "I have a small garden.",
+          bn: "আমার একটি ছোট বাগান আছে।",
+          slotValues: { THING: "a small garden" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I have many good friends.",
+          bn: "আমার অনেক ভালো বন্ধু আছে।",
+          slotValues: { THING: "many good friends" },
+          topicArea: "relationships",
+        },
+        {
+          en: "I have an exam next week.",
+          bn: "আমার আগামী সপ্তাহে পরীক্ষা আছে।",
+          slotValues: { THING: "an exam next week" },
+          topicArea: "education",
+        },
+        {
+          en: "I have a new laptop for work.",
+          bn: "কাজের জন্য আমার একটি নতুন ল্যাপটপ আছে।",
+          slotValues: { THING: "a new laptop for work" },
+          topicArea: "work",
+        },
+        {
+          en: "I have an appointment with the dentist.",
+          bn: "আমার দাঁতের ডাক্তারের সাথে অ্যাপয়েন্টমেন্ট আছে।",
+          slotValues: { THING: "an appointment with the dentist" },
+          topicArea: "health",
+        },
+        {
+          en: "I have a window seat on the plane.",
+          bn: "আমার প্লেনে জানালার পাশের সিট আছে।",
+          slotValues: { THING: "a window seat on the plane" },
+          topicArea: "travel",
+        },
+        {
+          en: "I have a coupon for this store.",
+          bn: "আমার এই দোকানের জন্য একটি কুপন আছে।",
+          slotValues: { THING: "a coupon for this store" },
+          topicArea: "shopping",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'Have' is the most basic way to express possession. Use 'have' with I/you/we/they and 'has' with he/she/it.",
+      usageNote_bn:
+        "'Have' অধিকার প্রকাশের সবচেয়ে মৌলিক উপায়। I/you/we/they-এর সাথে 'have' এবং he/she/it-এর সাথে 'has' ব্যবহার করুন।",
+      combinableWith: ["B11.2", "B11.3"],
+      banglaStructureMap:
+        "আমার (কর্তা + বিভক্তি) + [THING] (কর্ম) + আছে (ক্রিয়া)",
+    },
+    {
+      id: "B11.2",
+      formula: "This [THING] is mine/yours/his/hers",
+      formula_bn: "এই [জিনিস] আমার/তোমার/তার",
+      patternName: "Possessive Pronouns",
+      patternName_bn: "সম্বন্ধসূচক সর্বনাম",
+      slots: [
+        {
+          name: "THING",
+          description: "The object being claimed",
+          description_bn: "যে বস্তুর দাবি করা হচ্ছে",
+          acceptedTypes: ["noun"],
+          examples: ["bag", "phone", "book"],
+        },
+      ],
+      examples: [
+        {
+          en: "This bag is mine.",
+          bn: "এই ব্যাগটি আমার।",
+          slotValues: { THING: "bag" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "This phone is yours.",
+          bn: "এই ফোনটি তোমার।",
+          slotValues: { THING: "phone" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "This book is his.",
+          bn: "এই বইটি তার।",
+          slotValues: { THING: "book" },
+          topicArea: "education",
+        },
+        {
+          en: "This desk is hers.",
+          bn: "এই ডেস্কটি তার।",
+          slotValues: { THING: "desk" },
+          topicArea: "work",
+        },
+        {
+          en: "This umbrella is mine.",
+          bn: "এই ছাতাটি আমার।",
+          slotValues: { THING: "umbrella" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "This pen is yours.",
+          bn: "এই কলমটি তোমার।",
+          slotValues: { THING: "pen" },
+          topicArea: "education",
+        },
+        {
+          en: "This lunch box is hers.",
+          bn: "এই লাঞ্চ বক্সটি তার।",
+          slotValues: { THING: "lunch box" },
+          topicArea: "food",
+        },
+        {
+          en: "This suitcase is mine.",
+          bn: "এই সুটকেসটি আমার।",
+          slotValues: { THING: "suitcase" },
+          topicArea: "travel",
+        },
+        {
+          en: "This wallet is his.",
+          bn: "এই মানিব্যাগটি তার।",
+          slotValues: { THING: "wallet" },
+          topicArea: "shopping",
+        },
+        {
+          en: "This jacket is yours.",
+          bn: "এই জ্যাকেটটি তোমার।",
+          slotValues: { THING: "jacket" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "This prescription is his.",
+          bn: "এই প্রেসক্রিপশনটি তার।",
+          slotValues: { THING: "prescription" },
+          topicArea: "health",
+        },
+        {
+          en: "This report is mine.",
+          bn: "এই রিপোর্টটি আমার।",
+          slotValues: { THING: "report" },
+          topicArea: "work",
+        },
+        {
+          en: "This seat is ours.",
+          bn: "এই সিটটি আমাদের।",
+          slotValues: { THING: "seat" },
+          topicArea: "travel",
+        },
+        {
+          en: "This recipe is hers.",
+          bn: "এই রেসিপিটি তার।",
+          slotValues: { THING: "recipe" },
+          topicArea: "food",
+        },
+        {
+          en: "This notebook is mine.",
+          bn: "এই খাতাটি আমার।",
+          slotValues: { THING: "notebook" },
+          topicArea: "education",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Possessive pronouns (mine, yours, his, hers, ours, theirs) stand alone without a noun after them. They replace 'my + noun'.",
+      usageNote_bn:
+        "সম্বন্ধসূচক সর্বনাম (mine, yours, his, hers, ours, theirs) একা দাঁড়ায়, পরে বিশেষ্য লাগে না। এগুলো 'my + noun'-এর পরিবর্তে ব্যবহৃত হয়।",
+      combinableWith: ["B11.1", "B11.3"],
+      banglaStructureMap:
+        "এই [THING] (বিশেষ্য) + আমার/তোমার/তার (সম্বন্ধসূচক সর্বনাম)",
+    },
+    {
+      id: "B11.3",
+      formula: "[THING] belongs to [PERSON]",
+      formula_bn: "[জিনিস] [ব্যক্তির]",
+      patternName: "Possession with 'Belongs To'",
+      patternName_bn: "'Belongs To' দিয়ে অধিকার",
+      slots: [
+        {
+          name: "THING",
+          description: "The object being attributed to someone",
+          description_bn: "যে বস্তু কারো বলে চিহ্নিত করা হচ্ছে",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["This house", "The car", "That bicycle"],
+        },
+        {
+          name: "PERSON",
+          description: "The owner or possessor",
+          description_bn: "মালিক বা অধিকারী",
+          acceptedTypes: ["person", "noun_phrase"],
+          examples: ["my uncle", "the school", "her"],
+        },
+      ],
+      examples: [
+        {
+          en: "This house belongs to my uncle.",
+          bn: "এই বাড়িটি আমার চাচার।",
+          slotValues: { THING: "This house", PERSON: "my uncle" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The car belongs to my neighbor.",
+          bn: "গাড়িটি আমার প্রতিবেশীর।",
+          slotValues: { THING: "The car", PERSON: "my neighbor" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "That bicycle belongs to the delivery boy.",
+          bn: "ওই সাইকেলটি ডেলিভারি ছেলের।",
+          slotValues: { THING: "That bicycle", PERSON: "the delivery boy" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "This book belongs to the library.",
+          bn: "এই বইটি লাইব্রেরির।",
+          slotValues: { THING: "This book", PERSON: "the library" },
+          topicArea: "education",
+        },
+        {
+          en: "The laptop belongs to my company.",
+          bn: "ল্যাপটপটি আমার কোম্পানির।",
+          slotValues: { THING: "The laptop", PERSON: "my company" },
+          topicArea: "work",
+        },
+        {
+          en: "This stethoscope belongs to Dr. Ahmed.",
+          bn: "এই স্টেথোস্কোপটি ডা. আহমেদের।",
+          slotValues: { THING: "This stethoscope", PERSON: "Dr. Ahmed" },
+          topicArea: "health",
+        },
+        {
+          en: "That luggage belongs to the tourist.",
+          bn: "ওই লাগেজটি পর্যটকের।",
+          slotValues: { THING: "That luggage", PERSON: "the tourist" },
+          topicArea: "travel",
+        },
+        {
+          en: "This receipt belongs to you.",
+          bn: "এই রসিদটি তোমার।",
+          slotValues: { THING: "This receipt", PERSON: "you" },
+          topicArea: "shopping",
+        },
+        {
+          en: "The recipe belongs to my grandmother.",
+          bn: "রেসিপিটি আমার দাদির।",
+          slotValues: { THING: "The recipe", PERSON: "my grandmother" },
+          topicArea: "food",
+        },
+        {
+          en: "This land belongs to the government.",
+          bn: "এই জমিটি সরকারের।",
+          slotValues: { THING: "This land", PERSON: "the government" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The necklace belongs to my mother.",
+          bn: "হারটি আমার মায়ের।",
+          slotValues: { THING: "The necklace", PERSON: "my mother" },
+          topicArea: "relationships",
+        },
+        {
+          en: "This uniform belongs to the school.",
+          bn: "এই ইউনিফর্মটি স্কুলের।",
+          slotValues: { THING: "This uniform", PERSON: "the school" },
+          topicArea: "education",
+        },
+        {
+          en: "The parking space belongs to the office next door.",
+          bn: "পার্কিং স্পেসটি পাশের অফিসের।",
+          slotValues: {
+            THING: "The parking space",
+            PERSON: "the office next door",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "This passport belongs to her.",
+          bn: "এই পাসপোর্টটি তার।",
+          slotValues: { THING: "This passport", PERSON: "her" },
+          topicArea: "travel",
+        },
+        {
+          en: "The wheelchair belongs to the patient in room five.",
+          bn: "হুইলচেয়ারটি পাঁচ নম্বর রুমের রোগীর।",
+          slotValues: {
+            THING: "The wheelchair",
+            PERSON: "the patient in room five",
+          },
+          topicArea: "health",
+        },
+      ],
+      formality: "polite",
+      difficulty: "beginner",
+      usageNote:
+        "'Belongs to' is a more formal way to express ownership. It clearly states who the owner is.",
+      usageNote_bn:
+        "'Belongs to' মালিকানা প্রকাশের আরও আনুষ্ঠানিক উপায়। এটি স্পষ্টভাবে বলে কে মালিক।",
+      combinableWith: ["B11.1", "B11.2"],
+      banglaStructureMap:
+        "[THING] (কর্তা) + [PERSON]-র (মালিক + বিভক্তি)",
+    },
+    {
+      id: "B11.4",
+      formula: "[PERSON]'s [THING] is [DESCRIPTION]",
+      formula_bn: "[ব্যক্তির] [জিনিস] [বর্ণনা]",
+      patternName: "Possessive 's with Description",
+      patternName_bn: "অধিকারমূলক 's সহ বর্ণনা",
+      slots: [
+        {
+          name: "PERSON",
+          description: "The owner",
+          description_bn: "মালিক",
+          acceptedTypes: ["person"],
+          examples: ["My father", "Rina", "The teacher"],
+        },
+        {
+          name: "THING",
+          description: "The item owned",
+          description_bn: "যে আইটেমের মালিকানা",
+          acceptedTypes: ["noun"],
+          examples: ["car", "house", "bag"],
+        },
+        {
+          name: "DESCRIPTION",
+          description: "An adjective or phrase describing the item",
+          description_bn: "আইটেম বর্ণনাকারী বিশেষণ বা পদবন্ধ",
+          acceptedTypes: ["adjective", "description"],
+          examples: ["very old", "brand new", "beautiful"],
+        },
+      ],
+      examples: [
+        {
+          en: "My father's car is very old.",
+          bn: "আমার বাবার গাড়ি খুব পুরানো।",
+          slotValues: {
+            PERSON: "My father",
+            THING: "car",
+            DESCRIPTION: "very old",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "Rina's house is near the river.",
+          bn: "রিনার বাড়ি নদীর কাছে।",
+          slotValues: {
+            PERSON: "Rina",
+            THING: "house",
+            DESCRIPTION: "near the river",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The teacher's bag is on the table.",
+          bn: "শিক্ষকের ব্যাগ টেবিলে আছে।",
+          slotValues: {
+            PERSON: "The teacher",
+            THING: "bag",
+            DESCRIPTION: "on the table",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "My mother's cooking is the best.",
+          bn: "আমার মায়ের রান্না সেরা।",
+          slotValues: {
+            PERSON: "My mother",
+            THING: "cooking",
+            DESCRIPTION: "the best",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "My boss's office is on the third floor.",
+          bn: "আমার বসের অফিস তৃতীয় তলায়।",
+          slotValues: {
+            PERSON: "My boss",
+            THING: "office",
+            DESCRIPTION: "on the third floor",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "The doctor's advice is very helpful.",
+          bn: "ডাক্তারের পরামর্শ খুব সহায়ক।",
+          slotValues: {
+            PERSON: "The doctor",
+            THING: "advice",
+            DESCRIPTION: "very helpful",
+          },
+          topicArea: "health",
+        },
+        {
+          en: "My friend's suitcase is very heavy.",
+          bn: "আমার বন্ধুর সুটকেস খুব ভারী।",
+          slotValues: {
+            PERSON: "My friend",
+            THING: "suitcase",
+            DESCRIPTION: "very heavy",
+          },
+          topicArea: "travel",
+        },
+        {
+          en: "The shopkeeper's prices are reasonable.",
+          bn: "দোকানদারের দাম যুক্তিসঙ্গত।",
+          slotValues: {
+            PERSON: "The shopkeeper",
+            THING: "prices",
+            DESCRIPTION: "reasonable",
+          },
+          topicArea: "shopping",
+        },
+        {
+          en: "My sister's hair is very long.",
+          bn: "আমার বোনের চুল অনেক লম্বা।",
+          slotValues: {
+            PERSON: "My sister",
+            THING: "hair",
+            DESCRIPTION: "very long",
+          },
+          topicArea: "relationships",
+        },
+        {
+          en: "The student's handwriting is neat.",
+          bn: "ছাত্রের হাতের লেখা পরিষ্কার।",
+          slotValues: {
+            PERSON: "The student",
+            THING: "handwriting",
+            DESCRIPTION: "neat",
+          },
+          topicArea: "education",
+        },
+        {
+          en: "My colleague's idea is brilliant.",
+          bn: "আমার সহকর্মীর আইডিয়া দারুণ।",
+          slotValues: {
+            PERSON: "My colleague",
+            THING: "idea",
+            DESCRIPTION: "brilliant",
+          },
+          topicArea: "work",
+        },
+        {
+          en: "The chef's special dish is amazing.",
+          bn: "শেফের বিশেষ পদটি অসাধারণ।",
+          slotValues: {
+            PERSON: "The chef",
+            THING: "special dish",
+            DESCRIPTION: "amazing",
+          },
+          topicArea: "food",
+        },
+        {
+          en: "My grandmother's garden is full of flowers.",
+          bn: "আমার দাদির বাগান ফুলে ভরা।",
+          slotValues: {
+            PERSON: "My grandmother",
+            THING: "garden",
+            DESCRIPTION: "full of flowers",
+          },
+          topicArea: "daily_life",
+        },
+        {
+          en: "The patient's condition is improving.",
+          bn: "রোগীর অবস্থার উন্নতি হচ্ছে।",
+          slotValues: {
+            PERSON: "The patient",
+            THING: "condition",
+            DESCRIPTION: "improving",
+          },
+          topicArea: "health",
+        },
+        {
+          en: "The guide's knowledge is impressive.",
+          bn: "গাইডের জ্ঞান চিত্তাকর্ষক।",
+          slotValues: {
+            PERSON: "The guide",
+            THING: "knowledge",
+            DESCRIPTION: "impressive",
+          },
+          topicArea: "travel",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "Add 's to a person's name or title to show possession. For plural nouns ending in 's', just add an apostrophe: 'the students' books'.",
+      usageNote_bn:
+        "অধিকার দেখাতে ব্যক্তির নাম বা উপাধিতে 's যোগ করুন। 's' দিয়ে শেষ বহুবচন বিশেষ্যে শুধু অ্যাপোস্ট্রফি যোগ করুন: 'the students' books'।",
+      combinableWith: ["B11.1", "B11.5"],
+      banglaStructureMap:
+        "[PERSON]-র (মালিক + বিভক্তি) + [THING] (কর্তা) + [DESCRIPTION] (বর্ণনা)",
+    },
+    {
+      id: "B11.5",
+      formula: "I don't have [THING]",
+      formula_bn: "আমার [জিনিস] নেই",
+      patternName: "Negative Possession",
+      patternName_bn: "নেতিবাচক অধিকার",
+      slots: [
+        {
+          name: "THING",
+          description: "The thing that is lacking",
+          description_bn: "যে জিনিস নেই",
+          acceptedTypes: ["noun", "noun_phrase"],
+          examples: ["a pen", "enough time", "any cash"],
+        },
+      ],
+      examples: [
+        {
+          en: "I don't have a pen.",
+          bn: "আমার কোনো কলম নেই।",
+          slotValues: { THING: "a pen" },
+          topicArea: "education",
+        },
+        {
+          en: "I don't have enough time.",
+          bn: "আমার যথেষ্ট সময় নেই।",
+          slotValues: { THING: "enough time" },
+          topicArea: "work",
+        },
+        {
+          en: "I don't have any cash.",
+          bn: "আমার কোনো নগদ টাকা নেই।",
+          slotValues: { THING: "any cash" },
+          topicArea: "shopping",
+        },
+        {
+          en: "I don't have a car.",
+          bn: "আমার কোনো গাড়ি নেই।",
+          slotValues: { THING: "a car" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I don't have any siblings.",
+          bn: "আমার কোনো ভাই-বোন নেই।",
+          slotValues: { THING: "any siblings" },
+          topicArea: "relationships",
+        },
+        {
+          en: "I don't have the recipe for this.",
+          bn: "আমার এটার রেসিপি নেই।",
+          slotValues: { THING: "the recipe for this" },
+          topicArea: "food",
+        },
+        {
+          en: "I don't have a doctor's appointment today.",
+          bn: "আমার আজ ডাক্তারের অ্যাপয়েন্টমেন্ট নেই।",
+          slotValues: { THING: "a doctor's appointment today" },
+          topicArea: "health",
+        },
+        {
+          en: "I don't have a visa for that country.",
+          bn: "আমার ওই দেশের ভিসা নেই।",
+          slotValues: { THING: "a visa for that country" },
+          topicArea: "travel",
+        },
+        {
+          en: "I don't have my ID card with me.",
+          bn: "আমার সাথে আমার পরিচয়পত্র নেই।",
+          slotValues: { THING: "my ID card with me" },
+          topicArea: "daily_life",
+        },
+        {
+          en: "I don't have any experience in this field.",
+          bn: "এই ক্ষেত্রে আমার কোনো অভিজ্ঞতা নেই।",
+          slotValues: { THING: "any experience in this field" },
+          topicArea: "work",
+        },
+        {
+          en: "I don't have a textbook for this subject.",
+          bn: "আমার এই বিষয়ের পাঠ্যবই নেই।",
+          slotValues: { THING: "a textbook for this subject" },
+          topicArea: "education",
+        },
+        {
+          en: "I don't have any allergies.",
+          bn: "আমার কোনো অ্যালার্জি নেই।",
+          slotValues: { THING: "any allergies" },
+          topicArea: "health",
+        },
+        {
+          en: "I don't have a membership card.",
+          bn: "আমার মেম্বারশিপ কার্ড নেই।",
+          slotValues: { THING: "a membership card" },
+          topicArea: "shopping",
+        },
+        {
+          en: "I don't have any close family nearby.",
+          bn: "আমার কাছাকাছি কোনো ঘনিষ্ঠ পরিবার নেই।",
+          slotValues: { THING: "any close family nearby" },
+          topicArea: "relationships",
+        },
+        {
+          en: "I don't have a return ticket.",
+          bn: "আমার ফেরার টিকেট নেই।",
+          slotValues: { THING: "a return ticket" },
+          topicArea: "travel",
+        },
+      ],
+      formality: "casual",
+      difficulty: "beginner",
+      usageNote:
+        "'Don't have' expresses the lack of something. Use 'doesn't have' for he/she/it. 'Any' is often used in negative possession.",
+      usageNote_bn:
+        "'Don't have' কিছু না থাকা প্রকাশ করে। he/she/it-এর জন্য 'doesn't have' ব্যবহার করুন। নেতিবাচক অধিকারে প্রায়ই 'any' ব্যবহৃত হয়।",
+      combinableWith: ["B11.1", "B11.2"],
+      banglaStructureMap:
+        "আমার (কর্তা + বিভক্তি) + [THING] (কর্ম) + নেই (ক্রিয়া)",
+    },
+  ],
+};
