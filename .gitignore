@@ -45,3 +45,4 @@ next-env.d.ts
 
 # project docs
 ENGLISH_LEARNING_PATTERN_PROMPT.md
+.env*.local
