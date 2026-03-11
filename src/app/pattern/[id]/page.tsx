@@ -9,7 +9,6 @@ import type {
   PatternVariation,
   DialogueChain,
   StructuredWordMap,
-  BridgeRule,
   AnswerTemplate,
 } from "@/types/pattern";
 import { PatternFormula } from "@/components/patterns/PatternFormula";
@@ -20,6 +19,15 @@ import { BanglaStructureMap } from "@/components/patterns/BanglaStructureMap";
 import { getBridgeRules } from "@/content/bridge-rules";
 import { useProgress } from "@/contexts/ProgressContext";
 import { useSettings } from "@/contexts/SettingsContext";
+import { getMasteryLevel, masteryConfig } from "@/lib/mastery";
+
+type TabId = "learn" | "practice" | "use";
+
+const TABS: { id: TabId; icon: string; label_bn: string; label: string }[] = [
+  { id: "learn", icon: "📖", label_bn: "শেখো", label: "Learn" },
+  { id: "practice", icon: "✏️", label_bn: "অনুশীলন", label: "Practice" },
+  { id: "use", icon: "💬", label_bn: "ব্যবহার", label: "Use" },
+];
 
 export default function PatternDetailPage() {
   const params = useParams();
@@ -27,8 +35,25 @@ export default function PatternDetailPage() {
   const [pattern, setPattern] = useState<Pattern | null>(null);
   const [category, setCategory] = useState<PatternCategory | null>(null);
   const [loading, setLoading] = useState(true);
-  const { toggleBookmark, isBookmarked } = useProgress();
+  const { progress, toggleBookmark, isBookmarked } = useProgress();
   const { settings } = useSettings();
+
+  // Default tab: if user has practiced this pattern, show Practice tab
+  const hasPracticed = !!progress.completedPatterns[patternId];
+  const [activeTab, setActiveTab] = useState<TabId>(hasPracticed ? "practice" : "learn");
+
+  // Sync tab with URL hash
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "") as TabId;
+    if (hash && TABS.some((t) => t.id === hash)) {
+      setActiveTab(hash);
+    }
+  }, []);
+
+  const handleTabChange = (tab: TabId) => {
+    setActiveTab(tab);
+    window.history.replaceState(null, "", `#${tab}`);
+  };
 
   useEffect(() => {
     async function load() {
@@ -78,6 +103,8 @@ export default function PatternDetailPage() {
   }
 
   const bookmarked = isBookmarked(patternId);
+  const mastery = getMasteryLevel(progress.completedPatterns[patternId]);
+  const masteryInfo = masteryConfig[mastery];
   const appliedBridgeRules = pattern.bridgeRuleIds
     ? getBridgeRules(pattern.bridgeRuleIds)
     : [];
@@ -95,11 +122,14 @@ export default function PatternDetailPage() {
         <span className="text-foreground">{pattern.id}</span>
       </nav>
 
-      {/* Pattern Header */}
-      <div className="mb-6">
+      {/* Pattern Header — Always visible above tabs */}
+      <div className="mb-4">
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2 mb-2">
+              <span className={`text-sm ${masteryInfo.color}`} title={`${masteryInfo.label_bn} (${masteryInfo.label})`}>
+                {masteryInfo.icon}
+              </span>
               <span className="text-xs font-mono text-muted">{pattern.id}</span>
               <DifficultyBadge difficulty={pattern.difficulty} />
               <FormalityBadge formality={pattern.formality} />
@@ -135,7 +165,85 @@ export default function PatternDetailPage() {
         </div>
       </div>
 
-      {/* Chunks — "মুখস্থ করো" (Memorize these as units) */}
+      {/* Tab Navigation — Sticky below header */}
+      <div className="sticky top-14 z-10 bg-background pb-1 mb-4 -mx-4 px-4 pt-1">
+        <div className="flex gap-1 p-1 rounded-xl bg-muted-bg">
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => handleTabChange(tab.id)}
+              className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 rounded-lg text-xs font-medium transition-all ${
+                activeTab === tab.id
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted hover:text-foreground"
+              }`}
+            >
+              <span className="text-base leading-none">{tab.icon}</span>
+              <span className="font-bangla">{tab.label_bn}</span>
+              <span className="text-[10px] opacity-60">{tab.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === "learn" && (
+        <LearnTabContent
+          pattern={pattern}
+          appliedBridgeRules={appliedBridgeRules}
+          settings={settings}
+        />
+      )}
+
+      {activeTab === "practice" && (
+        <PracticeTabContent
+          pattern={pattern}
+          category={category}
+          settings={settings}
+        />
+      )}
+
+      {activeTab === "use" && (
+        <UseTabContent
+          pattern={pattern}
+          category={category}
+          settings={settings}
+        />
+      )}
+
+      {/* Navigation — Always visible */}
+      <div className="flex items-center justify-between pt-4 mt-4 border-t border-card-border">
+        <Link
+          href={`/categories/${category.slug}`}
+          className="text-sm text-primary hover:underline"
+        >
+          Back to {category.name}
+        </Link>
+        <Link
+          href={`/practice/${category.slug}`}
+          className="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+        >
+          Practice This Category
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================
+   TAB 1: LEARN — Core pattern understanding
+   ================================================================ */
+
+interface LearnTabProps {
+  pattern: Pattern;
+  appliedBridgeRules: ReturnType<typeof getBridgeRules>;
+  settings: { showBangla: boolean };
+}
+
+function LearnTabContent({ pattern, appliedBridgeRules, settings }: LearnTabProps) {
+  return (
+    <div>
+      {/* Chunks — "মুখস্থ করো" */}
       {pattern.chunks && pattern.chunks.length > 0 && (
         <div className="mb-6">
           <SectionHeader icon="🎯" title="মুখস্থ করো" titleEn="Memorize as one unit" />
@@ -198,32 +306,11 @@ export default function PatternDetailPage() {
         <AudioPlayer text={pattern.formula.replace(/\[.*?\]/g, "something")} />
       </div>
 
-      {/* Word Bridge Map — Visual word-by-word mapping */}
+      {/* Word Bridge Map */}
       {pattern.wordMap && (
         <div className="mb-6">
           <SectionHeader icon="🗺️" title="শব্দ-সেতু" titleEn="Word bridge" />
           <WordBridgeMap wordMap={pattern.wordMap} />
-        </div>
-      )}
-
-      {/* Usage Situations */}
-      {pattern.usageSituations && pattern.usageSituations.length > 0 && (
-        <div className="mb-6">
-          <SectionHeader icon="📌" title="কখন ব্যবহার করবেন" titleEn="When to use" />
-          <div className="space-y-2">
-            {pattern.usageSituations.map((sit, i) => (
-              <div key={i} className="p-3 rounded-lg bg-card border border-card-border">
-                <p className="font-bangla text-sm font-medium">{sit.situation_bn}</p>
-                <p className="text-xs text-muted mb-1">{sit.situation_en}</p>
-                <div className="mt-1.5 pl-3 border-l-2 border-primary/30">
-                  <p className="text-sm font-medium">{sit.exampleSentence}</p>
-                  {settings.showBangla && (
-                    <p className="font-bangla text-sm text-muted">{sit.exampleSentence_bn}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       )}
 
@@ -244,7 +331,7 @@ export default function PatternDetailPage() {
                   </span>
                   <div>
                     <p className="font-bangla text-sm">{step.step_bn}</p>
-                    <p className="text-sm font-medium text-primary mt-0.5">→ &ldquo;{step.result}&rdquo;</p>
+                    <p className="text-sm font-medium text-primary mt-0.5">&rarr; &ldquo;{step.result}&rdquo;</p>
                   </div>
                 </div>
               ))}
@@ -262,7 +349,7 @@ export default function PatternDetailPage() {
         </div>
       )}
 
-      {/* Bangla Structure Map (legacy string-based) */}
+      {/* Bangla Structure Map (legacy) */}
       {pattern.banglaStructureMap && !pattern.wordMap && (
         <div className="mb-6">
           <BanglaStructureMap mapping={pattern.banglaStructureMap} />
@@ -284,10 +371,7 @@ export default function PatternDetailPage() {
               )}
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {slot.examples.map((ex) => (
-                  <span
-                    key={ex}
-                    className="text-xs px-2 py-0.5 rounded bg-muted-bg text-muted"
-                  >
+                  <span key={ex} className="text-xs px-2 py-0.5 rounded bg-muted-bg text-muted">
                     {ex}
                   </span>
                 ))}
@@ -308,6 +392,48 @@ export default function PatternDetailPage() {
         </div>
       )}
 
+      {/* Simple Rules */}
+      {pattern.simpleRules && pattern.simpleRules.length > 0 && (
+        <CollapsibleSection icon="📏" title="সহজ নিয়ম" titleEn="Simple rules">
+          <div className="space-y-2">
+            {pattern.simpleRules.map((rule, i) => (
+              <div key={i} className="p-3 rounded-lg bg-card border border-card-border">
+                <p className="font-bangla text-sm font-medium mb-1">{rule.rule_bn}</p>
+                <p className="text-xs text-muted italic">{rule.example}</p>
+              </div>
+            ))}
+          </div>
+        </CollapsibleSection>
+      )}
+
+      {/* Memory Trick */}
+      {pattern.memoryTrick_bn && (
+        <div className="mb-6 p-4 rounded-xl bg-accent-light border border-accent/20">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-base">💡</span>
+            <span className="font-bangla text-sm font-bold text-accent">মনে রাখার কৌশল</span>
+            <span className="text-xs text-muted">Memory trick</span>
+          </div>
+          <p className="font-bangla text-sm leading-relaxed">{pattern.memoryTrick_bn}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ================================================================
+   TAB 2: PRACTICE — Examples, mistakes, variations
+   ================================================================ */
+
+interface PracticeTabProps {
+  pattern: Pattern;
+  category: PatternCategory;
+  settings: { showBangla: boolean };
+}
+
+function PracticeTabContent({ pattern, category }: PracticeTabProps) {
+  return (
+    <div>
       {/* Examples */}
       <div className="mb-6">
         <h2 className="text-sm font-bold mb-3">
@@ -316,21 +442,9 @@ export default function PatternDetailPage() {
         <PatternExamples examples={pattern.examples} initialCount={10} />
       </div>
 
-      {/* Answer Templates */}
-      {pattern.answerTemplates && pattern.answerTemplates.length > 0 && (
-        <div className="mb-6">
-          <SectionHeader icon="📋" title="উত্তর দাও" titleEn="How to Answer" />
-          <div className="space-y-3">
-            {pattern.answerTemplates.map((template, i) => (
-              <AnswerTemplateCard key={i} template={template} />
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Common Mistakes */}
       {pattern.commonMistakes && pattern.commonMistakes.length > 0 && (
-        <CollapsibleSection icon="⚠️" title="সাধারণ ভুল" titleEn="Common mistakes">
+        <CollapsibleSection icon="⚠️" title="সাধারণ ভুল" titleEn="Common mistakes" defaultOpen>
           <div className="space-y-2">
             {pattern.commonMistakes.map((mistake, i) => (
               <div key={i} className="p-3 rounded-xl bg-card border border-card-border">
@@ -349,20 +463,6 @@ export default function PatternDetailPage() {
         </CollapsibleSection>
       )}
 
-      {/* Simple Rules */}
-      {pattern.simpleRules && pattern.simpleRules.length > 0 && (
-        <CollapsibleSection icon="📏" title="সহজ নিয়ম" titleEn="Simple rules">
-          <div className="space-y-2">
-            {pattern.simpleRules.map((rule, i) => (
-              <div key={i} className="p-3 rounded-lg bg-card border border-card-border">
-                <p className="font-bangla text-sm font-medium mb-1">{rule.rule_bn}</p>
-                <p className="text-xs text-muted italic">{rule.example}</p>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      )}
-
       {/* Variations */}
       {pattern.variations && pattern.variations.length > 0 && (
         <CollapsibleSection icon="⏰" title="অন্যান্য রূপ" titleEn="Variations" defaultOpen>
@@ -370,18 +470,102 @@ export default function PatternDetailPage() {
         </CollapsibleSection>
       )}
 
-      {/* Dialogue Chains — "কথা বলো" */}
+      {/* Practice CTA */}
+      <div className="mt-6 text-center">
+        <Link
+          href={`/practice/${category.slug}`}
+          className="inline-block px-6 py-3 rounded-xl bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
+        >
+          ✏️ Practice This Category
+          <span className="block font-bangla text-xs opacity-80 mt-0.5">এই ক্যাটাগরি অনুশীলন করো</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* ================================================================
+   TAB 3: USE — Real-world application
+   ================================================================ */
+
+interface UseTabProps {
+  pattern: Pattern;
+  category: PatternCategory;
+  settings: { showBangla: boolean };
+}
+
+function UseTabContent({ pattern, category, settings }: UseTabProps) {
+  const hasContent =
+    (pattern.usageSituations && pattern.usageSituations.length > 0) ||
+    (pattern.answerTemplates && pattern.answerTemplates.length > 0) ||
+    (pattern.dialogueChains && pattern.dialogueChains.length > 0) ||
+    (pattern.sentenceBuilding && pattern.sentenceBuilding.length > 0);
+
+  if (!hasContent) {
+    return (
+      <div className="text-center py-12 text-muted">
+        <p className="text-3xl mb-3">💬</p>
+        <p className="text-sm font-bangla">এই প্যাটার্নের ব্যবহারিক উদাহরণ শীঘ্রই আসছে</p>
+        <p className="text-xs mt-1">Usage examples coming soon</p>
+        <Link
+          href={`/practice/${category.slug}`}
+          className="text-primary text-sm mt-4 inline-block hover:underline"
+        >
+          Practice this category instead
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {/* Usage Situations */}
+      {pattern.usageSituations && pattern.usageSituations.length > 0 && (
+        <div className="mb-6">
+          <SectionHeader icon="📌" title="কখন ব্যবহার করবেন" titleEn="When to use" />
+          <div className="space-y-2">
+            {pattern.usageSituations.map((sit, i) => (
+              <div key={i} className="p-3 rounded-lg bg-card border border-card-border">
+                <p className="font-bangla text-sm font-medium">{sit.situation_bn}</p>
+                <p className="text-xs text-muted mb-1">{sit.situation_en}</p>
+                <div className="mt-1.5 pl-3 border-l-2 border-primary/30">
+                  <p className="text-sm font-medium">{sit.exampleSentence}</p>
+                  {settings.showBangla && (
+                    <p className="font-bangla text-sm text-muted">{sit.exampleSentence_bn}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Answer Templates */}
+      {pattern.answerTemplates && pattern.answerTemplates.length > 0 && (
+        <div className="mb-6">
+          <SectionHeader icon="📋" title="উত্তর দাও" titleEn="How to Answer" />
+          <div className="space-y-3">
+            {pattern.answerTemplates.map((template, i) => (
+              <AnswerTemplateCard key={i} template={template} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Dialogue Chains */}
       {pattern.dialogueChains && pattern.dialogueChains.length > 0 && (
-        <CollapsibleSection icon="💬" title="কথা বলো" titleEn="Real conversation" defaultOpen>
+        <div className="mb-6">
+          <SectionHeader icon="💬" title="কথা বলো" titleEn="Real conversation" />
           {pattern.dialogueChains.map((dialogue) => (
             <DialogueChainSection key={dialogue.id} dialogue={dialogue} />
           ))}
-        </CollapsibleSection>
+        </div>
       )}
 
       {/* Sentence Building */}
       {pattern.sentenceBuilding && pattern.sentenceBuilding.length > 0 && (
-        <CollapsibleSection icon="🧩" title="বাক্য তৈরি করো" titleEn="Build sentences">
+        <div className="mb-6">
+          <SectionHeader icon="🧩" title="বাক্য তৈরি করো" titleEn="Build sentences" />
           <div className="space-y-3">
             {pattern.sentenceBuilding.map((build, i) => (
               <div key={i} className="p-4 rounded-xl bg-card border border-card-border">
@@ -404,41 +588,15 @@ export default function PatternDetailPage() {
               </div>
             ))}
           </div>
-        </CollapsibleSection>
-      )}
-
-      {/* Memory Trick */}
-      {pattern.memoryTrick_bn && (
-        <div className="mb-6 p-4 rounded-xl bg-accent-light border border-accent/20">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-base">💡</span>
-            <span className="font-bangla text-sm font-bold text-accent">মনে রাখার কৌশল</span>
-            <span className="text-xs text-muted">Memory trick</span>
-          </div>
-          <p className="font-bangla text-sm leading-relaxed">{pattern.memoryTrick_bn}</p>
         </div>
       )}
-
-      {/* Navigation */}
-      <div className="flex items-center justify-between pt-4 border-t border-card-border">
-        <Link
-          href={`/categories/${category.slug}`}
-          className="text-sm text-primary hover:underline"
-        >
-          Back to {category.name}
-        </Link>
-        <Link
-          href={`/practice/${category.slug}`}
-          className="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          Practice This Category
-        </Link>
-      </div>
     </div>
   );
 }
 
-/* ---- Sub-components ---- */
+/* ================================================================
+   SHARED SUB-COMPONENTS
+   ================================================================ */
 
 function SectionHeader({ icon, title, titleEn }: { icon: string; title: string; titleEn: string }) {
   return (
@@ -500,28 +658,18 @@ function WordBridgeMap({ wordMap }: { wordMap: StructuredWordMap }) {
 
   return (
     <div className="p-4 rounded-xl bg-card border border-card-border">
-      {/* Bangla sentence */}
       <div className="mb-3">
         <div className="text-xs text-muted mb-1 font-bangla">বাংলা:</div>
         <p className="font-bangla text-base font-medium">{wordMap.bn_sentence}</p>
       </div>
-
-      {/* Arrow */}
       <div className="text-center text-muted text-lg mb-3">↓</div>
-
-      {/* English sentence */}
       <div className="mb-4">
         <div className="text-xs text-muted mb-1">English:</div>
         <p className="text-base font-medium">{wordMap.en_sentence}</p>
       </div>
-
-      {/* Word-by-word mappings */}
       <div className="flex flex-wrap gap-2">
         {wordMap.mappings.map((m, i) => (
-          <div
-            key={i}
-            className={`px-3 py-2 rounded-lg border text-center ${typeColors[m.type]}`}
-          >
+          <div key={i} className={`px-3 py-2 rounded-lg border text-center ${typeColors[m.type]}`}>
             <p className="font-bangla text-xs">{m.bn_word}</p>
             <p className="text-xs font-bold mt-0.5">↓</p>
             <p className="text-sm font-medium">{m.en_word}</p>
@@ -531,8 +679,6 @@ function WordBridgeMap({ wordMap }: { wordMap: StructuredWordMap }) {
           </div>
         ))}
       </div>
-
-      {/* Legend */}
       <div className="mt-3 pt-3 border-t border-card-border flex flex-wrap gap-3 text-[10px]">
         <span className="flex items-center gap-1">
           <span className="w-2.5 h-2.5 rounded bg-card border border-card-border" />
@@ -556,7 +702,6 @@ function DialogueChainSection({ dialogue }: { dialogue: DialogueChain }) {
 
   return (
     <div className="p-4 rounded-xl bg-card border border-card-border mb-3">
-      {/* Dialogue header */}
       <div className="flex items-center gap-2 mb-2">
         <span className="text-lg">{dialogue.icon}</span>
         <div>
@@ -565,27 +710,17 @@ function DialogueChainSection({ dialogue }: { dialogue: DialogueChain }) {
         </div>
       </div>
       <p className="font-bangla text-xs text-muted mb-4 p-2 rounded-lg bg-muted-bg">{dialogue.situation_bn}</p>
-
-      {/* Chat bubbles */}
       <div className="space-y-3">
         {dialogue.turns.map((turn, i) => {
           const userMsg = isUser(turn.speaker_bn);
           return (
-            <div
-              key={i}
-              className={`flex ${userMsg ? "justify-end" : "justify-start"}`}
-            >
-              <div
-                className={`max-w-[85%] p-3 rounded-2xl ${
-                  userMsg
-                    ? "bg-primary text-white rounded-br-sm"
-                    : "bg-muted-bg text-foreground rounded-bl-sm"
-                }`}
-              >
-                {/* Speaker label */}
-                <div className={`text-[10px] font-bangla mb-1 ${
-                  userMsg ? "text-white/70" : "text-muted"
-                }`}>
+            <div key={i} className={`flex ${userMsg ? "justify-end" : "justify-start"}`}>
+              <div className={`max-w-[85%] p-3 rounded-2xl ${
+                userMsg
+                  ? "bg-primary text-white rounded-br-sm"
+                  : "bg-muted-bg text-foreground rounded-bl-sm"
+              }`}>
+                <div className={`text-[10px] font-bangla mb-1 ${userMsg ? "text-white/70" : "text-muted"}`}>
                   {turn.speaker_bn}
                   {turn.patternId && (
                     <span className={`ml-1.5 px-1.5 py-0.5 rounded text-[9px] ${
@@ -595,13 +730,8 @@ function DialogueChainSection({ dialogue }: { dialogue: DialogueChain }) {
                     </span>
                   )}
                 </div>
-                {/* English */}
                 <p className="text-sm font-medium">{turn.en}</p>
-                {/* Bangla */}
-                <p className={`font-bangla text-xs mt-0.5 ${
-                  userMsg ? "text-white/80" : "text-muted"
-                }`}>{turn.bn}</p>
-                {/* Pronunciation */}
+                <p className={`font-bangla text-xs mt-0.5 ${userMsg ? "text-white/80" : "text-muted"}`}>{turn.bn}</p>
                 {turn.pronunciation_bn && (
                   <p className={`font-bangla text-[10px] mt-0.5 italic ${
                     userMsg ? "text-white/60" : "text-primary/60"
@@ -641,15 +771,10 @@ function VariationsSection({ variations }: { variations: PatternVariation[] }) {
           </button>
         ))}
       </div>
-
       {active && (
         <div className="p-4 rounded-xl bg-card border border-card-border">
           <div className="mb-3">
-            <PatternFormula
-              formula={active.formula}
-              formula_bn={active.formula_bn}
-              size="md"
-            />
+            <PatternFormula formula={active.formula} formula_bn={active.formula_bn} size="md" />
           </div>
           {active.examples.length > 0 && (
             <div className="space-y-2">
@@ -675,20 +800,15 @@ function VariationsSection({ variations }: { variations: PatternVariation[] }) {
 function AnswerTemplateCard({ template }: { template: AnswerTemplate }) {
   return (
     <div className="p-4 rounded-xl bg-card border border-card-border">
-      {/* Situation context */}
       <div className="flex items-start gap-2 mb-3">
         <span className="text-sm shrink-0">📍</span>
         <p className="font-bangla text-sm font-medium text-accent">{template.situation_bn}</p>
       </div>
-
-      {/* Question */}
       <div className="mb-3 pl-6">
         <div className="text-[10px] text-muted mb-0.5 uppercase tracking-wide">Question</div>
         <p className="text-sm font-medium">{template.question}</p>
         <p className="font-bangla text-xs text-muted">{template.question_bn}</p>
       </div>
-
-      {/* Answer formula */}
       <div className="mb-3 pl-6 p-3 rounded-lg bg-success/5 border border-success/20">
         <div className="text-[10px] text-success mb-0.5 uppercase tracking-wide">Answer</div>
         <p className="text-sm font-medium text-success">{template.answerFormula}</p>
@@ -697,8 +817,6 @@ function AnswerTemplateCard({ template }: { template: AnswerTemplate }) {
           🗣️ {template.pronunciation_bn}
         </p>
       </div>
-
-      {/* Example answers */}
       {template.examples.length > 0 && (
         <div className="pl-6 space-y-1.5">
           <div className="text-[10px] text-muted uppercase tracking-wide">Examples</div>
@@ -718,8 +836,6 @@ function AnswerTemplateCard({ template }: { template: AnswerTemplate }) {
           ))}
         </div>
       )}
-
-      {/* Notes */}
       {template.notes_bn && (
         <div className="mt-3 pl-6 pt-2 border-t border-card-border">
           <p className="font-bangla text-xs text-muted">💡 {template.notes_bn}</p>

@@ -5,6 +5,8 @@ import Link from "next/link";
 import type { PatternCategory } from "@/types/pattern";
 import { PatternCard } from "@/components/patterns/PatternCard";
 import { DifficultyBadge } from "@/components/patterns/DifficultyBadge";
+import { useProgress } from "@/contexts/ProgressContext";
+import { getMasteryCounts, masteryConfig, type MasteryLevel } from "@/lib/mastery";
 
 interface CategoryDetailClientProps {
   categoryId: string;
@@ -14,6 +16,7 @@ interface CategoryDetailClientProps {
 export function CategoryDetailClient({ categoryId, slug }: CategoryDetailClientProps) {
   const [category, setCategory] = useState<PatternCategory | null>(null);
   const [loading, setLoading] = useState(true);
+  const { progress } = useProgress();
 
   useEffect(() => {
     async function load() {
@@ -92,9 +95,53 @@ export function CategoryDetailClient({ categoryId, slug }: CategoryDetailClientP
         <p className="font-bangla text-sm text-muted mt-0.5">
           {category.description_bn}
         </p>
-        <div className="mt-3 text-sm text-muted">
-          {category.patterns.length} patterns in this category
-        </div>
+        {/* Mastery Summary */}
+        {(() => {
+          const patternIds = category.patterns.map((p) => p.id);
+          const counts = getMasteryCounts(patternIds, progress.completedPatterns);
+          const total = patternIds.length;
+          const practiced = total - counts.new;
+          return (
+            <div className="mt-3">
+              <div className="flex items-center gap-3 text-xs text-muted mb-2">
+                <span>{total} patterns</span>
+                {practiced > 0 && (
+                  <>
+                    <span>·</span>
+                    {(["master", "confident", "familiar"] as MasteryLevel[]).map(
+                      (level) =>
+                        counts[level] > 0 && (
+                          <span key={level} className={`flex items-center gap-0.5 ${masteryConfig[level].color}`}>
+                            {masteryConfig[level].icon} {counts[level]}
+                          </span>
+                        )
+                    )}
+                  </>
+                )}
+              </div>
+              {practiced > 0 && (
+                <div className="h-1.5 rounded-full bg-muted-bg overflow-hidden flex">
+                  {(["master", "confident", "familiar"] as MasteryLevel[]).map(
+                    (level) =>
+                      counts[level] > 0 && (
+                        <div
+                          key={level}
+                          className={`h-full ${
+                            level === "master"
+                              ? "bg-primary"
+                              : level === "confident"
+                                ? "bg-success"
+                                : "bg-warning"
+                          }`}
+                          style={{ width: `${(counts[level] / total) * 100}%` }}
+                        />
+                      )
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
 
       {/* Pattern List */}

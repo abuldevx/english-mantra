@@ -31,7 +31,16 @@ export default function DailyPracticePage() {
 
   useEffect(() => {
     async function loadPractice() {
-      const practiceItems: PracticeItem[] = [];
+      const dueItems: PracticeItem[] = [];
+      const otherItems: PracticeItem[] = [];
+
+      // Find SRS-due pattern IDs
+      const now = Date.now();
+      const duePatternIds = new Set(
+        Object.entries(progress.completedPatterns)
+          .filter(([, p]) => p.nextReviewDate <= now)
+          .map(([id]) => id)
+      );
 
       // Load from ALL categories
       const allCategoryIds = categoryMeta.map((c) => c.id);
@@ -46,12 +55,17 @@ export default function DailyPracticePage() {
               const randomExample = Math.floor(
                 Math.random() * allExamples.length
               );
-              practiceItems.push({
+              const item: PracticeItem = {
                 pattern,
                 category: cat,
                 example: allExamples[randomExample],
                 exerciseType: selectExerciseType(pattern, settings.practiceLevel),
-              });
+              };
+              if (duePatternIds.has(pattern.id)) {
+                dueItems.push(item);
+              } else {
+                otherItems.push(item);
+              }
             }
           }
         } catch {
@@ -59,12 +73,17 @@ export default function DailyPracticePage() {
         }
       }
 
-      // Shuffle and take dailyGoal
-      const shuffled = practiceItems.sort(() => Math.random() - 0.5);
-      setItems(shuffled.slice(0, settings.dailyGoal));
+      // Prioritize SRS-due patterns, fill remaining with random others
+      const shuffledOther = otherItems.sort(() => Math.random() - 0.5);
+      const combined = [
+        ...dueItems.sort(() => Math.random() - 0.5),
+        ...shuffledOther,
+      ];
+      setItems(combined.slice(0, Math.max(settings.dailyGoal, dueItems.length)));
       setLoading(false);
     }
     loadPractice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.dailyGoal, settings.practiceLevel]);
 
   const currentItem = items[currentIndex];
@@ -232,10 +251,10 @@ export default function DailyPracticePage() {
           </p>
           <div className="grid grid-cols-4 gap-2">
             {([
-              { level: 1 as Confidence, label: "Again", label_bn: "আবার", emoji: "\uD83D\uDE30", interval: "1 day", color: "border-danger hover:bg-danger/10 text-danger" },
-              { level: 2 as Confidence, label: "Hard", label_bn: "কঠিন", emoji: "\uD83D\uDE10", interval: "3 days", color: "border-warning hover:bg-warning/10 text-warning" },
-              { level: 4 as Confidence, label: "Good", label_bn: "ভালো", emoji: "\uD83D\uDE42", interval: "7 days", color: "border-primary hover:bg-primary/10 text-primary" },
-              { level: 5 as Confidence, label: "Easy", label_bn: "সহজ", emoji: "\uD83D\uDE0A", interval: "14 days", color: "border-success hover:bg-success/10 text-success" },
+              { level: 1 as Confidence, label: "Again", label_bn: "আবার", emoji: "😰", interval: "1 day", color: "border-danger hover:bg-danger/10 text-danger" },
+              { level: 2 as Confidence, label: "Hard", label_bn: "কঠিন", emoji: "😐", interval: "3 days", color: "border-warning hover:bg-warning/10 text-warning" },
+              { level: 4 as Confidence, label: "Good", label_bn: "ভালো", emoji: "🙂", interval: "7 days", color: "border-primary hover:bg-primary/10 text-primary" },
+              { level: 5 as Confidence, label: "Easy", label_bn: "সহজ", emoji: "😊", interval: "14 days", color: "border-success hover:bg-success/10 text-success" },
             ] as const).map(({ level, label, label_bn, emoji, interval, color }) => (
               <button
                 key={level}

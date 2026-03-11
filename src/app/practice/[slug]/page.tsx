@@ -221,10 +221,10 @@ export default function CategoryPracticePage() {
           </p>
           <div className="grid grid-cols-4 gap-2">
             {([
-              { level: 1 as Confidence, label: "Again", label_bn: "আবার", emoji: "\uD83D\uDE30", interval: "1 day", color: "border-danger hover:bg-danger/10 text-danger" },
-              { level: 2 as Confidence, label: "Hard", label_bn: "কঠিন", emoji: "\uD83D\uDE10", interval: "3 days", color: "border-warning hover:bg-warning/10 text-warning" },
-              { level: 4 as Confidence, label: "Good", label_bn: "ভালো", emoji: "\uD83D\uDE42", interval: "7 days", color: "border-primary hover:bg-primary/10 text-primary" },
-              { level: 5 as Confidence, label: "Easy", label_bn: "সহজ", emoji: "\uD83D\uDE0A", interval: "14 days", color: "border-success hover:bg-success/10 text-success" },
+              { level: 1 as Confidence, label: "Again", label_bn: "আবার", emoji: "😰", interval: "1 day", color: "border-danger hover:bg-danger/10 text-danger" },
+              { level: 2 as Confidence, label: "Hard", label_bn: "কঠিন", emoji: "😐", interval: "3 days", color: "border-warning hover:bg-warning/10 text-warning" },
+              { level: 4 as Confidence, label: "Good", label_bn: "ভালো", emoji: "🙂", interval: "7 days", color: "border-primary hover:bg-primary/10 text-primary" },
+              { level: 5 as Confidence, label: "Easy", label_bn: "সহজ", emoji: "😊", interval: "14 days", color: "border-success hover:bg-success/10 text-success" },
             ] as const).map(({ level, label, label_bn, emoji, interval, color }) => (
               <button
                 key={level}
