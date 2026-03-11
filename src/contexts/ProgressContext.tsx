@@ -3,6 +3,109 @@
 import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from "react";
 import type { UserProgress, PatternProgress, Confidence } from "@/types/pattern";
 
+export interface AchievementDef {
+  id: string;
+  icon: string;
+  label: string;
+  label_bn: string;
+  description: string;
+  description_bn: string;
+  check: (progress: UserProgress) => boolean;
+}
+
+export const ACHIEVEMENTS: AchievementDef[] = [
+  {
+    id: "first_practice",
+    icon: "🎯",
+    label: "First Step",
+    label_bn: "প্রথম পদক্ষেপ",
+    description: "Complete your first practice",
+    description_bn: "প্রথম অনুশীলন সম্পন্ন করো",
+    check: (p) => Object.keys(p.completedPatterns).length >= 1,
+  },
+  {
+    id: "pattern_5",
+    icon: "📚",
+    label: "Quick Learner",
+    label_bn: "দ্রুত শিক্ষার্থী",
+    description: "Learn 5 patterns",
+    description_bn: "৫টি প্যাটার্ন শেখো",
+    check: (p) => Object.keys(p.completedPatterns).length >= 5,
+  },
+  {
+    id: "pattern_10",
+    icon: "🌟",
+    label: "Pattern Collector",
+    label_bn: "প্যাটার্ন সংগ্রাহক",
+    description: "Learn 10 patterns",
+    description_bn: "১০টি প্যাটার্ন শেখো",
+    check: (p) => Object.keys(p.completedPatterns).length >= 10,
+  },
+  {
+    id: "pattern_25",
+    icon: "💎",
+    label: "Dedicated Student",
+    label_bn: "নিবেদিত ছাত্র",
+    description: "Learn 25 patterns",
+    description_bn: "২৫টি প্যাটার্ন শেখো",
+    check: (p) => Object.keys(p.completedPatterns).length >= 25,
+  },
+  {
+    id: "pattern_50",
+    icon: "👑",
+    label: "Pattern Master",
+    label_bn: "প্যাটার্ন মাস্টার",
+    description: "Learn 50 patterns",
+    description_bn: "৫০টি প্যাটার্ন শেখো",
+    check: (p) => Object.keys(p.completedPatterns).length >= 50,
+  },
+  {
+    id: "streak_3",
+    icon: "🔥",
+    label: "On Fire",
+    label_bn: "জ্বলছে",
+    description: "3-day streak",
+    description_bn: "৩ দিনের স্ট্রিক",
+    check: (p) => p.longestStreak >= 3,
+  },
+  {
+    id: "streak_7",
+    icon: "⭐",
+    label: "Week Warrior",
+    label_bn: "সপ্তাহের যোদ্ধা",
+    description: "7-day streak",
+    description_bn: "৭ দিনের স্ট্রিক",
+    check: (p) => p.longestStreak >= 7,
+  },
+  {
+    id: "streak_30",
+    icon: "🏆",
+    label: "Month Master",
+    label_bn: "মাসের মাস্টার",
+    description: "30-day streak",
+    description_bn: "৩০ দিনের স্ট্রিক",
+    check: (p) => p.longestStreak >= 30,
+  },
+  {
+    id: "confident",
+    icon: "💪",
+    label: "Confident Speaker",
+    label_bn: "আত্মবিশ্বাসী বক্তা",
+    description: "Reach 'Easy' on 10 patterns",
+    description_bn: "১০টি প্যাটার্নে 'সহজ' পাও",
+    check: (p) => Object.values(p.completedPatterns).filter((pp) => pp.confidence >= 5).length >= 10,
+  },
+  {
+    id: "bookworm",
+    icon: "🔖",
+    label: "Bookworm",
+    label_bn: "বইপোকা",
+    description: "Bookmark 10 patterns",
+    description_bn: "১০টি প্যাটার্ন বুকমার্ক করো",
+    check: (p) => p.bookmarkedPatterns.length >= 10,
+  },
+];
+
 const defaultProgress: UserProgress = {
   completedPatterns: {},
   bookmarkedPatterns: [],
@@ -29,6 +132,7 @@ interface ProgressContextType {
   isBookmarked: (patternId: string) => boolean;
   getPatternProgress: (patternId: string) => PatternProgress | undefined;
   totalPatternsLearned: number;
+  todayPracticeCount: number;
   updateStreak: () => void;
 }
 
@@ -39,6 +143,7 @@ const ProgressContext = createContext<ProgressContextType>({
   isBookmarked: () => false,
   getPatternProgress: () => undefined,
   totalPatternsLearned: 0,
+  todayPracticeCount: 0,
   updateStreak: () => {},
 });
 
@@ -138,6 +243,30 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const checkAchievements = useCallback((currentProgress: UserProgress) => {
+    const newAchievements = ACHIEVEMENTS
+      .filter((a) => !currentProgress.achievements.includes(a.id) && a.check(currentProgress))
+      .map((a) => a.id);
+
+    if (newAchievements.length > 0) {
+      setProgress((prev) => ({
+        ...prev,
+        achievements: [...prev.achievements, ...newAchievements],
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    checkAchievements(progress);
+  }, [progress.completedPatterns, progress.bookmarkedPatterns, progress.longestStreak, mounted, checkAchievements]);
+
+  const todayPracticeCount = Object.values(progress.completedPatterns).filter((p) => {
+    const today = new Date().toISOString().split("T")[0];
+    const practiceDate = new Date(p.lastPracticed).toISOString().split("T")[0];
+    return today === practiceDate;
+  }).length;
+
   return (
     <ProgressContext.Provider
       value={{
@@ -147,6 +276,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         isBookmarked,
         getPatternProgress,
         totalPatternsLearned,
+        todayPracticeCount,
         updateStreak,
       }}
     >

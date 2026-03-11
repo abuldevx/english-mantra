@@ -64,20 +64,39 @@ function BanglaFirstExercise({
           <div
             className={`p-3 rounded-lg ${
               isCorrect
-                ? "bg-success-light border border-success/30"
-                : "bg-danger-light border border-danger/30"
+                ? "bg-success-light border border-success/30 animate-celebrate"
+                : "bg-danger-light border border-danger/30 animate-shake"
             }`}
           >
-            <div className="text-xs font-medium mb-1">
-              {isCorrect ? "Correct!" : "Your answer:"}
-            </div>
+            {isCorrect && (
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-lg animate-celebrate">&#10003;</span>
+                <span className="text-xs font-medium">Correct!</span>
+                <span className="text-xs font-bold text-success animate-fadeUp">+1</span>
+              </div>
+            )}
+            {!isCorrect && (
+              <div className="text-xs font-medium mb-1">Your answer:</div>
+            )}
             <p className="text-sm">{answer || "(empty)"}</p>
           </div>
 
-          <div className="p-3 rounded-lg bg-success-light border border-success/30">
-            <div className="text-xs font-medium text-success mb-1">Correct answer:</div>
-            <p className="text-sm font-medium">{example.en}</p>
-          </div>
+          {!isCorrect && (
+            <div className="p-3 rounded-lg bg-success-light border border-success/30">
+              <div className="text-xs font-medium text-success mb-1">Correct answer:</div>
+              <p className="text-sm font-medium">{example.en}</p>
+              {example.pronunciation_bn && (
+                <p className="text-xs text-muted font-bangla mt-1">{example.pronunciation_bn}</p>
+              )}
+            </div>
+          )}
+
+          {isCorrect && (
+            <div className="p-3 rounded-lg bg-success-light border border-success/30">
+              <div className="text-xs font-medium text-success mb-1">Correct answer:</div>
+              <p className="text-sm font-medium">{example.en}</p>
+            </div>
+          )}
 
           <button
             onClick={() => onComplete(isCorrect)}
@@ -139,6 +158,16 @@ export default function ExerciseContainer({
         </span>
       </div>
 
+      {/* MiniStory context */}
+      {example.miniStory && (
+        <div className="mb-4 p-3 rounded-lg bg-warning-light border border-warning/20">
+          <div className="flex items-start gap-2">
+            <span className="text-lg leading-none">{example.miniStory.icon}</span>
+            <p className="font-bangla text-sm text-foreground/80">{example.miniStory.situation_bn}</p>
+          </div>
+        </div>
+      )}
+
       {/* Exercise */}
       {exerciseType === "bangla-first" && (
         <BanglaFirstExercise
@@ -170,8 +199,23 @@ export default function ExerciseContainer({
 
       {/* For slot-fill and word-bank, show the result state after answering */}
       {exerciseDone && exerciseType !== "bangla-first" && (
-        <div className="mt-3 text-center text-sm text-muted">
-          {wasCorrect ? "Great job!" : "Keep practicing!"}
+        <div className={`mt-3 text-center relative ${wasCorrect ? "animate-celebrate" : "animate-shake"}`}>
+          {wasCorrect ? (
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-2xl text-success">&#10003;</span>
+              <span className="text-sm font-medium text-success">Great job!</span>
+              <span className="text-sm font-bold text-success animate-fadeUp">+1</span>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <span className="text-sm text-muted">Keep practicing!</span>
+              {example.pronunciation_bn && (
+                <p className="text-xs text-muted font-bangla">
+                  Pronunciation: {example.pronunciation_bn}
+                </p>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

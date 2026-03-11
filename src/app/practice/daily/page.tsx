@@ -8,6 +8,7 @@ import { useSettings } from "@/contexts/SettingsContext";
 import type { Confidence } from "@/types/pattern";
 import { categoryMeta } from "@/content/index";
 import { selectExerciseType, type ExerciseType } from "@/lib/exerciseSelector";
+import { getAllExamples } from "@/lib/patternHelpers";
 import ExerciseContainer from "@/components/practice/ExerciseContainer";
 
 interface PracticeItem {
@@ -25,7 +26,7 @@ export default function DailyPracticePage() {
   const [completed, setCompleted] = useState(false);
   const [showConfidence, setShowConfidence] = useState(false);
   const [lastCorrect, setLastCorrect] = useState(false);
-  const { markPatternPracticed, updateStreak } = useProgress();
+  const { progress, markPatternPracticed, updateStreak } = useProgress();
   const { settings } = useSettings();
 
   useEffect(() => {
@@ -40,14 +41,15 @@ export default function DailyPracticePage() {
           const mod = await import(`@/content/categories/${catId}`);
           const cat = mod[`category${catId}`] as PatternCategory;
           for (const pattern of cat.patterns) {
-            if (pattern.examples.length > 0) {
+            const allExamples = getAllExamples(pattern);
+            if (allExamples.length > 0) {
               const randomExample = Math.floor(
-                Math.random() * pattern.examples.length
+                Math.random() * allExamples.length
               );
               practiceItems.push({
                 pattern,
                 category: cat,
-                example: pattern.examples[randomExample],
+                example: allExamples[randomExample],
                 exerciseType: selectExerciseType(pattern, settings.practiceLevel),
               });
             }
@@ -113,41 +115,76 @@ export default function DailyPracticePage() {
   }
 
   if (completed) {
+    const percentage = Math.round((score / items.length) * 100);
     return (
       <div className="mx-auto max-w-4xl px-4 py-6 text-center">
-        <p className="text-5xl mb-4">🎉</p>
+        <p className="text-6xl mb-4 animate-celebrate-bounce">&#127881;</p>
         <h1 className="text-2xl font-bold mb-2">Practice Complete!</h1>
+        <p className="text-muted font-bangla mb-1">অনুশীলন সম্পন্ন!</p>
         <p className="text-muted mb-6">
           You practiced {items.length} patterns today
         </p>
-        <div className="inline-flex items-center gap-4 p-4 rounded-xl bg-card border border-card-border mb-6">
+
+        {/* Stats card */}
+        <div className="inline-flex items-center gap-4 p-4 rounded-xl bg-card border border-card-border mb-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-primary">{score}</div>
             <div className="text-xs text-muted">Correct</div>
+            <div className="text-[10px] text-muted font-bangla">সঠিক</div>
           </div>
           <div className="w-px h-10 bg-card-border" />
           <div className="text-center">
             <div className="text-2xl font-bold">{items.length}</div>
             <div className="text-xs text-muted">Total</div>
+            <div className="text-[10px] text-muted font-bangla">মোট</div>
           </div>
           <div className="w-px h-10 bg-card-border" />
           <div className="text-center">
-            <div className="text-2xl font-bold text-success">
-              {Math.round((score / items.length) * 100)}%
-            </div>
+            <div className="text-2xl font-bold text-success">{percentage}%</div>
             <div className="text-xs text-muted">Score</div>
+            <div className="text-[10px] text-muted font-bangla">স্কোর</div>
           </div>
         </div>
+
+        {/* Visual percentage bar */}
+        <div className="max-w-xs mx-auto mb-4">
+          <div className="h-3 rounded-full bg-muted-bg overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-1000 ease-out"
+              style={{
+                width: `${percentage}%`,
+                background: percentage >= 80 ? 'var(--success)' : percentage >= 50 ? 'var(--warning)' : 'var(--danger)',
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Streak */}
+        {progress.currentStreak > 0 && (
+          <div className="mb-6 animate-celebrate">
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-warning-light border border-warning/30 text-sm font-medium">
+              &#128293; Streak: {progress.currentStreak} day{progress.currentStreak > 1 ? "s" : ""}!
+              <span className="font-bangla text-xs text-muted">({progress.currentStreak} দিন)</span>
+            </span>
+          </div>
+        )}
+
         <div className="flex gap-3 justify-center">
           <Link
-            href="/practice"
-            className="px-4 py-2 rounded-lg border border-card-border text-sm hover:bg-card transition-colors"
+            href="/practice/daily"
+            className="px-5 py-2.5 rounded-lg border border-card-border text-sm hover:bg-card transition-colors font-medium"
           >
-            Back to Practice
+            Practice More
+          </Link>
+          <Link
+            href="/"
+            className="px-5 py-2.5 rounded-lg border border-card-border text-sm hover:bg-card transition-colors font-medium"
+          >
+            Go Home
           </Link>
           <Link
             href="/progress"
-            className="px-4 py-2 rounded-lg bg-primary text-white text-sm hover:bg-primary/90 transition-colors"
+            className="px-5 py-2.5 rounded-lg bg-primary text-white text-sm hover:bg-primary/90 transition-colors font-medium"
           >
             View Progress
           </Link>
@@ -187,23 +224,28 @@ export default function DailyPracticePage() {
       {/* Confidence rating */}
       {showConfidence && (
         <div className="mt-4 p-4 rounded-xl border border-card-border bg-card">
-          <p className="text-xs text-muted mb-2">
+          <p className="text-xs text-muted mb-1">
             {lastCorrect ? "Great! " : ""}How well did you know this?
           </p>
-          <div className="flex gap-2">
+          <p className="text-[10px] text-muted font-bangla mb-3">
+            {lastCorrect ? "দারুণ! " : ""}তুমি কতটা ভালো জানতে?
+          </p>
+          <div className="grid grid-cols-4 gap-2">
             {([
-              { level: 1 as Confidence, label: "Again", color: "bg-danger" },
-              { level: 2 as Confidence, label: "Hard", color: "bg-warning" },
-              { level: 3 as Confidence, label: "OK", color: "bg-amber-500" },
-              { level: 4 as Confidence, label: "Good", color: "bg-success" },
-              { level: 5 as Confidence, label: "Easy", color: "bg-primary" },
-            ] as const).map(({ level, label, color }) => (
+              { level: 1 as Confidence, label: "Again", label_bn: "আবার", emoji: "\uD83D\uDE30", interval: "1 day", color: "border-danger hover:bg-danger/10 text-danger" },
+              { level: 2 as Confidence, label: "Hard", label_bn: "কঠিন", emoji: "\uD83D\uDE10", interval: "3 days", color: "border-warning hover:bg-warning/10 text-warning" },
+              { level: 4 as Confidence, label: "Good", label_bn: "ভালো", emoji: "\uD83D\uDE42", interval: "7 days", color: "border-primary hover:bg-primary/10 text-primary" },
+              { level: 5 as Confidence, label: "Easy", label_bn: "সহজ", emoji: "\uD83D\uDE0A", interval: "14 days", color: "border-success hover:bg-success/10 text-success" },
+            ] as const).map(({ level, label, label_bn, emoji, interval, color }) => (
               <button
                 key={level}
                 onClick={() => handleNext(level)}
-                className={`flex-1 py-2 rounded-lg text-white text-xs font-medium ${color} hover:opacity-90 transition-opacity`}
+                className={`flex flex-col items-center gap-1 py-3 min-h-[48px] rounded-xl border-2 ${color} bg-card transition-all hover:scale-[1.03] active:scale-95`}
               >
-                {label}
+                <span className="text-xl leading-none">{emoji}</span>
+                <span className="text-xs font-medium">{label}</span>
+                <span className="text-[10px] font-bangla opacity-70">{label_bn}</span>
+                <span className="text-[9px] opacity-50">{interval}</span>
               </button>
             ))}
           </div>

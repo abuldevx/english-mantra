@@ -70,7 +70,7 @@ body {
   font-family: var(--font-bangla), sans-serif;
 }
 
-/* Slot highlight in formulas */
+/* Slot highlight in formulas — default */
 .slot {
   display: inline-block;
   background: var(--primary-light);
@@ -85,6 +85,45 @@ body {
   background: var(--primary-light);
   color: #93c5fd;
   border-color: #3b82f6;
+}
+
+/* Color-coded slot types (Shape Coding) */
+.slot-person {
+  background: #dbeafe; color: #2563eb; border-color: #3b82f6;
+}
+.slot-action {
+  background: #d1fae5; color: #059669; border-color: #10b981;
+}
+.slot-thing {
+  background: #ffedd5; color: #c2410c; border-color: #f97316;
+}
+.slot-place {
+  background: #ede9fe; color: #7c3aed; border-color: #8b5cf6;
+}
+.slot-time {
+  background: #fce7f3; color: #be185d; border-color: #ec4899;
+}
+.slot-feeling {
+  background: #fee2e2; color: #dc2626; border-color: #ef4444;
+}
+
+.dark .slot-person {
+  background: #1e3a5f; color: #93c5fd; border-color: #3b82f6;
+}
+.dark .slot-action {
+  background: #14332a; color: #6ee7b7; border-color: #10b981;
+}
+.dark .slot-thing {
+  background: #3b2010; color: #fdba74; border-color: #f97316;
+}
+.dark .slot-place {
+  background: #2e1b4e; color: #c4b5fd; border-color: #8b5cf6;
+}
+.dark .slot-time {
+  background: #3b1530; color: #f9a8d4; border-color: #ec4899;
+}
+.dark .slot-feeling {
+  background: #3b1414; color: #fca5a5; border-color: #ef4444;
 }
 
 /* Difficulty badge colors */
@@ -137,4 +176,66 @@ html {
 }
 .bn-text-size-xlarge {
   font-size: 1.5rem;
+}
+
+/* Practice animations */
+@keyframes celebrate {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-30px); opacity: 0; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+@keyframes celebrateBounce {
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  50% { transform: scale(1.3) rotate(5deg); }
+  75% { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.animate-celebrate { animation: celebrate 0.4s ease-out; }
+.animate-fadeUp { animation: fadeUp 0.8s ease-out forwards; }
+.animate-shake { animation: shake 0.3s ease-out; }
+.animate-celebrate-bounce { animation: celebrateBounce 0.6s ease-out; }
+
+/* Grayscale filter for locked items */
+.grayscale { filter: grayscale(100%); }
+
+/* Better mobile readability — slightly larger base */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .font-bangla {
+    line-height: 1.6;
+  }
+}
+
+/* Minimum touch targets (44x44 per Apple HIG) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth section transitions for collapsible sections */
+.section-transition {
+  transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+  overflow: hidden;
 }

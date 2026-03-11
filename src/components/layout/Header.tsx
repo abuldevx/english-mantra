@@ -33,6 +33,12 @@ export function Header() {
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
           <Link
+            href="/bridge-rules"
+            className="text-muted hover:text-foreground transition-colors font-bangla"
+          >
+            সেতু নিয়ম
+          </Link>
+          <Link
             href="/categories"
             className="text-muted hover:text-foreground transition-colors"
           >

@@ -13,6 +13,14 @@ interface PatternCardProps {
 }
 
 export function PatternCard({ pattern, categorySlug, showExampleCount = true }: PatternCardProps) {
+  const hasTeachingContent =
+    pattern.conversionSteps ||
+    (pattern.commonMistakes && pattern.commonMistakes.length > 0) ||
+    (pattern.usageSituations && pattern.usageSituations.length > 0) ||
+    (pattern.sentenceBuilding && pattern.sentenceBuilding.length > 0);
+
+  const variationCount = pattern.variations?.length ?? 0;
+
   return (
     <Link
       href={`/pattern/${pattern.id}`}
@@ -26,17 +34,33 @@ export function PatternCard({ pattern, categorySlug, showExampleCount = true }: 
         </div>
       </div>
 
+      {/* Bangla concept as primary label when available */}
+      {pattern.concept_bn && (
+        <p className="font-bangla text-base font-bold mb-1">{pattern.concept_bn}</p>
+      )}
+
       <PatternFormula
         formula={pattern.formula}
         formula_bn={pattern.formula_bn}
         size="sm"
       />
 
-      {showExampleCount && (
-        <div className="mt-2 text-xs text-muted">
-          {pattern.examples.length} examples
-        </div>
-      )}
+      <div className="mt-2 flex items-center gap-2 text-xs text-muted">
+        {showExampleCount && (
+          <span>{pattern.examples.length} examples</span>
+        )}
+        {variationCount > 0 && (
+          <span>· {variationCount} variations</span>
+        )}
+        {hasTeachingContent && (
+          <span className="ml-auto flex items-center gap-1" title="Full lesson available">
+            {pattern.usageSituations && pattern.usageSituations.length > 0 && <span>📌</span>}
+            {pattern.commonMistakes && pattern.commonMistakes.length > 0 && <span>⚠️</span>}
+            {pattern.simpleRules && pattern.simpleRules.length > 0 && <span>📏</span>}
+            {pattern.sentenceBuilding && pattern.sentenceBuilding.length > 0 && <span>🧩</span>}
+          </span>
+        )}
+      </div>
     </Link>
   );
 }

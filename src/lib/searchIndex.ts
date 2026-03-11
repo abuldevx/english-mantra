@@ -1,5 +1,6 @@
-import type { SearchResult, Difficulty } from "@/types/pattern";
+import type { SearchResult, Difficulty, Pattern, PatternCategory } from "@/types/pattern";
 import { categoryMeta } from "@/content/index";
+import { getAllExamples } from "./patternHelpers";
 
 // FlexSearch types (flexsearch doesn't ship great TS types)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,10 +50,18 @@ export async function getSearchIndex(): Promise<FlexDocument> {
   for (const catMeta of categoryMeta) {
     try {
       const mod = await import(`@/content/categories/${catMeta.id}`);
-      const category = mod[`category${catMeta.id}`];
+      const category = mod[`category${catMeta.id}`] as PatternCategory | undefined;
       if (!category?.patterns) continue;
 
-      for (const pattern of category.patterns) {
+      for (const pattern of category.patterns as Pattern[]) {
+        // Build searchable content including variation formulas
+        const variationContent = pattern.variations
+          ? pattern.variations.map((v) => `${v.formula} ${v.label}`).join(" ")
+          : "";
+        const variationContent_bn = pattern.variations
+          ? pattern.variations.map((v) => `${v.formula_bn} ${v.label_bn}`).join(" ")
+          : "";
+
         // Index pattern formula
         const patternDoc: SearchDoc = {
           id: `p:${pattern.id}`,
@@ -62,16 +71,17 @@ export async function getSearchIndex(): Promise<FlexDocument> {
           patternId: pattern.id,
           title: pattern.formula,
           title_bn: pattern.formula_bn,
-          content: `${pattern.formula} ${pattern.patternName} ${pattern.usageNote || ""}`,
-          content_bn: `${pattern.formula_bn} ${pattern.patternName_bn} ${pattern.usageNote_bn || ""}`,
+          content: `${pattern.formula} ${pattern.patternName} ${pattern.usageNote || ""} ${pattern.concept_bn || ""} ${variationContent}`,
+          content_bn: `${pattern.formula_bn} ${pattern.patternName_bn} ${pattern.usageNote_bn || ""} ${variationContent_bn}`,
           difficulty: pattern.difficulty,
         };
         searchIndex!.add(patternDoc);
         store.set(patternDoc.id, patternDoc);
 
-        // Index examples
-        for (let i = 0; i < pattern.examples.length; i++) {
-          const ex = pattern.examples[i];
+        // Index all examples (including variation examples)
+        const allExamples = getAllExamples(pattern);
+        for (let i = 0; i < allExamples.length; i++) {
+          const ex = allExamples[i];
           const exDoc: SearchDoc = {
             id: `e:${pattern.id}:${i}`,
             type: "example",

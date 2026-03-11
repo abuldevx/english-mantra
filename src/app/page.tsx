@@ -1,5 +1,6 @@
 import { categoryGroups } from "@/content/category-groups";
 import { GroupCard } from "@/components/patterns/GroupCard";
+import { DailyProgressWidget } from "@/components/DailyProgressWidget";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -39,6 +40,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Daily Progress */}
+      <DailyProgressWidget />
 
       {/* Quick Actions */}
       <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
