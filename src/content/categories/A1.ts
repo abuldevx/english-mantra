@@ -100,6 +100,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to learn English" },
           topicArea: "education",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি গ্রাম থেকে ঢাকায় এসেছো কাজের জন্য। কিন্তু ইংরেজি না জানায় অনেক জায়গায় সমস্যা হচ্ছে। মনে মনে ঠিক করলে ইংরেজি শিখবে।",
+            icon: "🏫",
+          },
         },
         {
           en: "I want a window seat.",
@@ -132,6 +136,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a better salary" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি তিন বছর ধরে একই কোম্পানিতে কাজ করছো। বেতন বাড়েনি। বসের সাথে কথা বলতে চাও।",
+            icon: "💼",
+          },
         },
         {
           en: "I want fried rice.",
@@ -152,6 +160,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to talk to you" },
           topicArea: "relationships",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার বন্ধু কয়েকদিন ধরে তোমার সাথে কথা বলছে না। তুমি তার কাছে গিয়ে বলছো।",
+            icon: "🗣️",
+          },
         },
         {
           en: "I want a discount.",
@@ -172,6 +184,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to see a doctor" },
           topicArea: "health",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার দুইদিন ধরে জ্বর ও মাথা ব্যথা। ওষুধ খেয়ে কমছে না। হাসপাতালে যেতে চাও।",
+            icon: "🏥",
+          },
         },
         {
           en: "I want a new phone.",
@@ -192,6 +208,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to spend more time with my family" },
           topicArea: "relationships",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি বিদেশে কাজ করো। পরিবার দেশে। ঈদের সময় ছুটি পাওনি। ফোনে মাকে বলছো।",
+            icon: "✈️",
+          },
         },
       ],
       formality: "casual",
@@ -387,11 +407,11 @@ export const categoryA1: PatternCategory = {
               topicArea: "daily_life",
             },
             {
-              en: "I wanted to go home.",
-              bn: "আমি বাড়ি যেতে চেয়েছিলাম।",
-              pronunciation_bn: "আই ওয়ান্টেড টু গো হোম।",
-              slotValues: { THING: "to go home" },
-              topicArea: "daily_life",
+              en: "I wanted to go to the mosque.",
+              bn: "আমি মসজিদে যেতে চেয়েছিলাম।",
+              pronunciation_bn: "আই ওয়ান্টেড টু গো টু দা মস্ক।",
+              slotValues: { THING: "to go to the mosque" },
+              topicArea: "religion",
             },
             {
               en: "I wanted a new phone.",
@@ -481,7 +501,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমি কাজের পরে বিশ্রাম চাইবো।",
               pronunciation_bn: "আই উইল ওয়ান্ট টু রেস্ট আফটার ওয়ার্ক।",
               slotValues: { THING: "to rest after work" },
-              topicArea: "daily_life",
+              topicArea: "health",
             },
             {
               en: "I will want your help tomorrow.",
@@ -593,6 +613,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a pen" },
           topicArea: "education",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি স্কুলে পরীক্ষা দিচ্ছো। হঠাৎ কলম শেষ হয়ে গেলো। পাশের জনকে বলছো।",
+            icon: "🏫",
+          },
         },
         {
           en: "I need to finish this report.",
@@ -601,6 +625,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to finish this report" },
           topicArea: "work",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি অফিসে বসে আছো। বস বলেছে আজকের মধ্যে রিপোর্ট দিতে হবে। সন্ধ্যা হয়ে গেছে।",
+            icon: "💼",
+          },
         },
         {
           en: "I need some medicine.",
@@ -633,13 +661,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "more time" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি প্রজেক্টের কাজ করছো। ডেডলাইন আজকে, কিন্তু কাজ এখনো শেষ হয়নি। বসকে বলছো।",
+            icon: "⏰",
+          },
         },
         {
           en: "I need to eat something.",
           bn: "আমার কিছু খাওয়া দরকার।",
           pronunciation_bn: "আই নিড টু ইট সামথিং।",
           slotValues: { THING: "to eat something" },
-          topicArea: "food",
+          topicArea: "health",
           stage: 2,
           miniStory: {
             situation_bn: "তুমি সকাল থেকে কিছু খাওনি। দুপুর ২টা বাজে। মাথা ঘুরছে। সহকর্মীকে বলছো।",
@@ -653,6 +685,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a break" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি গার্মেন্টস ফ্যাক্টরিতে পাঁচ ঘণ্টা ধরে দাঁড়িয়ে কাজ করছো। পা ব্যথা করছে। সুপারভাইজারকে বলছো।",
+            icon: "🏭",
+          },
         },
         {
           en: "I need to study harder.",
@@ -661,6 +697,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to study harder" },
           topicArea: "education",
           stage: 2,
+          miniStory: {
+            situation_bn: "পরীক্ষার রেজাল্ট খারাপ হয়েছে। তুমি বন্ধুকে বলছো যে এবার ভালো করে পড়তে হবে।",
+            icon: "📚",
+          },
         },
         {
           en: "I need a glass of water.",
@@ -681,6 +721,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "new shoes" },
           topicArea: "shopping",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার জুতো ছিঁড়ে গেছে। বর্ষায় পানি ঢুকছে। বাজারে নতুন জুতো কিনতে যেতে হবে।",
+            icon: "🏪",
+          },
         },
         {
           en: "I need to call my mother.",
@@ -689,6 +733,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to call my mother" },
           topicArea: "relationships",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি ঢাকায় থাকো, মা গ্রামে। আজ সন্ধ্যায় মায়ের ফোন মিস হয়েছে। ফোন করা দরকার।",
+            icon: "🏠",
+          },
         },
         {
           en: "I need a seat on the train.",
@@ -709,13 +757,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a bigger bag" },
           topicArea: "shopping",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি বাজারে অনেক কিছু কিনেছো। ব্যাগে আর জায়গা নেই। দোকানদারকে বড় ব্যাগ চাইছো।",
+            icon: "🛒",
+          },
         },
         {
           en: "I need to pay the rent.",
           bn: "আমি বাড়ি ভাড়া দিতে হবে।",
           pronunciation_bn: "আই নিড টু পে দা রেন্ট।",
           slotValues: { THING: "to pay the rent" },
-          topicArea: "daily_life",
+          topicArea: "finance",
           stage: 3,
           miniStory: {
             situation_bn: "মাসের শেষ। বাড়িওয়ালা এসে বলেছে ভাড়া দিতে। তোমাকে ব্যবস্থা করতে হবে।",
@@ -909,11 +961,11 @@ export const categoryA1: PatternCategory = {
           formula_bn: "আমার [জিনিস] দরকার ছিল।",
           examples: [
             {
-              en: "I needed help yesterday.",
-              bn: "আমার গতকাল সাহায্য দরকার ছিল।",
-              pronunciation_bn: "আই নিডেড হেল্প ইয়েস্টারডে।",
-              slotValues: { THING: "help yesterday" },
-              topicArea: "daily_life",
+              en: "I needed a doctor urgently.",
+              bn: "আমার জরুরি ডাক্তার দরকার ছিল।",
+              pronunciation_bn: "আই নিডেড আ ডক্টর আর্জেন্টলি।",
+              slotValues: { THING: "a doctor urgently" },
+              topicArea: "emergency",
             },
             {
               en: "I needed money for the bus.",
@@ -950,14 +1002,14 @@ export const categoryA1: PatternCategory = {
               bn: "আমার টাকা দরকার নেই।",
               pronunciation_bn: "আই ডোন্ট নিড মানি।",
               slotValues: { THING: "money" },
-              topicArea: "daily_life",
+              topicArea: "finance",
             },
             {
-              en: "I don't need to go.",
-              bn: "আমার যাওয়া দরকার নেই।",
-              pronunciation_bn: "আই ডোন্ট নিড টু গো।",
-              slotValues: { THING: "to go" },
-              topicArea: "daily_life",
+              en: "I don't need an ambulance.",
+              bn: "আমার অ্যাম্বুলেন্স দরকার নেই।",
+              pronunciation_bn: "আই ডোন্ট নিড অ্যান অ্যাম্বুলেন্স।",
+              slotValues: { THING: "an ambulance" },
+              topicArea: "emergency",
             },
           ],
         },
@@ -973,14 +1025,14 @@ export const categoryA1: PatternCategory = {
               bn: "তোমার কি সাহায্য দরকার?",
               pronunciation_bn: "ডু ইউ নিড হেল্প?",
               slotValues: { THING: "help" },
-              topicArea: "daily_life",
+              topicArea: "emergency",
             },
             {
               en: "Do you need water?",
               bn: "তোমার কি পানি দরকার?",
               pronunciation_bn: "ডু ইউ নিড ওয়াটার?",
               slotValues: { THING: "water" },
-              topicArea: "daily_life",
+              topicArea: "health",
             },
             {
               en: "Do you need a ride?",
@@ -1003,7 +1055,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমার আগামীকাল টাকা দরকার হবে।",
               pronunciation_bn: "আই উইল নিড মানি টুমরো।",
               slotValues: { THING: "money tomorrow" },
-              topicArea: "daily_life",
+              topicArea: "finance",
             },
             {
               en: "I will need your help later.",
@@ -1112,6 +1164,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "your support" },
           topicArea: "relationships",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি নতুন ব্যবসা শুরু করতে চাও। পরিবারকে বলছো তোমার পাশে থাকতে।",
+            icon: "🤝",
+          },
         },
         {
           en: "What I need is a proper meal.",
@@ -1132,6 +1188,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a vacation" },
           topicArea: "travel",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি ছয় মাস ধরে একটানা কাজ করছো। কোনো ছুটি নাওনি। শরীর-মন দুটোই ক্লান্ত। সহকর্মীকে বলছো।",
+            icon: "🌴",
+          },
         },
         {
           en: "What I need is more practice.",
@@ -1164,14 +1224,22 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "honesty" },
           topicArea: "relationships",
           stage: 2,
+          miniStory: {
+            situation_bn: "তোমার বন্ধু তোমাকে মিথ্যা বলেছে। তুমি রাগ করোনি, শুধু বলছো সত্যি কথা বললেই হতো।",
+            icon: "🕌",
+          },
         },
         {
-          en: "What I need is a proper meal.",
-          bn: "আমার যা দরকার তা হলো ঠিকমতো একটা খাবার।",
-          pronunciation_bn: "হোয়াট আই নিড ইজ আ প্রপার মিল।",
-          slotValues: { THING: "a proper meal" },
-          topicArea: "food",
+          en: "What I need is a steady income.",
+          bn: "আমার যা দরকার তা হলো একটা নিয়মিত আয়।",
+          pronunciation_bn: "হোয়াট আই নিড ইজ আ স্টেডি ইনকাম।",
+          slotValues: { THING: "a steady income" },
+          topicArea: "finance",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি দিনমজুরের কাজ করো। কোনোদিন কাজ থাকে, কোনোদিন নেই। পরিবারের খরচ চালাতে কষ্ট হচ্ছে।",
+            icon: "💰",
+          },
         },
         {
           en: "What I need is better tools.",
@@ -1180,6 +1248,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "better tools" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি মিস্ত্রির কাজ করো। পুরোনো হাতুড়ি আর করাত দিয়ে ভালো কাজ হচ্ছে না। বসকে বলছো।",
+            icon: "🔧",
+          },
         },
         {
           en: "What I need is a good internet connection.",
@@ -1188,6 +1260,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a good internet connection" },
           topicArea: "daily_life",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি অনলাইনে ক্লাস করছো। কিন্তু ইন্টারনেট বারবার কেটে যাচ্ছে। টিচারকে কিছু বলতে পারছো না।",
+            icon: "📶",
+          },
         },
         {
           en: "What I need is fresh air.",
@@ -1196,6 +1272,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "fresh air" },
           topicArea: "health",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি সারাদিন বন্ধ ঘরে কাজ করেছো। মাথা ধরেছে। বাইরে একটু হাঁটতে যেতে চাও।",
+            icon: "🌾",
+          },
         },
         {
           en: "What I need is a return ticket.",
@@ -1204,6 +1284,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a return ticket" },
           topicArea: "travel",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি চট্টগ্রাম থেকে ঢাকা যাচ্ছো। যাওয়ার টিকিট আছে, কিন্তু ফেরার টিকিট কাটোনি। কাউন্টারে বলছো।",
+            icon: "🚂",
+          },
         },
         {
           en: "What I need is some medicine.",
@@ -1212,6 +1296,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "some medicine" },
           topicArea: "health",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার সর্দি-কাশি হয়েছে। ফার্মেসিতে গেছো। দোকানদারকে বলছো তোমার কী দরকার।",
+            icon: "💊",
+          },
         },
         {
           en: "What I need is a chance to prove myself.",
@@ -1220,6 +1308,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a chance to prove myself" },
           topicArea: "work",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি নতুন চাকরিতে ঢুকেছো। কেউ তোমাকে গুরুত্বপূর্ণ কাজ দিচ্ছে না। বসকে বলছো সুযোগ দিতে।",
+            icon: "🏛️",
+          },
         },
       ],
       formality: "polite",
@@ -1534,6 +1626,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to be left alone" },
           topicArea: "daily_life",
           stage: 1,
+          miniStory: {
+            situation_bn: "সারাদিন অনেক মানুষের সাথে কথা বলেছো। ক্লান্ত। বাড়িতে এসে শুধু একটু একা থাকতে চাও।",
+            icon: "🏠",
+          },
         },
         {
           en: "All I want is a fair chance.",
@@ -1566,6 +1662,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to pass the exam" },
           topicArea: "education",
           stage: 1,
+          miniStory: {
+            situation_bn: "পরীক্ষা কাল। তুমি অনেক চেষ্টা করেছো। ভালো নম্বর চাও না, শুধু পাশ করতে চাও।",
+            icon: "🏫",
+          },
         },
         {
           en: "All I want is good health.",
@@ -1574,6 +1674,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "good health" },
           topicArea: "health",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি হাসপাতাল থেকে সবে সুস্থ হয়ে বাড়ি ফিরেছো। কেউ জিজ্ঞেস করে কী চাও। তুমি বলো শুধু সুস্থ থাকতে চাও।",
+            icon: "🏥",
+          },
         },
         {
           en: "All I want is your trust.",
@@ -1594,6 +1698,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a refund" },
           topicArea: "shopping",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি অনলাইনে জিনিস কিনেছো। ভাঙা এসেছে। দোকানদার অন্য জিনিস দিতে চায়, কিন্তু তুমি শুধু টাকা ফেরত চাও।",
+            icon: "🏪",
+          },
         },
         {
           en: "All I want is one more chance.",
@@ -1602,13 +1710,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "one more chance" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি কাজে ভুল করেছো। বস রাগ করেছে। তুমি আরেকবার সুযোগ চাইছো নিজেকে প্রমাণ করতে।",
+            icon: "💼",
+          },
         },
         {
           en: "All I want is a home-cooked meal.",
           bn: "আমি শুধু বাড়ির রান্না চাই।",
           pronunciation_bn: "অল আই ওয়ান্ট ইজ আ হোম-কুকড মিল।",
           slotValues: { THING: "a home-cooked meal" },
-          topicArea: "food",
+          topicArea: "relationships",
           stage: 2,
           miniStory: {
             situation_bn: "তুমি ঢাকায় কাজ করো, বাড়ি গ্রামে। মায়ের রান্না খুব মনে পড়ে। বন্ধুকে বলছো।",
@@ -1622,22 +1734,34 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to make my parents proud" },
           topicArea: "relationships",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি বিদেশে কাজ করো। অনেক কষ্ট করছো। বন্ধুকে ফোনে বলছো কেন এত কষ্ট করো।",
+            icon: "✈️",
+          },
         },
         {
-          en: "All I want is a quiet life.",
-          bn: "আমি শুধু শান্তির জীবন চাই।",
-          pronunciation_bn: "অল আই ওয়ান্ট ইজ আ কোয়াইয়েট লাইফ।",
-          slotValues: { THING: "a quiet life" },
-          topicArea: "daily_life",
+          en: "All I want is to pray in peace.",
+          bn: "আমি শুধু শান্তিতে নামাজ পড়তে চাই।",
+          pronunciation_bn: "অল আই ওয়ান্ট ইজ টু প্রে ইন পিস।",
+          slotValues: { THING: "to pray in peace" },
+          topicArea: "religion",
           stage: 3,
+          miniStory: {
+            situation_bn: "জুম্মার নামাজের সময় হয়ে গেছে। মসজিদে যেতে চাও কিন্তু অফিসে কাজ আছে। বসকে বলছো।",
+            icon: "🕌",
+          },
         },
         {
-          en: "All I want is to go home.",
-          bn: "আমি শুধু বাড়ি যেতে চাই।",
-          pronunciation_bn: "অল আই ওয়ান্ট ইজ টু গো হোম।",
-          slotValues: { THING: "to go home" },
-          topicArea: "daily_life",
+          en: "All I want is Eid with my family.",
+          bn: "আমি শুধু পরিবারের সাথে ঈদ করতে চাই।",
+          pronunciation_bn: "অল আই ওয়ান্ট ইজ ঈদ উইথ মাই ফ্যামিলি।",
+          slotValues: { THING: "Eid with my family" },
+          topicArea: "religion",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি ঢাকায় কাজ করো। ঈদের ছুটি পাচ্ছো না। পরিবার গ্রামে আছে। ফোনে মাকে বলছো।",
+            icon: "🕌",
+          },
         },
         {
           en: "All I want is a window seat.",
@@ -1646,6 +1770,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a window seat" },
           topicArea: "travel",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি লঞ্চে উঠেছো বরিশাল যাবে। ভেতরে বসলে গরম লাগে। জানালার পাশে বসতে চাও বাতাসের জন্য।",
+            icon: "🚢",
+          },
         },
         {
           en: "All I want is to learn English.",
@@ -1654,6 +1782,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to learn English" },
           topicArea: "education",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি মধ্যপ্রাচ্যে কাজ করতে যাবে। এজেন্ট বলেছে ইংরেজি লাগবে। তুমি বলছো শুধু ইংরেজিটা শিখতে পারলেই হয়।",
+            icon: "📖",
+          },
         },
       ],
       formality: "casual",
@@ -1849,11 +1981,11 @@ export const categoryA1: PatternCategory = {
               topicArea: "food",
             },
             {
-              en: "All I wanted was to go home.",
-              bn: "আমি শুধু বাড়ি যেতে চেয়েছিলাম।",
-              pronunciation_bn: "অল আই ওয়ান্টেড ওয়াজ টু গো হোম।",
-              slotValues: { THING: "to go home" },
-              topicArea: "daily_life",
+              en: "All I wanted was to fast during Ramadan.",
+              bn: "আমি শুধু রমজানে রোজা রাখতে চেয়েছিলাম।",
+              pronunciation_bn: "অল আই ওয়ান্টেড ওয়াজ টু ফাস্ট ডিউরিং রমাদান।",
+              slotValues: { THING: "to fast during Ramadan" },
+              topicArea: "religion",
             },
             {
               en: "All I wanted was some rest.",
@@ -1876,7 +2008,7 @@ export const categoryA1: PatternCategory = {
               bn: "তুমি শুধু টাকা চাও।",
               pronunciation_bn: "অল ইউ ওয়ান্ট ইজ মানি।",
               slotValues: { THING: "money" },
-              topicArea: "daily_life",
+              topicArea: "finance",
             },
             {
               en: "All you want is attention.",
@@ -1890,7 +2022,7 @@ export const categoryA1: PatternCategory = {
               bn: "তুমি শুধু মজা করতে চাও।",
               pronunciation_bn: "অল ইউ ওয়ান্ট ইজ টু হ্যাভ ফান।",
               slotValues: { THING: "to have fun" },
-              topicArea: "daily_life",
+              topicArea: "relationships",
             },
           ],
         },
@@ -1969,7 +2101,7 @@ export const categoryA1: PatternCategory = {
           bn: "আমি একটা ঠান্ডা পানীয়ের জন্য মরছি।",
           pronunciation_bn: "আইম ডাইং ফর আ কোল্ড ড্রিংক।",
           slotValues: { THING: "a cold drink" },
-          topicArea: "food",
+          topicArea: "health",
           stage: 1,
           miniStory: {
             situation_bn: "গরমের দিন, তুমি রিকশা চালিয়ে ক্লান্ত। রাস্তার পাশে একটা দোকান দেখে থামলে।",
@@ -1981,7 +2113,7 @@ export const categoryA1: PatternCategory = {
           bn: "আমি ছায়ার জন্য মরছি।",
           pronunciation_bn: "আইম ডাইং ফর সাম শেইড।",
           slotValues: { THING: "some shade" },
-          topicArea: "daily_life",
+          topicArea: "health",
           stage: 1,
           miniStory: {
             situation_bn: "প্রচণ্ড রোদে হাঁটছো। কোথাও ছায়া নেই। একটু ছায়া পেলে ভালো হতো।",
@@ -2007,6 +2139,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a vacation" },
           topicArea: "travel",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি তিন মাস ধরে একটানা কাজ করছো। উইকেন্ডেও ছুটি নেই। কক্সবাজারে যেতে চাও।",
+            icon: "🏖️",
+          },
         },
         {
           en: "I'm dying for some food.",
@@ -2039,14 +2175,22 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a day off" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি গার্মেন্টস ফ্যাক্টরিতে কাজ করো। পরপর দশ দিন কাজ করেছো। একটু ছুটির জন্য মন কাঁদছে।",
+            icon: "🏭",
+          },
         },
         {
           en: "I'm dying for some good news.",
           bn: "আমি ভালো খবরের জন্য মরছি।",
           pronunciation_bn: "আইম ডাইং ফর সাম গুড নিউজ।",
           slotValues: { THING: "some good news" },
-          topicArea: "daily_life",
+          topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি চাকরির ইন্টারভিউ দিয়েছো। এক সপ্তাহ হয়ে গেছে কোনো খবর নেই। প্রতিদিন ফোন চেক করছো।",
+            icon: "📱",
+          },
         },
         {
           en: "I'm dying for some biryani.",
@@ -2067,14 +2211,22 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "an ice cream" },
           topicArea: "food",
           stage: 2,
+          miniStory: {
+            situation_bn: "গরমের দুপুরে তুমি আর তোমার ছোট ভাই রাস্তায় হাঁটছো। আইসক্রিমের ভ্যান দেখে দুজনেরই খেতে ইচ্ছে করছে।",
+            icon: "🍦",
+          },
         },
         {
           en: "I'm dying for some water.",
           bn: "আমি পানির জন্য মরছি।",
           pronunciation_bn: "আইম ডাইং ফর সাম ওয়াটার।",
           slotValues: { THING: "some water" },
-          topicArea: "daily_life",
+          topicArea: "religion",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি রোযা রেখেছো। ইফতারের ১০ মিনিট বাকি। গলা একদম শুকিয়ে গেছে। পানির কথাই শুধু মনে হচ্ছে।",
+            icon: "🕌",
+          },
         },
         {
           en: "I'm dying for a new phone.",
@@ -2083,6 +2235,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a new phone" },
           topicArea: "shopping",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার ফোনের স্ক্রিন ভাঙা, ব্যাটারি দ্রুত শেষ হয়ে যায়। বন্ধুর নতুন ফোন দেখে তোমারও ইচ্ছে হচ্ছে।",
+            icon: "📱",
+          },
         },
         {
           en: "I'm dying for a chance to travel.",
@@ -2091,13 +2247,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a chance to travel" },
           topicArea: "travel",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার বন্ধুরা সিলেট ঘুরতে গেছে। তুমি যেতে পারোনি কাজের জন্য। ছবি দেখে তোমারও যেতে ইচ্ছে করছে।",
+            icon: "🌄",
+          },
         },
         {
           en: "I'm dying for payday.",
           bn: "আমি বেতনের দিনের জন্য মরছি।",
           pronunciation_bn: "আইম ডাইং ফর পে-ডে।",
           slotValues: { THING: "payday" },
-          topicArea: "work",
+          topicArea: "finance",
           stage: 3,
           miniStory: {
             situation_bn: "মাসের শেষ। টাকা প্রায় ফুরিয়ে গেছে। বেতনের দিনের জন্য অপেক্ষা করছো।",
@@ -2111,6 +2271,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a chat with my friend" },
           topicArea: "relationships",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি নতুন শহরে এসেছো কাজের জন্য। পুরোনো বন্ধুদের সাথে অনেকদিন কথা হয়নি। তাদের খুব মিস করছো।",
+            icon: "☕",
+          },
         },
       ],
       formality: "casual",
@@ -2307,14 +2471,14 @@ export const categoryA1: PatternCategory = {
               bn: "আমি পানির জন্য মরছিলাম।",
               pronunciation_bn: "আই ওয়াজ ডাইং ফর ওয়াটার।",
               slotValues: { THING: "water" },
-              topicArea: "daily_life",
+              topicArea: "health",
             },
             {
               en: "I was dying for some shade.",
               bn: "আমি ছায়ার জন্য মরছিলাম।",
               pronunciation_bn: "আই ওয়াজ ডাইং ফর সাম শেইড।",
               slotValues: { THING: "some shade" },
-              topicArea: "daily_life",
+              topicArea: "health",
             },
             {
               en: "I was dying for a cup of tea.",
@@ -2337,7 +2501,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমি বাড়ি যেতে মরছি।",
               pronunciation_bn: "আইম ডাইং টু গো হোম।",
               slotValues: { THING: "go home" },
-              topicArea: "daily_life",
+              topicArea: "work",
             },
             {
               en: "I'm dying to eat something.",
@@ -2457,13 +2621,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "some information" },
           topicArea: "daily_life",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি সরকারি অফিসে গেছো। জন্ম নিবন্ধন করতে কী কী লাগবে জানো না। কাউন্টারে জিজ্ঞেস করছো।",
+            icon: "🏛️",
+          },
         },
         {
           en: "I'd like a table for two.",
           bn: "আমি দুজনের জন্য একটা টেবিল চাইতাম।",
           pronunciation_bn: "আইড লাইক আ টেবল ফর টু।",
           slotValues: { THING: "a table for two" },
-          topicArea: "food",
+          topicArea: "relationships",
           stage: 1,
           miniStory: {
             situation_bn: "তুমি আর তোমার বন্ধু একটা রেস্তোরাঁয় ঢুকেছো। দরজায় একজন দাঁড়িয়ে আছে, তাকে বলছো।",
@@ -2477,6 +2645,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to make a reservation" },
           topicArea: "travel",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি পরিবারসহ কক্সবাজারে যাবে। হোটেলে ফোন করে রুম বুক করতে চাইছো।",
+            icon: "🏨",
+          },
         },
         {
           en: "I'd like the chicken please.",
@@ -2497,6 +2669,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to know the price" },
           topicArea: "shopping",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি শপিং মলে একটা ব্যাগ পছন্দ করেছো। দামের ট্যাগ নেই। সেলসম্যানকে জিজ্ঞেস করছো।",
+            icon: "🛍️",
+          },
         },
         {
           en: "I'd like a window seat.",
@@ -2505,6 +2681,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a window seat" },
           topicArea: "travel",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি বিমানের কাউন্টারে চেক-ইন করছো। বাইরের দৃশ্য দেখতে ভালোবাসো। জানালার পাশে সিট চাইছো।",
+            icon: "✈️",
+          },
         },
         {
           en: "I'd like to cancel my order.",
@@ -2513,14 +2693,22 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to cancel my order" },
           topicArea: "shopping",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি রেস্তোরাঁয় খাবার অর্ডার দিয়েছো। কিন্তু হঠাৎ বন্ধু ফোন করে বললো বাইরে দেখা করতে। অর্ডার বাতিল করতে চাও।",
+            icon: "🍽️",
+          },
         },
         {
           en: "I'd like some time to think.",
           bn: "আমি ভাবার জন্য কিছুটা সময় চাইতাম।",
           pronunciation_bn: "আইড লাইক সাম টাইম টু থিংক।",
           slotValues: { THING: "some time to think" },
-          topicArea: "daily_life",
+          topicArea: "finance",
           stage: 2,
+          miniStory: {
+            situation_bn: "বাড়িওয়ালা বলেছে ভাড়া বাড়বে। তুমি এখনই সিদ্ধান্ত নিতে পারছো না। একটু সময় চাইছো ভাবতে।",
+            icon: "🏠",
+          },
         },
         {
           en: "I'd like to try this on.",
@@ -2539,8 +2727,12 @@ export const categoryA1: PatternCategory = {
           bn: "আমি বিলটা চাইতাম, প্লিজ।",
           pronunciation_bn: "আইড লাইক দা বিল প্লিজ।",
           slotValues: { THING: "the bill" },
-          topicArea: "food",
+          topicArea: "finance",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি রেস্তোরাঁয় খাওয়া শেষ করেছো। এখন বিল দিয়ে বের হতে চাও। ওয়েটারকে ডাকছো।",
+            icon: "🧾",
+          },
         },
         {
           en: "I'd like to book an appointment.",
@@ -2549,6 +2741,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "to book an appointment" },
           topicArea: "health",
           stage: 3,
+          miniStory: {
+            situation_bn: "তোমার দাঁতে ব্যথা হচ্ছে। ডেন্টিস্টের কাছে যেতে হবে। ক্লিনিকে ফোন করে সময় নিতে চাইছো।",
+            icon: "🏥",
+          },
         },
         {
           en: "I'd like a glass of water.",
@@ -2557,13 +2753,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a glass of water" },
           topicArea: "daily_life",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি কারো বাড়িতে বেড়াতে গেছো। বসে আছো, গলা শুকিয়ে গেছে। ভদ্র করে পানি চাইছো।",
+            icon: "💧",
+          },
         },
         {
           en: "I'd like to apply for a passport.",
           bn: "আমি পাসপোর্টের জন্য আবেদন করতে চাই।",
           pronunciation_bn: "আইড লাইক টু অ্যাপ্লাই ফর আ পাসপোর্ট।",
           slotValues: { THING: "to apply for a passport" },
-          topicArea: "daily_life",
+          topicArea: "travel",
           stage: 3,
           miniStory: {
             situation_bn: "তুমি পাসপোর্ট অফিসে গেছো। বিদেশে কাজের জন্য পাসপোর্ট লাগবে।",
@@ -2769,7 +2969,7 @@ export const categoryA1: PatternCategory = {
               bn: "তুমি কি বসতে চাও?",
               pronunciation_bn: "উড ইউ লাইক টু সিট ডাউন?",
               slotValues: { THING: "to sit down" },
-              topicArea: "daily_life",
+              topicArea: "health",
             },
             {
               en: "Would you like a bag?",
@@ -2792,7 +2992,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমি বাড়ি যেতে চাই।",
               pronunciation_bn: "আইড লাইক টু গো হোম।",
               slotValues: { THING: "go home" },
-              topicArea: "daily_life",
+              topicArea: "work",
             },
             {
               en: "I'd like to pay by card.",
@@ -2829,7 +3029,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমি অপেক্ষা করতে চাইতাম না।",
               pronunciation_bn: "আই উডন্ট লাইক টু ওয়েট।",
               slotValues: { THING: "to wait" },
-              topicArea: "daily_life",
+              topicArea: "shopping",
             },
             {
               en: "I wouldn't like spicy food.",
@@ -2859,7 +3059,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমি যেতে চাইতাম (কিন্তু যাইনি)।",
               pronunciation_bn: "আইড হ্যাভ লাইকড টু গো।",
               slotValues: { THING: "to go" },
-              topicArea: "daily_life",
+              topicArea: "travel",
             },
             {
               en: "I'd have liked a bigger room.",
@@ -2958,7 +3158,7 @@ export const categoryA1: PatternCategory = {
           bn: "একটু তাজা বাতাস হলে ভালো হতো।",
           pronunciation_bn: "আই কুড ইউজ সাম ফ্রেশ এয়ার।",
           slotValues: { THING: "some fresh air" },
-          topicArea: "daily_life",
+          topicArea: "health",
           stage: 1,
           miniStory: {
             situation_bn: "অনেকক্ষণ ধরে ঘরে বসে আছো। জানালা বন্ধ। দম বন্ধ হয়ে আসছে। একটু বাইরে যেতে চাও।",
@@ -2970,8 +3170,12 @@ export const categoryA1: PatternCategory = {
           bn: "আমার কিছু পরামর্শ হলে ভালো হতো।",
           pronunciation_bn: "আই কুড ইউজ সাম অ্যাডভাইস।",
           slotValues: { THING: "some advice" },
-          topicArea: "daily_life",
+          topicArea: "education",
           stage: 1,
+          miniStory: {
+            situation_bn: "তুমি কোন কলেজে ভর্তি হবে বুঝতে পারছো না। বড় ভাইয়ের কাছে পরামর্শ চাইছো।",
+            icon: "🏫",
+          },
         },
         {
           en: "I could use more sleep.",
@@ -2992,6 +3196,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a vacation" },
           topicArea: "travel",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি ছয় মাস ধরে অফিসে কাজ করছো। কোথাও ঘুরতে যাওনি। সহকর্মীকে বলছো ছুটি হলে ভালো হতো।",
+            icon: "🌴",
+          },
         },
         {
           en: "I could use a new phone.",
@@ -3000,13 +3208,17 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a new phone" },
           topicArea: "shopping",
           stage: 2,
+          miniStory: {
+            situation_bn: "তোমার ফোনটা পুরোনো, ধীরে চলে। বন্ধু নতুন ফোন দেখাচ্ছে। তুমি বলছো তোমারটাও বদলাতে হবে।",
+            icon: "🏪",
+          },
         },
         {
           en: "I could use a cold drink.",
           bn: "আমার একটা ঠান্ডা পানীয় হলে ভালো হতো।",
           pronunciation_bn: "আই কুড ইউজ আ কোল্ড ড্রিংক।",
           slotValues: { THING: "a cold drink" },
-          topicArea: "food",
+          topicArea: "health",
           stage: 2,
           miniStory: {
             situation_bn: "প্রচণ্ড গরমে রাস্তায় হাঁটছো। ঘামে ভিজে গেছো। একটা ঠান্ডা কিছু খেতে চাও।",
@@ -3020,6 +3232,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a ride to the office" },
           topicArea: "work",
           stage: 2,
+          miniStory: {
+            situation_bn: "সকালে দেরি হয়ে গেছে। বাস পাচ্ছো না। সহকর্মীকে ফোন করে বলছো তার গাড়িতে উঠিয়ে নিতে।",
+            icon: "🚌",
+          },
         },
         {
           en: "I could use your support.",
@@ -3028,6 +3244,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "your support" },
           topicArea: "relationships",
           stage: 2,
+          miniStory: {
+            situation_bn: "তুমি চেয়ারম্যানের কাছে জমির সমস্যা নিয়ে যাবে। একা যেতে ভয় লাগছে। বন্ধুকে বলছো সাথে যেতে।",
+            icon: "🏛️",
+          },
         },
         {
           en: "I could use a good meal.",
@@ -3036,6 +3256,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a good meal" },
           topicArea: "food",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি সারাদিন শুধু বিস্কুট আর চা খেয়েছো। সন্ধ্যায় পেটে খিদে। বন্ধুকে বলছো ভালো কিছু খেতে যাওয়া যায়।",
+            icon: "🍛",
+          },
         },
         {
           en: "I could use more practice.",
@@ -3044,6 +3268,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "more practice" },
           topicArea: "education",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি ইংরেজি বলার চর্চা করছো। কিন্তু কথা বলতে গেলে এখনো আটকে যাও। আরও চর্চা দরকার মনে হচ্ছে।",
+            icon: "📝",
+          },
         },
         {
           en: "I could use some rest.",
@@ -3052,6 +3280,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "some rest" },
           topicArea: "health",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি দুই শিফট কাজ করে বাড়ি ফিরেছো। শরীর ভেঙে পড়ছে। বিছানায় শুয়ে পরিবারকে বলছো।",
+            icon: "🛏️",
+          },
         },
         {
           en: "I could use a friend right now.",
@@ -3060,6 +3292,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "a friend right now" },
           topicArea: "relationships",
           stage: 3,
+          miniStory: {
+            situation_bn: "তুমি নতুন শহরে একা থাকো। সন্ধ্যায় একা বসে আছো। কারো সাথে কথা বলতে ইচ্ছে করছে।",
+            icon: "🌆",
+          },
         },
         {
           en: "I could use extra time.",
@@ -3068,6 +3304,10 @@ export const categoryA1: PatternCategory = {
           slotValues: { THING: "extra time" },
           topicArea: "education",
           stage: 3,
+          miniStory: {
+            situation_bn: "পরীক্ষায় সময় প্রায় শেষ। দুইটা প্রশ্ন এখনো বাকি। তুমি চাইছো আরেকটু সময় পেলে লিখতে পারতে।",
+            icon: "⏰",
+          },
         },
       ],
       formality: "casual",
@@ -3242,7 +3482,7 @@ export const categoryA1: PatternCategory = {
               bn: "আমার গতকাল সাহায্য হলে ভালো হতো।",
               pronunciation_bn: "আই কুড হ্যাভ ইউজড সাম হেল্প ইয়েস্টারডে।",
               slotValues: { THING: "some help yesterday" },
-              topicArea: "daily_life",
+              topicArea: "work",
             },
             {
               en: "I could have used a ride.",
@@ -3309,14 +3549,14 @@ export const categoryA1: PatternCategory = {
               bn: "আমার কিছু উৎসাহ হলে ভালো হতো।",
               pronunciation_bn: "আই কুড ইউজ সাম এনকারেজমেন্ট।",
               slotValues: { THING: "encouragement" },
-              topicArea: "daily_life",
+              topicArea: "relationships",
             },
             {
               en: "I could use some water.",
               bn: "আমার কিছু পানি হলে ভালো হতো।",
               pronunciation_bn: "আই কুড ইউজ সাম ওয়াটার।",
               slotValues: { THING: "water" },
-              topicArea: "daily_life",
+              topicArea: "health",
             },
           ],
         },

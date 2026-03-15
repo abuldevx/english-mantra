@@ -121,6 +121,8 @@ export const categoryMeta: CategoryMeta[] = [
   { id: "H9", slug: "interrupting-politely", name: "Interrupting Politely", name_bn: "ভদ্রভাবে বাধা দেওয়া", group: "H", icon: "✋" },
   { id: "H10", slug: "changing-topics", name: "Changing & Managing Topics", name_bn: "বিষয় পরিবর্তন", group: "H", icon: "🔀" },
   { id: "H11", slug: "ending-conversations", name: "Ending a Conversation", name_bn: "কথোপকথন শেষ করা", group: "H", icon: "👋" },
+  { id: "H12", slug: "listener-responses", name: "Listener Responses", name_bn: "শুনে সায় দেওয়া", group: "H", icon: "👂" },
+  { id: "H13", slug: "self-correction-conversation", name: "Self-Correction in Conversation", name_bn: "কথার মাঝে নিজেকে সংশোধন করা", group: "H", icon: "🔄" },
 
   // GROUP I: Comparing & Contrasting
   { id: "I1", slug: "basic-comparisons", name: "Basic Comparisons", name_bn: "সাধারণ তুলনা", group: "I", icon: "⚖️" },
@@ -186,6 +188,7 @@ export const categoryMeta: CategoryMeta[] = [
   { id: "N5", slug: "indefinite-pronouns", name: "Indefinite Pronouns", name_bn: "অনির্দিষ্ট সর্বনাম", group: "N", icon: "❓" },
   { id: "N6", slug: "another-other", name: "Another/Other/The Other", name_bn: "আরেকটি/অন্য/অপরটি", group: "N", icon: "🔀" },
   { id: "N7", slug: "one-as-pronoun", name: "One as Pronoun", name_bn: "সর্বনাম হিসেবে One", group: "N", icon: "1️⃣" },
+  { id: "N8", slug: "degree-nuance-expressions", name: "Degree & Nuance Expressions", name_bn: "মাত্রা ও সূক্ষ্মতার ভাব প্রকাশ", group: "N", icon: "📊" },
 
   // GROUP O: Narrating & Storytelling
   { id: "O1", slug: "starting-a-story", name: "Starting a Story", name_bn: "গল্প শুরু করা", group: "O", icon: "📖" },
@@ -234,6 +237,7 @@ export const categoryMeta: CategoryMeta[] = [
   { id: "R13", slug: "no-matter-patterns", name: "No Matter Patterns", name_bn: "\"যাই হোক\" প্যাটার্ন", group: "R", icon: "🤷" },
   { id: "R14", slug: "qualifying-statements", name: "Qualifying Statements", name_bn: "শর্তসাপেক্ষ বিবৃতি", group: "R", icon: "⚖️" },
   { id: "R15", slug: "expressing-importance", name: "Expressing Importance", name_bn: "গুরুত্ব প্রকাশ", group: "R", icon: "⭐" },
+  { id: "R16", slug: "conversation-fillers", name: "Conversation Fillers", name_bn: "কথার ফাঁকে ফাঁকে বলা কথা", group: "R", icon: "🗨️" },
 
   // GROUP S: Advanced Structural Patterns
   { id: "S1", slug: "non-defining-relative", name: "Non-Defining Relative Clauses", name_bn: "অতিরিক্ত তথ্য উপবাক্য", group: "S", icon: "🔗" },
@@ -293,6 +297,7 @@ export const categoryMeta: CategoryMeta[] = [
   { id: "T33", slug: "housing-rent", name: "Housing & Rent", name_bn: "বাসস্থান ও ভাড়া", group: "T", icon: "🏠" },
   { id: "T34", slug: "social-media-texting", name: "Social Media & Texting", name_bn: "সোশ্যাল মিডিয়া ও টেক্সটিং", group: "T", icon: "📱" },
   { id: "T35", slug: "driving-traffic", name: "Driving & Traffic", name_bn: "গাড়ি চালানো ও ট্রাফিক", group: "T", icon: "🚗" },
+  { id: "T36", slug: "high-frequency-fixed-phrases", name: "High-Frequency Fixed Phrases", name_bn: "সবচেয়ে বেশি ব্যবহৃত কথা", group: "T", icon: "💬" },
 
   // GROUP U: Idiom-Based Structural Patterns
   { id: "U1", slug: "its-time-patterns", name: "It's Time Patterns", name_bn: "সময় হয়েছে প্যাটার্ন", group: "U", icon: "⏰" },
@@ -351,6 +356,9 @@ export const categoryMeta: CategoryMeta[] = [
   { id: "X8", slug: "direct-translation-traps", name: "Direct Translation Traps", name_bn: "সরাসরি অনুবাদ ফাঁদ", group: "X", icon: "⚠️" },
   { id: "X9", slug: "do-does-did-confusion", name: "Do/Does/Did Confusion", name_bn: "Do/Does/Did বিভ্রান্তি", group: "X", icon: "❓" },
   { id: "X10", slug: "confusing-word-pairs", name: "Confusing Word Pairs", name_bn: "বিভ্রান্তিকর শব্দ জোড়া", group: "X", icon: "🔄" },
+  { id: "X11", slug: "casual-speech-reductions", name: "Casual Speech Reductions", name_bn: "চলতি কথার সংক্ষেপ", group: "X", icon: "⚡" },
+  { id: "X12", slug: "collocations-word-partnerships", name: "Collocations — Word Partnerships", name_bn: "শব্দ জুটি — কোন শব্দের সাথে কোনটা যায়", group: "X", icon: "🤝" },
+  { id: "X13", slug: "connected-speech", name: "Connected Speech — How English Really Sounds", name_bn: "আসল ইংরেজি উচ্চারণ — দ্রুত বলার ধরন", group: "X", icon: "🎧" },
 ];
 
 // Slug to ID mapping

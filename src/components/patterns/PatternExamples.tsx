@@ -33,7 +33,11 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
   const { settings } = useSettings();
   const [showAll, setShowAll] = useState(false);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const [expandedStories, setExpandedStories] = useState<Set<number>>(new Set());
+  // Auto-expand the first miniStory so users learn they can tap
+  const firstStoryIndex = examples.findIndex((e) => e.miniStory);
+  const [expandedStories, setExpandedStories] = useState<Set<number>>(
+    () => new Set(firstStoryIndex >= 0 ? [firstStoryIndex] : [])
+  );
 
   // Get unique topic areas for filter chips
   const topicAreas = Array.from(
@@ -95,6 +99,24 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
         </div>
       )}
 
+      {/* Stage Legend */}
+      {examples.some((e) => e.stage) && (
+        <div className="flex items-center gap-3 text-[10px] text-muted">
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-success/20" />
+            <span className="font-bangla">মুখস্থ</span>
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-warning/20" />
+            <span className="font-bangla">পরিবর্তন</span>
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-primary/20" />
+            <span className="font-bangla">তৈরি করো</span>
+          </span>
+        </div>
+      )}
+
       {/* Examples List */}
       {visibleExamples.map((example, i) => {
         const globalIndex = examples.indexOf(example);
@@ -139,9 +161,20 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
                     <>
                       <p className="font-bangla text-muted mt-0.5">{example.bn}</p>
                       {example.pronunciation_bn && (
-                        <p className="font-bangla text-xs text-primary/70 mt-0.5 italic">
+                        <button
+                          onClick={() => {
+                            if ("speechSynthesis" in window) {
+                              window.speechSynthesis.cancel();
+                              const u = new SpeechSynthesisUtterance(example.en);
+                              u.lang = "en-US";
+                              u.rate = 0.8;
+                              window.speechSynthesis.speak(u);
+                            }
+                          }}
+                          className="font-bangla text-xs text-primary/70 mt-0.5 italic hover:text-primary transition-colors cursor-pointer text-left"
+                        >
                           🗣️ {example.pronunciation_bn}
-                        </p>
+                        </button>
                       )}
                     </>
                   )}
@@ -158,6 +191,8 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
                           : "text-muted hover:text-accent hover:bg-accent-light"
                       }`}
                       title="Show story context"
+                      aria-label="গল্প দেখো (Show story)"
+                      aria-expanded={isStoryExpanded}
                     >
                       {example.miniStory!.icon}
                     </button>
@@ -224,6 +259,7 @@ function PatternAudioButton({ text }: { text: string }) {
           : "text-muted hover:text-primary hover:bg-primary-light"
       }`}
       title="Listen"
+      aria-label="শোনো (Listen)"
     >
       {playing ? "🔈" : "🔊"}
     </button>

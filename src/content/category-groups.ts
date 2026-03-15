@@ -86,7 +86,7 @@ export const categoryGroups: CategoryGroup[] = [
     description: "Greet, introduce, thank, apologize, and make small talk",
     description_bn: "অভিবাদন, পরিচয়, ধন্যবাদ, ক্ষমা এবং হালকা কথা বলুন",
     difficulty: "beginner",
-    categoryIds: ["H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11"],
+    categoryIds: ["H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12", "H13"],
     color: "bg-amber-500",
   },
   {
@@ -152,7 +152,7 @@ export const categoryGroups: CategoryGroup[] = [
     description: "Use a/an/the, some/any, this/that, and quantifiers correctly",
     description_bn: "a/an/the, some/any, this/that এবং পরিমাণবাচক সঠিকভাবে ব্যবহার করুন",
     difficulty: "intermediate",
-    categoryIds: ["N1", "N2", "N3", "N4", "N5", "N6", "N7"],
+    categoryIds: ["N1", "N2", "N3", "N4", "N5", "N6", "N7", "N8"],
     color: "bg-stone-500",
   },
   {
@@ -196,7 +196,7 @@ export const categoryGroups: CategoryGroup[] = [
     description: "Connect ideas, draw conclusions, and organize thoughts",
     description_bn: "ধারণা সংযুক্ত করুন, সিদ্ধান্তে আসুন এবং চিন্তা সংগঠিত করুন",
     difficulty: "advanced",
-    categoryIds: ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12", "R13", "R14", "R15"],
+    categoryIds: ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12", "R13", "R14", "R15", "R16"],
     color: "bg-blue-600",
   },
   {
@@ -218,7 +218,7 @@ export const categoryGroups: CategoryGroup[] = [
     description: "Real-life situations: shopping, health, travel, work, and more",
     description_bn: "বাস্তব পরিস্থিতি: কেনাকাটা, স্বাস্থ্য, ভ্রমণ, কাজ এবং আরো",
     difficulty: "beginner",
-    categoryIds: ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18", "T19", "T20", "T21", "T22", "T23", "T24", "T25", "T26", "T27", "T28", "T29", "T30", "T31", "T32", "T33", "T34", "T35"],
+    categoryIds: ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16", "T17", "T18", "T19", "T20", "T21", "T22", "T23", "T24", "T25", "T26", "T27", "T28", "T29", "T30", "T31", "T32", "T33", "T34", "T35", "T36"],
     color: "bg-orange-600",
   },
   {
@@ -262,7 +262,7 @@ export const categoryGroups: CategoryGroup[] = [
     description: "Fix the most common English mistakes made by Bangla speakers — articles, prepositions, tenses, word order, and more",
     description_bn: "বাংলা ভাষীদের সবচেয়ে সাধারণ ইংরেজি ভুল ঠিক করুন — আর্টিকেল, পদান্বয়ী অব্যয়, কাল, শব্দ ক্রম এবং আরো",
     difficulty: "beginner",
-    categoryIds: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10"],
+    categoryIds: ["X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8", "X9", "X10", "X11", "X12", "X13"],
     color: "bg-red-600",
   },
 ];

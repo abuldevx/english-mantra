@@ -6,6 +6,7 @@ import { useSettings } from "@/contexts/SettingsContext";
 import { categoryMeta } from "@/content/index";
 import { getNextPatternId, getDueCount } from "@/lib/recommendations";
 import { getMasteryCounts, masteryConfig, type MasteryLevel } from "@/lib/mastery";
+import { getCurrentLevel, getLevelById } from "@/content/learning-path";
 
 export function HomeClient() {
   const { progress, todayPracticeCount } = useProgress();
@@ -20,6 +21,8 @@ export function HomeClient() {
   // Overall mastery counts
   const allPatternIds = Object.keys(progress.completedPatterns);
   const mastery = getMasteryCounts(allPatternIds, progress.completedPatterns);
+  const currentLevelId = getCurrentLevel(allPatternIds);
+  const currentLevel = getLevelById(currentLevelId);
 
   return (
     <div className="mx-auto max-w-lg px-4 py-6">
@@ -34,22 +37,62 @@ export function HomeClient() {
         <p className="text-sm text-muted">What will you do today?</p>
       </div>
 
-      {/* 4 Action Buttons */}
-      <div className="grid grid-cols-2 gap-3 mb-6">
-        <ActionButton
-          href={nextPatternId ? `/pattern/${nextPatternId}` : "/categories"}
-          icon="📖"
-          label_bn="নতুন শেখো"
-          label="New Pattern"
-        />
+      {/* Next Lesson — Hero CTA */}
+      {nextPatternId && (
+        <Link
+          href={`/learn/${nextPatternId}`}
+          className="block w-full p-5 rounded-2xl bg-primary text-white mb-4 hover:bg-primary/90 transition-colors shadow-lg"
+        >
+          <div className="flex items-center gap-4">
+            <span className="text-4xl">📖</span>
+            <div className="flex-1">
+              <p className="font-bangla font-bold text-lg">পরের পাঠ শুরু করো</p>
+              <p className="text-xs text-white/70">Start next lesson — 3 min</p>
+              <p className="text-sm text-white/90 font-mono mt-1">
+                {nextPatternId}
+              </p>
+            </div>
+            <span className="text-2xl">→</span>
+          </div>
+        </Link>
+      )}
+
+      {/* Learning Path Banner */}
+      {currentLevel && (
+        <Link
+          href="/path"
+          className="block p-3 rounded-xl border-2 border-primary/30 bg-primary/5 mb-4 hover:border-primary/50 transition-colors"
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">{currentLevel.icon}</span>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <span className="font-bangla font-bold text-sm">
+                  শেখার পথ
+                </span>
+                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${currentLevel.color} text-white`}>
+                  L{currentLevel.id}
+                </span>
+              </div>
+              <p className="text-xs text-muted font-bangla">
+                {currentLevel.name_bn} — {currentLevel.tagline_bn}
+              </p>
+            </div>
+            <span className="text-muted">→</span>
+          </div>
+        </Link>
+      )}
+
+      {/* Action Buttons */}
+      <div className="grid grid-cols-3 gap-2 mb-6">
         <ActionButton
           href="/practice/review"
           icon="🔄"
-          label_bn="রিভিউ করো"
+          label_bn="রিভিউ"
           label="Review"
           badge={dueCount > 0 ? `${dueCount}` : undefined}
           muted={dueCount === 0}
-          subtitle={dueCount === 0 ? "✓ সব ঠিক আছে" : undefined}
+          subtitle={dueCount === 0 ? "✓ ঠিক আছে" : undefined}
         />
         <ActionButton
           href="/practice/daily"
@@ -58,10 +101,10 @@ export function HomeClient() {
           label="Practice"
         />
         <ActionButton
-          href="/search"
-          icon="🔍"
-          label_bn="খুঁজো"
-          label="Search"
+          href="/categories"
+          icon="📚"
+          label_bn="ক্যাটাগরি"
+          label="Browse"
         />
       </div>
 
@@ -122,8 +165,8 @@ export function HomeClient() {
 
       {/* Quick links */}
       <div className="flex items-center justify-center gap-4 text-xs text-muted">
-        <Link href="/categories" className="hover:text-primary transition-colors">
-          📚 সব ক্যাটাগরি (Categories)
+        <Link href="/search" className="hover:text-primary transition-colors">
+          🔍 খুঁজো (Search)
         </Link>
         <Link href="/progress" className="hover:text-primary transition-colors">
           📊 অগ্রগতি (Progress)

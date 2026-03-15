@@ -159,6 +159,7 @@ export default function PatternDetailPage() {
                 : "text-muted hover:text-amber-500 hover:bg-card"
             }`}
             title={bookmarked ? "Remove bookmark" : "Add bookmark"}
+            aria-label={bookmarked ? "বুকমার্ক সরাও (Remove bookmark)" : "বুকমার্ক করো (Add bookmark)"}
           >
             {bookmarked ? "★" : "☆"}
           </button>

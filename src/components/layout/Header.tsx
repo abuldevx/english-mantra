@@ -39,6 +39,12 @@ export function Header() {
             সেতু নিয়ম
           </Link>
           <Link
+            href="/path"
+            className="text-muted hover:text-foreground transition-colors font-bangla"
+          >
+            শেখার পথ
+          </Link>
+          <Link
             href="/categories"
             className="text-muted hover:text-foreground transition-colors"
           >
