@@ -123,6 +123,7 @@ const defaultProgress: UserProgress = {
     practiceLevel: 1,
     dailyGoal: 10,
   },
+  buildingBlockSteps: [],
 };
 
 interface ProgressContextType {
@@ -134,6 +135,8 @@ interface ProgressContextType {
   totalPatternsLearned: number;
   todayPracticeCount: number;
   updateStreak: () => void;
+  completeBuildingBlockStep: (step: number) => void;
+  isStepCompleted: (step: number) => boolean;
 }
 
 const ProgressContext = createContext<ProgressContextType>({
@@ -145,6 +148,8 @@ const ProgressContext = createContext<ProgressContextType>({
   totalPatternsLearned: 0,
   todayPracticeCount: 0,
   updateStreak: () => {},
+  completeBuildingBlockStep: () => {},
+  isStepCompleted: () => false,
 });
 
 // SRS intervals in days based on confidence
@@ -261,6 +266,21 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     checkAchievements(progress);
   }, [progress.completedPatterns, progress.bookmarkedPatterns, progress.longestStreak, mounted, checkAchievements]);
 
+  const completeBuildingBlockStep = useCallback((step: number) => {
+    setProgress((prev) => {
+      if (prev.buildingBlockSteps.includes(step)) return prev;
+      return {
+        ...prev,
+        buildingBlockSteps: [...prev.buildingBlockSteps, step].sort((a, b) => a - b),
+      };
+    });
+  }, []);
+
+  const isStepCompleted = useCallback(
+    (step: number) => progress.buildingBlockSteps.includes(step),
+    [progress.buildingBlockSteps]
+  );
+
   const todayPracticeCount = Object.values(progress.completedPatterns).filter((p) => {
     const today = new Date().toISOString().split("T")[0];
     const practiceDate = new Date(p.lastPracticed).toISOString().split("T")[0];
@@ -278,6 +298,8 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         totalPatternsLearned,
         todayPracticeCount,
         updateStreak,
+        completeBuildingBlockStep,
+        isStepCompleted,
       }}
     >
       {children}

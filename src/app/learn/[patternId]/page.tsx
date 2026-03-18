@@ -6,7 +6,7 @@ import Link from "next/link";
 import type { Pattern, PatternCategory, Confidence } from "@/types/pattern";
 import { LessonFlow } from "@/components/lesson/LessonFlow";
 import { useProgress } from "@/contexts/ProgressContext";
-import { categoryMeta } from "@/content/index";
+import { categoryMeta, getCategoryImportSlug } from "@/content/index";
 import { getNextPatternId } from "@/lib/recommendations";
 
 export default function LearnPage() {
@@ -33,7 +33,7 @@ export default function LearnPage() {
       const categoryId = patternId.substring(0, dotIndex);
 
       try {
-        const mod = await import(`@/content/categories/${categoryId}`);
+        const mod = await import(`@/content/categories/${getCategoryImportSlug(categoryId)}`);
         const cat = mod[`category${categoryId}`] as PatternCategory;
         setCategory(cat);
         const found = cat.patterns.find((p) => p.id === patternId);
@@ -61,8 +61,9 @@ export default function LearnPage() {
               if (nextDotIndex !== -1) {
                 const nextCatId = nextId.substring(0, nextDotIndex);
                 try {
+                  const nextImportPath = getCategoryImportSlug(nextCatId);
                   const nextMod = await import(
-                    `@/content/categories/${nextCatId}`
+                    `@/content/categories/${nextImportPath}`
                   );
                   const nextCat = nextMod[
                     `category${nextCatId}`

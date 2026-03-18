@@ -18,23 +18,24 @@ export default function ProgressPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">Your Progress</h1>
-      <p className="text-sm text-muted font-bangla mb-1">তোমার অগ্রগতি</p>
-      <p className="text-muted text-sm mb-6">Track your English learning journey</p>
+      <h1 className="text-2xl font-bold mb-1 font-bangla">তোমার অগ্রগতি</h1>
+      <p className="text-sm text-muted mb-1">Your Progress</p>
+      <p className="text-muted text-sm mb-1 font-bangla">তোমার ইংরেজি শেখার যাত্রা দেখো</p>
+      <p className="text-muted text-xs mb-6">Track your English learning journey</p>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-        <StatCard icon="🔥" value={progress.currentStreak} label="Day Streak" label_bn="দিনের স্ট্রিক" />
-        <StatCard icon="📚" value={totalPatternsLearned} label="Patterns Learned" label_bn="প্যাটার্ন শেখা হয়েছে" />
-        <StatCard icon="🔖" value={progress.bookmarkedPatterns.length} label="Bookmarks" label_bn="বুকমার্ক" />
-        <StatCard icon="🏆" value={progress.longestStreak} label="Best Streak" label_bn="সেরা স্ট্রিক" />
+        <StatCard icon="🔥" value={progress.currentStreak} label_bn="দিনের স্ট্রিক" label="Day Streak" />
+        <StatCard icon="📚" value={totalPatternsLearned} label_bn="প্যাটার্ন শেখা হয়েছে" label="Patterns Learned" />
+        <StatCard icon="🔖" value={progress.bookmarkedPatterns.length} label_bn="বুকমার্ক" label="Bookmarks" />
+        <StatCard icon="🏆" value={progress.longestStreak} label_bn="সেরা স্ট্রিক" label="Best Streak" />
       </div>
 
       {/* Mastery Breakdown */}
       {totalPatternsLearned > 0 && (
         <div className="p-4 rounded-xl border border-card-border bg-card mb-8">
-          <h3 className="text-sm font-bold mb-1">Mastery Levels</h3>
-          <p className="text-[10px] text-muted font-bangla mb-3">দক্ষতার স্তর</p>
+          <h3 className="text-sm font-bold mb-1 font-bangla">দক্ষতার স্তর</h3>
+          <p className="text-[10px] text-muted mb-3">Mastery Levels</p>
           <div className="flex items-center gap-4 text-sm">
             {(["master", "confident", "familiar"] as MasteryLevel[]).map(
               (level) => {
@@ -75,8 +76,8 @@ export default function ProgressPage() {
 
       {/* Achievements Grid */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold mb-1">Achievements</h2>
-        <p className="text-xs text-muted font-bangla mb-3">অ্যাচিভমেন্ট</p>
+        <h2 className="text-lg font-bold mb-1 font-bangla">অর্জন</h2>
+        <p className="text-xs text-muted mb-3">Achievements</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {ACHIEVEMENTS.map((achievement) => {
             const unlocked = progress.achievements.includes(achievement.id);
@@ -105,10 +106,12 @@ export default function ProgressPage() {
 
       {/* Recently Practiced */}
       <section>
-        <h2 className="text-lg font-bold mb-3">Recently Practiced</h2>
+        <h2 className="text-lg font-bold mb-1 font-bangla">সম্প্রতি অনুশীলন</h2>
+        <p className="text-xs text-muted mb-3">Recently Practiced</p>
         {totalPatternsLearned === 0 ? (
           <div className="text-center py-8 text-muted border border-card-border rounded-xl bg-card">
-            <p className="text-sm">No patterns practiced yet. Start learning!</p>
+            <p className="text-sm font-bangla">এখনো কোনো প্যাটার্ন অনুশীলন করা হয়নি। শেখা শুরু করো!</p>
+            <p className="text-xs text-muted mt-1">No patterns practiced yet. Start learning!</p>
           </div>
         ) : (
           <div className="space-y-2">

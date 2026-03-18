@@ -7,6 +7,7 @@ import { PatternCard } from "@/components/patterns/PatternCard";
 import { DifficultyBadge } from "@/components/patterns/DifficultyBadge";
 import { useProgress } from "@/contexts/ProgressContext";
 import { getMasteryCounts, masteryConfig, type MasteryLevel } from "@/lib/mastery";
+import { getCategoryImportSlug } from "@/content/index";
 
 interface CategoryDetailClientProps {
   categoryId: string;
@@ -21,7 +22,7 @@ export function CategoryDetailClient({ categoryId, slug }: CategoryDetailClientP
   useEffect(() => {
     async function load() {
       try {
-        const mod = await import(`@/content/categories/${categoryId}`);
+        const mod = await import(`@/content/categories/${getCategoryImportSlug(categoryId)}`);
         const cat = mod[`category${categoryId}`] as PatternCategory;
         setCategory(cat);
       } catch {
@@ -67,12 +68,12 @@ export function CategoryDetailClient({ categoryId, slug }: CategoryDetailClientP
     <div className="mx-auto max-w-4xl px-4 py-6">
       {/* Breadcrumb */}
       <nav className="text-sm text-muted mb-4">
-        <Link href="/" className="hover:text-foreground">
-          Home
+        <Link href="/" className="hover:text-foreground font-bangla">
+          হোম
         </Link>
         <span className="mx-2">/</span>
-        <Link href="/categories" className="hover:text-foreground">
-          Categories
+        <Link href="/categories" className="hover:text-foreground font-bangla">
+          বিভাগ
         </Link>
         <span className="mx-2">/</span>
         <span className="text-foreground">{category.id}</span>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Pattern, PatternCategory, PatternExample, PracticeLevel } from "@/types/pattern";
 import type { ExerciseType } from "@/lib/exerciseSelector";
+import type { VariationInfo } from "@/lib/patternHelpers";
 import SlotFillExercise from "./SlotFillExercise";
 import WordBankExercise from "./WordBankExercise";
 
@@ -13,6 +14,7 @@ interface ExerciseContainerProps {
   exerciseType: ExerciseType;
   practiceLevel: PracticeLevel;
   onComplete: (correct: boolean) => void;
+  variationInfo?: VariationInfo;
 }
 
 function BanglaFirstExercise({
@@ -36,7 +38,7 @@ function BanglaFirstExercise({
   return (
     <div className="space-y-4">
       <div className="p-4 rounded-lg bg-accent-light">
-        <div className="text-xs text-accent mb-1">Translate to English:</div>
+        <div className="text-xs text-accent mb-1 font-bangla">ইংরেজিতে বলো:</div>
         <p className="font-bangla text-lg font-medium">{example.bn}</p>
       </div>
 
@@ -47,7 +49,7 @@ function BanglaFirstExercise({
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && answer.trim() && handleCheck()}
-            placeholder="Type the English sentence..."
+            placeholder="ইংরেজিতে লেখো..."
             className="w-full px-4 py-3 rounded-lg border border-card-border bg-background text-base focus:outline-none focus:ring-2 focus:ring-primary/30"
             autoFocus
           />
@@ -56,7 +58,7 @@ function BanglaFirstExercise({
             disabled={!answer.trim()}
             className="w-full py-3 rounded-lg bg-primary text-white font-medium disabled:opacity-50 transition-colors hover:bg-primary/90"
           >
-            Check Answer
+            উত্তর দেখো
           </button>
         </div>
       ) : (
@@ -71,19 +73,19 @@ function BanglaFirstExercise({
             {isCorrect && (
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-lg animate-celebrate">&#10003;</span>
-                <span className="text-xs font-medium">Correct!</span>
+                <span className="text-xs font-medium font-bangla">সঠিক!</span>
                 <span className="text-xs font-bold text-success animate-fadeUp">+1</span>
               </div>
             )}
             {!isCorrect && (
-              <div className="text-xs font-medium mb-1">Your answer:</div>
+              <div className="text-xs font-medium mb-1 font-bangla">তোমার উত্তর:</div>
             )}
             <p className="text-sm">{answer || "(empty)"}</p>
           </div>
 
           {!isCorrect && (
             <div className="p-3 rounded-lg bg-success-light border border-success/30">
-              <div className="text-xs font-medium text-success mb-1">Correct answer:</div>
+              <div className="text-xs font-medium text-success mb-1 font-bangla">সঠিক উত্তর:</div>
               <p className="text-sm font-medium">{example.en}</p>
               {example.pronunciation_bn && (
                 <p className="text-xs text-muted font-bangla mt-1">{example.pronunciation_bn}</p>
@@ -93,7 +95,7 @@ function BanglaFirstExercise({
 
           {isCorrect && (
             <div className="p-3 rounded-lg bg-success-light border border-success/30">
-              <div className="text-xs font-medium text-success mb-1">Correct answer:</div>
+              <div className="text-xs font-medium text-success mb-1 font-bangla">সঠিক উত্তর:</div>
               <p className="text-sm font-medium">{example.en}</p>
             </div>
           )}
@@ -102,7 +104,7 @@ function BanglaFirstExercise({
             onClick={() => onComplete(isCorrect)}
             className="w-full py-3 rounded-lg bg-primary text-white font-medium transition-colors hover:bg-primary/90"
           >
-            Continue
+            পরের প্রশ্ন →
           </button>
         </div>
       )}
@@ -117,7 +119,9 @@ export default function ExerciseContainer({
   exerciseType,
   practiceLevel,
   onComplete,
+  variationInfo,
 }: ExerciseContainerProps) {
+  const effectiveFormula = variationInfo?.formula ?? pattern.formula;
   const [exerciseDone, setExerciseDone] = useState(false);
   const [wasCorrect, setWasCorrect] = useState(false);
 
@@ -138,8 +142,13 @@ export default function ExerciseContainer({
         <div>
           <div className="text-xs text-muted">{category.name} — {pattern.id}</div>
           <div className="text-sm font-medium text-primary">
-            Pattern: {pattern.formula}
+            <span className="font-bangla">ছক:</span> {effectiveFormula}
           </div>
+          {variationInfo && (
+            <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full bg-accent-light border border-accent/20 text-[10px] font-medium">
+              <span className="font-bangla">{variationInfo.label_bn}</span>
+            </span>
+          )}
         </div>
         <span
           className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
@@ -150,11 +159,13 @@ export default function ExerciseContainer({
               : "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300"
           }`}
         >
-          {exerciseType === "bangla-first"
-            ? "Translate"
-            : exerciseType === "slot-fill"
-            ? "Fill Slot"
-            : "Word Bank"}
+          <span className="font-bangla">
+            {exerciseType === "bangla-first"
+              ? "অনুবাদ"
+              : exerciseType === "slot-fill"
+              ? "ঘর পূরণ"
+              : "শব্দ বাছাই"}
+          </span>
         </span>
       </div>
 
@@ -185,6 +196,7 @@ export default function ExerciseContainer({
           pattern={pattern}
           example={example}
           onAnswer={handleAnswer}
+          effectiveFormula={effectiveFormula}
         />
       )}
 
@@ -194,6 +206,7 @@ export default function ExerciseContainer({
           example={example}
           practiceLevel={practiceLevel}
           onAnswer={handleAnswer}
+          effectiveFormula={effectiveFormula}
         />
       )}
 
@@ -203,15 +216,15 @@ export default function ExerciseContainer({
           {wasCorrect ? (
             <div className="flex items-center justify-center gap-2">
               <span className="text-2xl text-success">&#10003;</span>
-              <span className="text-sm font-medium text-success">Great job!</span>
+              <span className="text-sm font-medium text-success font-bangla">দারুণ!</span>
               <span className="text-sm font-bold text-success animate-fadeUp">+1</span>
             </div>
           ) : (
             <div className="space-y-2">
-              <span className="text-sm text-muted">Keep practicing!</span>
+              <span className="text-sm text-muted font-bangla">আবার চেষ্টা করো!</span>
               {example.pronunciation_bn && (
                 <p className="text-xs text-muted font-bangla">
-                  Pronunciation: {example.pronunciation_bn}
+                  উচ্চারণ: {example.pronunciation_bn}
                 </p>
               )}
             </div>

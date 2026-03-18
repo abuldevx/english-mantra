@@ -21,9 +21,9 @@ function CategoriesContent() {
     if (!group) {
       return (
         <div className="mx-auto max-w-6xl px-4 py-6 text-center">
-          <p className="text-muted">Group not found.</p>
-          <Link href="/categories" className="text-primary text-sm mt-4 inline-block hover:underline">
-            Back to All Groups
+          <p className="text-muted font-bangla">গ্রুপ পাওয়া যায়নি</p>
+          <Link href="/categories" className="text-primary text-sm mt-4 inline-block hover:underline font-bangla">
+            সব গ্রুপে ফিরে যান
           </Link>
         </div>
       );
@@ -38,7 +38,7 @@ function CategoriesContent() {
           href="/categories"
           className="inline-flex items-center gap-1 text-sm text-muted hover:text-foreground mb-4 transition-colors"
         >
-          <span>←</span> All Groups
+          <span>←</span> সব গ্রুপ
         </Link>
 
         {/* Group header */}
@@ -53,8 +53,8 @@ function CategoriesContent() {
               <span className="text-xs font-mono text-muted">Group {group.id}</span>
               <DifficultyBadge difficulty={group.difficulty} />
             </div>
-            <h1 className="text-xl font-bold">{group.name}</h1>
-            <p className="font-bangla text-sm text-muted">{group.name_bn}</p>
+            <h1 className="text-xl font-bold font-bangla">{group.name_bn}</h1>
+            <p className="text-sm text-muted">{group.name}</p>
             <p className="text-sm text-muted mt-1">{group.description}</p>
           </div>
         </div>
@@ -72,8 +72,8 @@ function CategoriesContent() {
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-xs font-mono text-muted">{cat.id}</span>
                 </div>
-                <h3 className="font-semibold text-sm">{cat.name}</h3>
-                <p className="font-bangla text-xs text-muted mt-0.5">{cat.name_bn}</p>
+                <h3 className="font-semibold text-sm font-bangla">{cat.name_bn}</h3>
+                <p className="text-xs text-muted mt-0.5">{cat.name}</p>
               </div>
               <span className="text-muted text-lg">→</span>
             </Link>
@@ -104,16 +104,14 @@ function CategoriesContent() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">All Categories</h1>
-      <p className="text-muted text-sm mb-4">
-        Browse all {categoryGroups.reduce((sum, g) => sum + g.categoryIds.length, 0)} pattern categories across {categoryGroups.length} groups
-      </p>
+      <h1 className="text-2xl font-bold mb-1 font-bangla">সব বিভাগ</h1>
+      <p className="text-sm text-muted mb-4">All Categories</p>
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <input
           type="text"
-          placeholder="Search groups..."
+          placeholder="খুঁজুন..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="flex-1 px-3 py-2 rounded-lg border border-card-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
@@ -129,7 +127,7 @@ function CategoriesContent() {
                   : "bg-card border border-card-border text-muted hover:text-foreground"
               }`}
             >
-              {level === "all" ? "All" : level.charAt(0).toUpperCase() + level.slice(1)}
+              {level === "all" ? "সব" : level === "beginner" ? "সহজ" : level === "intermediate" ? "মাঝারি" : "কঠিন"}
             </button>
           ))}
         </div>

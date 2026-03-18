@@ -7,6 +7,7 @@ interface SlotFillExerciseProps {
   pattern: Pattern;
   example: PatternExample;
   onAnswer: (correct: boolean) => void;
+  effectiveFormula?: string;
 }
 
 interface FormulaPart {
@@ -61,12 +62,14 @@ export default function SlotFillExercise({
   pattern,
   example,
   onAnswer,
+  effectiveFormula,
 }: SlotFillExerciseProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [results, setResults] = useState<Record<string, boolean>>({});
 
-  const parts = useMemo(() => parseFormula(pattern.formula), [pattern.formula]);
+  const formula = effectiveFormula ?? pattern.formula;
+  const parts = useMemo(() => parseFormula(formula), [formula]);
   const slotNames = useMemo(
     () => parts.filter((p) => p.slotName).map((p) => p.slotName!),
     [parts]

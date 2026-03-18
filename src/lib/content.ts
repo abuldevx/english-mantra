@@ -1,5 +1,6 @@
 import type { PatternCategory, Pattern } from "@/types/pattern";
 import { categoryGroups } from "@/content/category-groups";
+import { getCategoryImportSlug } from "@/content/index";
 
 // Registry of all category modules - lazy loaded
 const categoryModules: Record<string, () => Promise<{ default: PatternCategory }>> = {};
@@ -9,8 +10,9 @@ function registerCategories() {
   // We'll build this dynamically from all groups
   for (const group of categoryGroups) {
     for (const catId of group.categoryIds) {
+      const importPath = getCategoryImportSlug(catId);
       categoryModules[catId] = () =>
-        import(`@/content/categories/${catId}`).then((mod) => ({
+        import(`@/content/categories/${importPath}`).then((mod) => ({
           default: mod[`category${catId}`],
         }));
     }

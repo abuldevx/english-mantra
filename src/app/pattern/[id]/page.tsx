@@ -20,6 +20,8 @@ import { getBridgeRules } from "@/content/bridge-rules";
 import { useProgress } from "@/contexts/ProgressContext";
 import { useSettings } from "@/contexts/SettingsContext";
 import { getMasteryLevel, masteryConfig } from "@/lib/mastery";
+import { getCategoryImportSlug } from "@/content/index";
+import WordBankExercise from "@/components/practice/WordBankExercise";
 
 type TabId = "learn" | "practice" | "use";
 
@@ -65,7 +67,7 @@ export default function PatternDetailPage() {
       const categoryId = patternId.substring(0, dotIndex);
 
       try {
-        const mod = await import(`@/content/categories/${categoryId}`);
+        const mod = await import(`@/content/categories/${getCategoryImportSlug(categoryId)}`);
         const cat = mod[`category${categoryId}`] as PatternCategory;
         setCategory(cat);
         const found = cat.patterns.find((p) => p.id === patternId);
@@ -108,6 +110,20 @@ export default function PatternDetailPage() {
   const appliedBridgeRules = pattern.bridgeRuleIds
     ? getBridgeRules(pattern.bridgeRuleIds)
     : [];
+
+  // Check if Use tab has any content
+  const hasUseContent =
+    (pattern.usageSituations && pattern.usageSituations.length > 0) ||
+    (pattern.answerTemplates && pattern.answerTemplates.length > 0) ||
+    (pattern.dialogueChains && pattern.dialogueChains.length > 0) ||
+    (pattern.sentenceBuilding && pattern.sentenceBuilding.length > 0);
+
+  const visibleTabs = hasUseContent ? TABS : TABS.filter((t) => t.id !== "use");
+
+  // Find adjacent patterns for prev/next navigation
+  const patternIndex = category.patterns.findIndex((p) => p.id === patternId);
+  const prevPattern = patternIndex > 0 ? category.patterns[patternIndex - 1] : null;
+  const nextPattern = patternIndex < category.patterns.length - 1 ? category.patterns[patternIndex + 1] : null;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
@@ -169,7 +185,7 @@ export default function PatternDetailPage() {
       {/* Tab Navigation — Sticky below header */}
       <div className="sticky top-14 z-10 bg-background pb-1 mb-4 -mx-4 px-4 pt-1">
         <div className="flex gap-1 p-1 rounded-xl bg-muted-bg">
-          {TABS.map((tab) => (
+          {visibleTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => handleTabChange(tab.id)}
@@ -212,19 +228,53 @@ export default function PatternDetailPage() {
         />
       )}
 
+      {/* Prev/Next Pattern Navigation */}
+      {(prevPattern || nextPattern) && (
+        <div className="flex items-stretch gap-2 pt-4 mt-4 border-t border-card-border">
+          {prevPattern ? (
+            <Link
+              href={`/pattern/${prevPattern.id}`}
+              className="flex-1 p-3 rounded-xl bg-card border border-card-border hover:border-primary/30 transition-colors text-left"
+            >
+              <span className="text-xs text-muted font-bangla">← আগের</span>
+              <p className="text-sm font-medium mt-0.5 truncate">{prevPattern.patternName}</p>
+              {prevPattern.patternName_bn && (
+                <p className="font-bangla text-xs text-muted truncate">{prevPattern.patternName_bn}</p>
+              )}
+            </Link>
+          ) : (
+            <div className="flex-1" />
+          )}
+          {nextPattern ? (
+            <Link
+              href={`/pattern/${nextPattern.id}`}
+              className="flex-1 p-3 rounded-xl bg-card border border-card-border hover:border-primary/30 transition-colors text-right"
+            >
+              <span className="text-xs text-muted font-bangla">পরের →</span>
+              <p className="text-sm font-medium mt-0.5 truncate">{nextPattern.patternName}</p>
+              {nextPattern.patternName_bn && (
+                <p className="font-bangla text-xs text-muted truncate">{nextPattern.patternName_bn}</p>
+              )}
+            </Link>
+          ) : (
+            <div className="flex-1" />
+          )}
+        </div>
+      )}
+
       {/* Navigation — Always visible */}
-      <div className="flex items-center justify-between pt-4 mt-4 border-t border-card-border">
+      <div className="flex items-center justify-between pt-3 mt-3 border-t border-card-border">
         <Link
           href={`/categories/${category.slug}`}
-          className="text-sm text-primary hover:underline"
+          className="text-sm text-primary hover:underline font-bangla"
         >
-          Back to {category.name}
+          ← {category.name_bn || category.name}
         </Link>
         <Link
           href={`/practice/${category.slug}`}
-          className="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+          className="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors font-bangla"
         >
-          Practice This Category
+          অনুশীলন করো
         </Link>
       </div>
     </div>
@@ -268,7 +318,7 @@ function LearnTabContent({ pattern, appliedBridgeRules, settings }: LearnTabProp
 
       {/* Formula */}
       <div className="p-4 rounded-xl border border-primary/20 bg-primary-light mb-6">
-        <div className="text-xs font-medium text-primary mb-2">Pattern Formula</div>
+        <div className="text-xs font-medium text-primary mb-2 font-bangla">এভাবে বলো <span className="opacity-60">(Pattern Formula)</span></div>
         <PatternFormula
           formula={pattern.formula}
           formula_bn={pattern.formula_bn}
@@ -359,7 +409,7 @@ function LearnTabContent({ pattern, appliedBridgeRules, settings }: LearnTabProp
 
       {/* Slots */}
       <div className="mb-6">
-        <h2 className="text-sm font-bold mb-3">Slots</h2>
+        <h2 className="text-sm font-bold mb-3 font-bangla">খালি জায়গায় বসাও <span className="text-xs text-muted font-normal">(Slots)</span></h2>
         <div className="space-y-2">
           {pattern.slots.map((slot) => (
             <div key={slot.name} className="p-3 rounded-lg bg-card border border-card-border">
@@ -385,7 +435,7 @@ function LearnTabContent({ pattern, appliedBridgeRules, settings }: LearnTabProp
       {/* Usage Note */}
       {pattern.usageNote && (
         <div className="mb-6 p-3 rounded-lg bg-warning-light border border-card-border">
-          <div className="text-xs font-medium text-warning mb-1">Usage Note</div>
+          <div className="text-xs font-medium text-warning mb-1 font-bangla">কোথায় ব্যবহার করবে <span className="opacity-60">(Usage Note)</span></div>
           <p className="text-sm">{pattern.usageNote}</p>
           {settings.showBangla && pattern.usageNote_bn && (
             <p className="font-bangla text-sm text-muted mt-1">{pattern.usageNote_bn}</p>
@@ -435,10 +485,13 @@ interface PracticeTabProps {
 function PracticeTabContent({ pattern, category }: PracticeTabProps) {
   return (
     <div>
+      {/* Inline Practice Exercise */}
+      <InlinePractice pattern={pattern} />
+
       {/* Examples */}
       <div className="mb-6">
-        <h2 className="text-sm font-bold mb-3">
-          Examples ({pattern.examples.length})
+        <h2 className="text-sm font-bold mb-3 font-bangla">
+          উদাহরণ ({pattern.examples.length}) <span className="text-xs text-muted font-normal">(Examples)</span>
         </h2>
         <PatternExamples examples={pattern.examples} initialCount={10} />
       </div>
@@ -477,8 +530,8 @@ function PracticeTabContent({ pattern, category }: PracticeTabProps) {
           href={`/practice/${category.slug}`}
           className="inline-block px-6 py-3 rounded-xl bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
         >
-          ✏️ Practice This Category
-          <span className="block font-bangla text-xs opacity-80 mt-0.5">এই ক্যাটাগরি অনুশীলন করো</span>
+          <span className="font-bangla">✏️ এই ক্যাটাগরি অনুশীলন করো</span>
+          <span className="block text-xs opacity-80 mt-0.5">Practice This Category</span>
         </Link>
       </div>
     </div>
@@ -570,8 +623,8 @@ function UseTabContent({ pattern, category, settings }: UseTabProps) {
           <div className="space-y-3">
             {pattern.sentenceBuilding.map((build, i) => (
               <div key={i} className="p-4 rounded-xl bg-card border border-card-border">
-                <div className="text-xs text-muted mb-2">
-                  Previously learned ({build.previousPatternId}):
+                <div className="text-xs text-muted mb-2 font-bangla">
+                  আগে শেখা ({build.previousPatternId}):
                 </div>
                 <p className="text-sm mb-1">
                   <span className="font-medium">{build.previousFormula}</span>
@@ -580,7 +633,7 @@ function UseTabContent({ pattern, category, settings }: UseTabProps) {
                   <p className="font-bangla text-sm text-muted mb-3">{build.previousFormula_bn}</p>
                 )}
                 <div className="pt-3 border-t border-card-border">
-                  <div className="text-xs text-muted mb-1">Combined:</div>
+                  <div className="text-xs text-muted mb-1 font-bangla">মিলিয়ে বলো:</div>
                   <p className="text-sm font-medium">{build.combined}</p>
                   {settings.showBangla && (
                     <p className="font-bangla text-sm text-muted mt-0.5">{build.combined_bn}</p>
@@ -589,6 +642,99 @@ function UseTabContent({ pattern, category, settings }: UseTabProps) {
               </div>
             ))}
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ================================================================
+   INLINE PRACTICE — Word Bank exercise inside Practice tab
+   ================================================================ */
+
+function InlinePractice({ pattern }: { pattern: Pattern }) {
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    Math.floor(Math.random() * pattern.examples.length)
+  );
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [showResult, setShowResult] = useState(false);
+  const [lastCorrect, setLastCorrect] = useState(false);
+
+  const example = pattern.examples[currentIndex];
+  const hasSlots = pattern.slots.length > 0 && /\[([A-Z_]+)\]/.test(pattern.formula);
+
+  if (!hasSlots) return null;
+
+  const handleAnswer = (correct: boolean) => {
+    setLastCorrect(correct);
+    setShowResult(true);
+    setTotal((t) => t + 1);
+    if (correct) setScore((s) => s + 1);
+  };
+
+  const nextQuestion = () => {
+    setShowResult(false);
+    let next = Math.floor(Math.random() * pattern.examples.length);
+    if (pattern.examples.length > 1) {
+      while (next === currentIndex) {
+        next = Math.floor(Math.random() * pattern.examples.length);
+      }
+    }
+    setCurrentIndex(next);
+  };
+
+  return (
+    <div className="mb-6 p-4 rounded-xl border-2 border-primary/20 bg-primary-light">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <span className="text-lg">🎯</span>
+          <h2 className="font-bangla text-sm font-bold">এখানে অনুশীলন করো</h2>
+          <span className="text-xs text-muted">(Practice here)</span>
+        </div>
+        {total > 0 && (
+          <span className="text-xs font-medium px-2 py-1 rounded-full bg-card">
+            {score}/{total}
+          </span>
+        )}
+      </div>
+
+      <div className="mb-3 p-3 rounded-lg bg-card">
+        <p className="font-bangla text-sm mb-1 text-muted">
+          ইংরেজিতে বলো:
+        </p>
+        <p className="font-bangla font-medium">{example.bn}</p>
+      </div>
+
+      {!showResult ? (
+        <WordBankExercise
+          key={currentIndex}
+          pattern={pattern}
+          example={example}
+          practiceLevel={1}
+          onAnswer={handleAnswer}
+        />
+      ) : (
+        <div className="space-y-3">
+          <div className={`p-3 rounded-lg text-center ${
+            lastCorrect
+              ? "bg-success-light border border-success/30"
+              : "bg-danger-light border border-danger/30"
+          }`}>
+            <p className="font-bangla text-sm font-medium">
+              {lastCorrect ? "সঠিক! দারুণ!" : "আবার চেষ্টা করো!"}
+            </p>
+            <p className="text-sm font-medium mt-1">{example.en}</p>
+            {example.pronunciation_bn && (
+              <p className="font-bangla text-xs text-muted mt-1">🗣️ {example.pronunciation_bn}</p>
+            )}
+          </div>
+          <button
+            onClick={nextQuestion}
+            className="w-full py-2.5 rounded-lg bg-primary text-white text-sm font-medium font-bangla hover:bg-primary/90 transition-colors"
+          >
+            পরের প্রশ্ন →
+          </button>
         </div>
       )}
     </div>
@@ -806,12 +952,12 @@ function AnswerTemplateCard({ template }: { template: AnswerTemplate }) {
         <p className="font-bangla text-sm font-medium text-accent">{template.situation_bn}</p>
       </div>
       <div className="mb-3 pl-6">
-        <div className="text-[10px] text-muted mb-0.5 uppercase tracking-wide">Question</div>
+        <div className="text-[10px] text-muted mb-0.5 uppercase tracking-wide font-bangla">প্রশ্ন</div>
         <p className="text-sm font-medium">{template.question}</p>
         <p className="font-bangla text-xs text-muted">{template.question_bn}</p>
       </div>
       <div className="mb-3 pl-6 p-3 rounded-lg bg-success/5 border border-success/20">
-        <div className="text-[10px] text-success mb-0.5 uppercase tracking-wide">Answer</div>
+        <div className="text-[10px] text-success mb-0.5 uppercase tracking-wide font-bangla">উত্তর</div>
         <p className="text-sm font-medium text-success">{template.answerFormula}</p>
         <p className="font-bangla text-xs text-muted mt-0.5">{template.answerFormula_bn}</p>
         <p className="font-bangla text-xs text-primary/70 mt-0.5 italic">
@@ -820,7 +966,7 @@ function AnswerTemplateCard({ template }: { template: AnswerTemplate }) {
       </div>
       {template.examples.length > 0 && (
         <div className="pl-6 space-y-1.5">
-          <div className="text-[10px] text-muted uppercase tracking-wide">Examples</div>
+          <div className="text-[10px] text-muted uppercase tracking-wide font-bangla">উদাহরণ</div>
           {template.examples.map((ex, i) => (
             <div key={i} className="flex items-start gap-2">
               <span className="text-xs text-muted shrink-0 mt-0.5">•</span>
@@ -848,6 +994,11 @@ function AnswerTemplateCard({ template }: { template: AnswerTemplate }) {
 
 function AudioPlayer({ text }: { text: string }) {
   const [playing, setPlaying] = useState(false);
+  const [ttsAvailable, setTtsAvailable] = useState(true);
+
+  useEffect(() => {
+    setTtsAvailable(typeof window !== "undefined" && "speechSynthesis" in window);
+  }, []);
 
   const speak = () => {
     if (!("speechSynthesis" in window)) return;
@@ -861,6 +1012,15 @@ function AudioPlayer({ text }: { text: string }) {
     window.speechSynthesis.speak(utterance);
   };
 
+  if (!ttsAvailable) {
+    return (
+      <div className="flex items-center gap-2 px-4 py-2 rounded-lg border border-card-border bg-card text-muted text-sm">
+        <span>🔇</span>
+        <span className="font-bangla">আপনার ডিভাইসে অডিও নেই</span>
+      </div>
+    );
+  }
+
   return (
     <button
       onClick={speak}
@@ -871,7 +1031,7 @@ function AudioPlayer({ text }: { text: string }) {
       }`}
     >
       <span>{playing ? "🔊" : "🔈"}</span>
-      <span>{playing ? "Playing..." : "Listen to pronunciation"}</span>
+      <span className="font-bangla">{playing ? "বাজছে..." : "উচ্চারণ শোনো"}</span>
     </button>
   );
 }

@@ -76,9 +76,10 @@ export default function SearchPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <h1 className="text-2xl font-bold mb-2">Search Patterns</h1>
-      <p className="text-muted text-sm mb-4">
-        Search by English phrase, Bangla phrase, pattern formula, or category name
+      <h1 className="text-2xl font-bold mb-1 font-bangla">প্যাটার্ন খুঁজুন</h1>
+      <p className="text-sm text-muted mb-1">Search Patterns</p>
+      <p className="text-muted text-sm mb-4 font-bangla">
+        ইংরেজি বাক্য, বাংলা বাক্য, প্যাটার্ন ফর্মুলা, বা ক্যাটাগরির নাম দিয়ে খুঁজুন
       </p>
 
       <div className="relative mb-6">
@@ -86,7 +87,7 @@ export default function SearchPage() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search... (e.g. 'want', 'চাই', 'A1')"
+          placeholder="খুঁজুন... (যেমন 'want', 'চাই', 'A1')"
           className="w-full px-4 py-3 rounded-xl border border-card-border bg-card text-base focus:outline-none focus:ring-2 focus:ring-primary/30"
           autoFocus
         />
@@ -101,15 +102,16 @@ export default function SearchPage() {
       {indexing && !indexReady && (
         <div className="text-center text-sm text-muted mb-4 flex items-center justify-center gap-2">
           <div className="w-3 h-3 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-          Building search index...
+          <span className="font-bangla">সার্চ ইনডেক্স তৈরি হচ্ছে...</span>
         </div>
       )}
 
       {/* No results */}
       {query.trim() && !loading && results.length === 0 && (
         <div className="text-center py-12 text-muted">
-          <p className="text-lg mb-1">No results found</p>
-          <p className="text-sm">Try a different search term</p>
+          <p className="text-lg mb-1 font-bangla">কিছু পাওয়া যায়নি</p>
+          <p className="text-sm">No results found</p>
+          <p className="text-sm font-bangla mt-1">অন্য কিছু লিখে খুঁজুন</p>
         </div>
       )}
 
@@ -117,7 +119,7 @@ export default function SearchPage() {
       {patternResults.length > 0 && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-muted mb-3">
-            Patterns ({patternResults.length})
+            <span className="font-bangla">প্যাটার্ন</span> ({patternResults.length})
           </h2>
           <div className="space-y-2">
             {patternResults.map((result) => (
@@ -161,7 +163,7 @@ export default function SearchPage() {
       {exampleResults.length > 0 && (
         <div>
           <h2 className="text-sm font-semibold text-muted mb-3">
-            Examples ({exampleResults.length})
+            <span className="font-bangla">উদাহরণ</span> ({exampleResults.length})
           </h2>
           <div className="space-y-2">
             {exampleResults.map((result, idx) => (
@@ -191,11 +193,11 @@ export default function SearchPage() {
       {!query.trim() && (
         <div className="text-center py-12 text-muted">
           <p className="text-3xl mb-3">🔍</p>
-          <p>Search across all {categoryMeta.length} categories</p>
-          <p className="text-sm mt-1">Patterns, examples, and translations</p>
+          <p className="font-bangla">সব {categoryMeta.length}টি ক্যাটাগরিতে খুঁজুন</p>
           <p className="font-bangla text-sm mt-1">
-            প্যাটার্ন এবং ক্যাটাগরি খুঁজতে টাইপ করুন
+            প্যাটার্ন, উদাহরণ, এবং অনুবাদ খুঁজতে টাইপ করুন
           </p>
+          <p className="text-sm mt-1 text-muted/70">Patterns, examples, and translations</p>
         </div>
       )}
     </div>

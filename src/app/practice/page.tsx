@@ -3,9 +3,10 @@ import Link from "next/link";
 export default function PracticePage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <h1 className="text-2xl font-bold mb-2">Practice</h1>
-      <p className="text-muted text-sm mb-6">
-        Strengthen your English skills with daily practice exercises
+      <h1 className="text-2xl font-bold mb-1 font-bangla">অনুশীলন</h1>
+      <p className="text-sm text-muted">Practice</p>
+      <p className="text-muted text-sm mb-6 font-bangla">
+        ইংরেজি শক্তিশালী করো প্রতিদিনের অনুশীলনে
       </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -14,28 +15,28 @@ export default function PracticePage() {
           icon="🔥"
           title="Daily Practice"
           title_bn="দৈনিক অনুশীলন"
-          description="10 patterns per day: 5 review + 5 new"
+          description="প্রতিদিন ১০টি প্যাটার্ন: ৫টি রিভিউ + ৫টি নতুন"
         />
         <PracticeOption
           href="/categories"
           icon="📚"
           title="Practice by Category"
           title_bn="বিষয় অনুযায়ী অনুশীলন"
-          description="Pick a specific category to practice"
+          description="যেকোনো বিষয় বেছে নিয়ে অনুশীলন করো"
         />
         <PracticeOption
           href="/practice/review"
           icon="🔄"
           title="Review Due Patterns"
-          title_bn="পুনরালোচনার প্যাটার্ন"
-          description="Review patterns scheduled by spaced repetition"
+          title_bn="রিভিউ করার সময় হয়েছে"
+          description="যেগুলো রিভিউ করার সময় হয়েছে সেগুলো দেখো"
         />
         <PracticeOption
           href="/bookmarks"
           icon="🔖"
           title="Practice Bookmarks"
           title_bn="বুকমার্ক অনুশীলন"
-          description="Practice your saved patterns"
+          description="তোমার সেভ করা প্যাটার্ন অনুশীলন করো"
         />
       </div>
     </div>
@@ -61,9 +62,9 @@ function PracticeOption({
       className="block p-5 rounded-xl border border-card-border bg-card hover:border-primary/30 hover:shadow-sm transition-all"
     >
       <span className="text-3xl">{icon}</span>
-      <h3 className="font-semibold mt-3">{title}</h3>
-      <p className="font-bangla text-sm text-muted">{title_bn}</p>
-      <p className="text-xs text-muted mt-1">{description}</p>
+      <h3 className="font-semibold mt-3 font-bangla">{title_bn}</h3>
+      <p className="text-xs text-muted">{title}</p>
+      <p className="text-xs text-muted mt-1 font-bangla">{description}</p>
     </Link>
   );
 }

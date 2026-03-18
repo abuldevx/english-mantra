@@ -366,6 +366,18 @@ export function getCategoryIdBySlug(slug: string): string | undefined {
   return categoryMeta.find((c) => c.slug === slug)?.id;
 }
 
+// Categories that use folder-based structure (slug as folder name) instead of single {catId}.ts files
+const folderBasedCategories = new Set(["A2"]);
+
+// ID to import path mapping — folder-based categories use slug, others use catId
+const _slugById = new Map(categoryMeta.map((c) => [c.id, c.slug]));
+export function getCategoryImportSlug(catId: string): string {
+  if (folderBasedCategories.has(catId)) {
+    return _slugById.get(catId) ?? catId;
+  }
+  return catId;
+}
+
 export function getCategoryMetaBySlug(slug: string): CategoryMeta | undefined {
   return categoryMeta.find((c) => c.slug === slug);
 }

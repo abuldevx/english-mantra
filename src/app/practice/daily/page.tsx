@@ -6,9 +6,9 @@ import type { Pattern, PatternCategory, PatternExample } from "@/types/pattern";
 import { useProgress } from "@/contexts/ProgressContext";
 import { useSettings } from "@/contexts/SettingsContext";
 import type { Confidence } from "@/types/pattern";
-import { categoryMeta } from "@/content/index";
+import { categoryMeta, getCategoryImportSlug } from "@/content/index";
 import { selectExerciseType, type ExerciseType } from "@/lib/exerciseSelector";
-import { getAllExamples } from "@/lib/patternHelpers";
+import { getAllExamplesWithContext, type VariationInfo } from "@/lib/patternHelpers";
 import ExerciseContainer from "@/components/practice/ExerciseContainer";
 
 interface PracticeItem {
@@ -16,6 +16,7 @@ interface PracticeItem {
   category: PatternCategory;
   example: PatternExample;
   exerciseType: ExerciseType;
+  variationInfo?: VariationInfo;
 }
 
 export default function DailyPracticePage() {
@@ -47,19 +48,18 @@ export default function DailyPracticePage() {
 
       for (const catId of allCategoryIds) {
         try {
-          const mod = await import(`@/content/categories/${catId}`);
+          const mod = await import(`@/content/categories/${getCategoryImportSlug(catId)}`);
           const cat = mod[`category${catId}`] as PatternCategory;
           for (const pattern of cat.patterns) {
-            const allExamples = getAllExamples(pattern);
-            if (allExamples.length > 0) {
-              const randomExample = Math.floor(
-                Math.random() * allExamples.length
-              );
+            const allWithContext = getAllExamplesWithContext(pattern);
+            if (allWithContext.length > 0) {
+              const picked = allWithContext[Math.floor(Math.random() * allWithContext.length)];
               const item: PracticeItem = {
                 pattern,
                 category: cat,
-                example: allExamples[randomExample],
+                example: picked.example,
                 exerciseType: selectExerciseType(pattern, settings.practiceLevel),
+                variationInfo: picked.variation,
               };
               if (duePatternIds.has(pattern.id)) {
                 dueItems.push(item);
@@ -138,8 +138,8 @@ export default function DailyPracticePage() {
     return (
       <div className="mx-auto max-w-4xl px-4 py-6 text-center">
         <p className="text-6xl mb-4 animate-celebrate-bounce">&#127881;</p>
-        <h1 className="text-2xl font-bold mb-2">Practice Complete!</h1>
-        <p className="text-muted font-bangla mb-1">অনুশীলন সম্পন্ন!</p>
+        <h1 className="text-2xl font-bold mb-1 font-bangla">অনুশীলন সম্পন্ন!</h1>
+        <p className="text-sm text-muted mb-2">Practice Complete!</p>
         <p className="text-muted mb-6">
           You practiced {items.length} patterns today
         </p>
@@ -193,19 +193,22 @@ export default function DailyPracticePage() {
             href="/practice/daily"
             className="px-5 py-2.5 rounded-lg border border-card-border text-sm hover:bg-card transition-colors font-medium"
           >
-            Practice More
+            <span className="font-bangla">আরো অনুশীলন</span>
+            <span className="block text-[10px] text-muted">Practice More</span>
           </Link>
           <Link
             href="/"
             className="px-5 py-2.5 rounded-lg border border-card-border text-sm hover:bg-card transition-colors font-medium"
           >
-            Go Home
+            <span className="font-bangla">হোমে যাও</span>
+            <span className="block text-[10px] text-muted">Go Home</span>
           </Link>
           <Link
             href="/progress"
             className="px-5 py-2.5 rounded-lg bg-primary text-white text-sm hover:bg-primary/90 transition-colors font-medium"
           >
-            View Progress
+            <span className="font-bangla">অগ্রগতি দেখো</span>
+            <span className="block text-[10px] text-white/70">View Progress</span>
           </Link>
         </div>
       </div>
@@ -238,6 +241,7 @@ export default function DailyPracticePage() {
         exerciseType={currentItem.exerciseType}
         practiceLevel={settings.practiceLevel}
         onComplete={handleExerciseComplete}
+        variationInfo={currentItem.variationInfo}
       />
 
       {/* Confidence rating */}

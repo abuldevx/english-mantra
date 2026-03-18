@@ -1,5 +1,5 @@
 import type { SearchResult, Difficulty, Pattern, PatternCategory } from "@/types/pattern";
-import { categoryMeta } from "@/content/index";
+import { categoryMeta, getCategoryImportSlug } from "@/content/index";
 import { getAllExamples } from "./patternHelpers";
 
 // FlexSearch types (flexsearch doesn't ship great TS types)
@@ -49,7 +49,7 @@ export async function getSearchIndex(): Promise<FlexDocument> {
   // Index all categories
   for (const catMeta of categoryMeta) {
     try {
-      const mod = await import(`@/content/categories/${catMeta.id}`);
+      const mod = await import(`@/content/categories/${getCategoryImportSlug(catMeta.id)}`);
       const category = mod[`category${catMeta.id}`] as PatternCategory | undefined;
       if (!category?.patterns) continue;
 

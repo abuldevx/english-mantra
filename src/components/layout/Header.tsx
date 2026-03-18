@@ -46,27 +46,27 @@ export function Header() {
           </Link>
           <Link
             href="/categories"
-            className="text-muted hover:text-foreground transition-colors"
+            className="text-muted hover:text-foreground transition-colors font-bangla"
           >
-            Categories
+            সব বিভাগ
           </Link>
           <Link
             href="/practice"
-            className="text-muted hover:text-foreground transition-colors"
+            className="text-muted hover:text-foreground transition-colors font-bangla"
           >
-            Practice
+            অনুশীলন
           </Link>
           <Link
             href="/search"
-            className="text-muted hover:text-foreground transition-colors"
+            className="text-muted hover:text-foreground transition-colors font-bangla"
           >
-            Search
+            খুঁজি
           </Link>
           <Link
             href="/progress"
-            className="text-muted hover:text-foreground transition-colors"
+            className="text-muted hover:text-foreground transition-colors font-bangla"
           >
-            Progress
+            অগ্রগতি
           </Link>
         </nav>
 

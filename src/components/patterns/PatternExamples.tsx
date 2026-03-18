@@ -18,6 +18,20 @@ const topicIcons: Record<string, string> = {
   emergency: "🚨",
 };
 
+const topicLabels: Record<string, string> = {
+  daily_life: "দৈনন্দিন",
+  food: "খাবার",
+  health: "স্বাস্থ্য",
+  work: "কাজ",
+  travel: "যাতায়াত",
+  relationships: "সম্পর্ক",
+  shopping: "কেনাকাটা",
+  education: "পড়াশোনা",
+  religion: "ধর্ম",
+  finance: "টাকা-পয়সা",
+  emergency: "জরুরি",
+};
+
 const stageConfig: Record<number, { color: string; label: string; labelBn: string }> = {
   1: { color: "bg-success/20 text-success", label: "Memorize", labelBn: "মুখস্থ" },
   2: { color: "bg-warning/20 text-warning", label: "Modify", labelBn: "পরিবর্তন" },
@@ -78,7 +92,7 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
                 : "bg-muted-bg text-muted hover:bg-primary-light"
             }`}
           >
-            All ({examples.length})
+            <span className="font-bangla">সব</span> ({examples.length})
           </button>
           {topicAreas.map((topic) => {
             const count = examples.filter((e) => e.topicArea === topic).length;
@@ -92,7 +106,7 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
                     : "bg-muted-bg text-muted hover:bg-primary-light"
                 }`}
               >
-                {topicIcons[topic] || "📌"} {topic.replace("_", " ")} ({count})
+                {topicIcons[topic] || "📌"} <span className="font-bangla">{topicLabels[topic] || topic.replace("_", " ")}</span> ({count})
               </button>
             );
           })}
@@ -212,9 +226,11 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
             onClick={() => setShowAll(!showAll)}
             className="text-sm text-primary hover:underline font-medium"
           >
-            {showAll
-              ? "Show less"
-              : `Show all ${filteredExamples.length} examples`}
+            <span className="font-bangla">
+              {showAll
+                ? "কম দেখাও"
+                : `সব ${filteredExamples.length}টা দেখাও`}
+            </span>
           </button>
         )}
         {activeFilter && (
@@ -222,7 +238,7 @@ export function PatternExamples({ examples, initialCount = 5 }: PatternExamplesP
             onClick={() => setActiveFilter(null)}
             className="text-xs text-muted hover:text-foreground"
           >
-            Clear filter
+            <span className="font-bangla">ফিল্টার সরাও</span>
           </button>
         )}
       </div>

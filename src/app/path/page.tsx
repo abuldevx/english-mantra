@@ -22,9 +22,9 @@ export default function LearningPathPage() {
         </p>
       </div>
 
-      {/* Staircase — bottom to top */}
+      {/* Staircase — beginner at top, master at bottom */}
       <div className="space-y-3">
-        {[...learningPath].reverse().map((level) => {
+        {learningPath.map((level) => {
           const prog = getLevelProgress(level.id, completedPatternIds);
           const isCurrent = level.id === currentLevel;
           const isCompleted = prog.percentage >= 80;

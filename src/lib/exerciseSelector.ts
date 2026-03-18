@@ -6,10 +6,10 @@ const weights: Record<
   PracticeLevel,
   { banglaFirst: number; slotFill: number }
 > = {
-  1: { banglaFirst: 50, slotFill: 70 }, // 50% bangla, 20% slot, 30% wordbank
-  2: { banglaFirst: 30, slotFill: 60 }, // 30% bangla, 30% slot, 40% wordbank
-  3: { banglaFirst: 30, slotFill: 80 }, // 30% bangla, 50% slot, 20% wordbank
-  4: { banglaFirst: 20, slotFill: 90 }, // 20% bangla, 70% slot, 10% wordbank
+  1: { banglaFirst: 0, slotFill: 15 },  // 0% bangla, 15% slot, 85% wordbank
+  2: { banglaFirst: 15, slotFill: 40 }, // 15% bangla, 25% slot, 60% wordbank
+  3: { banglaFirst: 25, slotFill: 65 }, // 25% bangla, 40% slot, 35% wordbank
+  4: { banglaFirst: 30, slotFill: 85 }, // 30% bangla, 55% slot, 15% wordbank
 };
 
 export function selectExerciseType(

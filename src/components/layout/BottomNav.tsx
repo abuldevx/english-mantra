@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/", label: "Home", icon: "🏠" },
-  { href: "/categories", label: "Learn", icon: "📚" },
-  { href: "/practice", label: "Practice", icon: "✏️" },
-  { href: "/search", label: "Search", icon: "🔍" },
-  { href: "/progress", label: "Progress", icon: "📊" },
+  { href: "/", label: "হোম", icon: "🏠" },
+  { href: "/path/blocks", label: "পথ", icon: "🧱" },
+  { href: "/practice/daily", label: "অনুশীলন", icon: "💪" },
+  { href: "/search", label: "খুঁজি", icon: "🔍" },
+  { href: "/progress", label: "আমার", icon: "📊" },
 ];
 
 export function BottomNav() {
@@ -33,7 +33,7 @@ export function BottomNav() {
               }`}
             >
               <span className="text-lg">{item.icon}</span>
-              <span className="text-[10px] font-medium">{item.label}</span>
+              <span className="text-[10px] font-medium font-bangla">{item.label}</span>
             </Link>
           );
         })}

@@ -1,19 +1,141 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useProgress } from "@/contexts/ProgressContext";
 import { useSettings } from "@/contexts/SettingsContext";
-import { categoryMeta } from "@/content/index";
-import { getNextPatternId, getDueCount } from "@/lib/recommendations";
+import { getDueCount } from "@/lib/recommendations";
 import { getMasteryCounts, masteryConfig, type MasteryLevel } from "@/lib/mastery";
-import { getCurrentLevel, getLevelById } from "@/content/learning-path";
+import { getNextStep, getPhaseInfo, getCompletedCount, TOTAL_STEPS } from "@/content/building-blocks";
+import type { PracticeLevel } from "@/types/pattern";
+
+const levelOptions = [
+  {
+    level: 1,
+    label_bn: "আমি একদম নতুন",
+    label_en: "I'm completely new",
+    icon: "🌱",
+  },
+  {
+    level: 2,
+    label_bn: "আমি কিছু কিছু জানি",
+    label_en: "I know some",
+    icon: "🌿",
+  },
+  {
+    level: 3,
+    label_bn: "আমি পড়তে পারি, বলতে পারি না",
+    label_en: "I can read, can't speak",
+    icon: "🌳",
+  },
+];
+
+function WelcomeModal() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedLevel, setSelectedLevel] = useState<PracticeLevel>(1);
+  const { updateSettings } = useSettings();
+  const router = useRouter();
+
+  useEffect(() => {
+    const onboarded = localStorage.getItem("pe-onboarded");
+    if (!onboarded) {
+      setShowModal(true);
+    }
+  }, []);
+
+  if (!showModal) return null;
+
+  const handleStart = () => {
+    localStorage.setItem("pe-onboarded", "true");
+    updateSettings({ practiceLevel: selectedLevel });
+    setShowModal(false);
+    router.push("/step/1");
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ background: "linear-gradient(135deg, var(--primary), #1d4ed8)" }}
+    >
+      <div className="w-full max-w-md mx-4 flex flex-col items-center text-center text-white px-6 py-10">
+        {/* Logo */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold tracking-tight">
+            <span className="text-white">English</span>
+            <span className="text-white/80">Mantra</span>
+          </h2>
+        </div>
+
+        {/* Main heading */}
+        <h1 className="font-bangla text-3xl font-bold mb-3 leading-tight">
+          ইংরেজি শেখা এত সহজ!
+        </h1>
+        <p className="text-sm text-white/70 mb-4">
+          Learning English is this easy!
+        </p>
+
+        {/* Subheading */}
+        <p className="font-bangla text-base text-white/90 mb-2 leading-relaxed">
+          তুমি বাংলায় যা ভাবো → আমরা ইংরেজিতে বলা শেখাবো
+        </p>
+
+        {/* Tagline */}
+        <p className="font-bangla text-sm text-white/70 mb-8">
+          কোনো গ্রামার নাই। কোনো নিয়ম মুখস্থ নাই।
+        </p>
+
+        {/* Level selector */}
+        <div className="w-full space-y-3 mb-8">
+          <p className="font-bangla text-sm text-white/80 mb-1">
+            তোমার লেভেল বাছো:
+          </p>
+          {levelOptions.map((opt) => (
+            <button
+              key={opt.level}
+              onClick={() => setSelectedLevel(opt.level as PracticeLevel)}
+              className={`w-full flex items-center gap-3 p-4 rounded-xl transition-all text-left ${
+                selectedLevel === opt.level
+                  ? "bg-white text-primary shadow-lg scale-[1.02]"
+                  : "bg-white/15 text-white hover:bg-white/25"
+              }`}
+            >
+              <span className="text-2xl">{opt.icon}</span>
+              <div className="flex-1">
+                <p className={`font-bangla font-bold text-sm ${
+                  selectedLevel === opt.level ? "text-primary" : "text-white"
+                }`}>
+                  {opt.label_bn}
+                </p>
+                <p className={`text-xs ${
+                  selectedLevel === opt.level ? "text-primary/60" : "text-white/60"
+                }`}>
+                  {opt.label_en}
+                </p>
+              </div>
+              {selectedLevel === opt.level && (
+                <span className="text-primary text-lg font-bold">✓</span>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Start button */}
+        <button
+          onClick={handleStart}
+          className="w-full py-4 rounded-xl bg-white text-primary font-bangla font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all active:scale-95"
+        >
+          শুরু করো →
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function HomeClient() {
   const { progress, todayPracticeCount } = useProgress();
   const { settings } = useSettings();
 
   const dueCount = getDueCount(progress.completedPatterns);
-  const nextPatternId = getNextPatternId(progress.completedPatterns, categoryMeta);
   const totalPatterned = Object.keys(progress.completedPatterns).length;
   const dailyGoal = settings.dailyGoal || 10;
   const dailyPercentage = Math.min(100, Math.round((todayPracticeCount / dailyGoal) * 100));
@@ -21,10 +143,16 @@ export function HomeClient() {
   // Overall mastery counts
   const allPatternIds = Object.keys(progress.completedPatterns);
   const mastery = getMasteryCounts(allPatternIds, progress.completedPatterns);
-  const currentLevelId = getCurrentLevel(allPatternIds);
-  const currentLevel = getLevelById(currentLevelId);
+
+  // Building block progress
+  const nextBlock = getNextStep(progress.buildingBlockSteps);
+  const completedBlockCount = getCompletedCount(progress.buildingBlockSteps);
+  const blockProgressPercent = Math.round((completedBlockCount / TOTAL_STEPS) * 100);
+  const currentPhaseInfo = nextBlock ? getPhaseInfo(nextBlock.phase) : null;
 
   return (
+    <>
+    <WelcomeModal />
     <div className="mx-auto max-w-lg px-4 py-6">
       {/* Greeting */}
       <div className="text-center mb-6">
@@ -37,51 +165,80 @@ export function HomeClient() {
         <p className="text-sm text-muted">What will you do today?</p>
       </div>
 
-      {/* Next Lesson — Hero CTA */}
-      {nextPatternId && (
+      {/* Building Block — Hero CTA */}
+      {nextBlock ? (
         <Link
-          href={`/learn/${nextPatternId}`}
+          href={`/step/${nextBlock.step}`}
           className="block w-full p-5 rounded-2xl bg-primary text-white mb-4 hover:bg-primary/90 transition-colors shadow-lg"
         >
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-white/70 font-bangla">
+              🧱 বিল্ডিং ব্লক পথ
+            </span>
+            <span className="text-xs text-white/70">
+              {completedBlockCount}/{TOTAL_STEPS}
+            </span>
+          </div>
+          <div className="h-1.5 rounded-full bg-white/20 overflow-hidden mb-3">
+            <div
+              className="h-full rounded-full bg-white/60 transition-all"
+              style={{ width: `${blockProgressPercent}%` }}
+            />
+          </div>
           <div className="flex items-center gap-4">
             <span className="text-4xl">📖</span>
             <div className="flex-1">
-              <p className="font-bangla font-bold text-lg">পরের পাঠ শুরু করো</p>
-              <p className="text-xs text-white/70">Start next lesson — 3 min</p>
-              <p className="text-sm text-white/90 font-mono mt-1">
-                {nextPatternId}
+              <p className="font-bangla font-bold text-lg">
+                ধাপ {nextBlock.step}: {nextBlock.title_bn}
+              </p>
+              <p className="text-sm text-white/90 font-mono mt-0.5">
+                {nextBlock.formula}
+              </p>
+              <p className="font-bangla text-xs text-white/70 mt-1">
+                {nextBlock.unlockMessage_bn}
               </p>
             </div>
             <span className="text-2xl">→</span>
           </div>
+          {currentPhaseInfo && (
+            <p className="text-xs text-white/50 mt-2 font-bangla">
+              {currentPhaseInfo.icon} {currentPhaseInfo.name_bn}
+            </p>
+          )}
         </Link>
+      ) : (
+        <div className="p-5 rounded-2xl bg-success/10 border border-success/30 mb-4 text-center">
+          <p className="text-3xl mb-2">🎉</p>
+          <p className="font-bangla font-bold text-lg text-success">
+            সব ধাপ শেষ!
+          </p>
+          <p className="text-xs text-muted">All 100 steps completed!</p>
+        </div>
       )}
 
-      {/* Learning Path Banner */}
-      {currentLevel && (
-        <Link
-          href="/path"
-          className="block p-3 rounded-xl border-2 border-primary/30 bg-primary/5 mb-4 hover:border-primary/50 transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">{currentLevel.icon}</span>
-            <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <span className="font-bangla font-bold text-sm">
-                  শেখার পথ
-                </span>
-                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${currentLevel.color} text-white`}>
-                  L{currentLevel.id}
-                </span>
-              </div>
-              <p className="text-xs text-muted font-bangla">
-                {currentLevel.name_bn} — {currentLevel.tagline_bn}
-              </p>
+      {/* Building Block Path Banner */}
+      <Link
+        href="/path/blocks"
+        className="block p-3 rounded-xl border-2 border-primary/30 bg-primary/5 mb-4 hover:border-primary/50 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">🧱</span>
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <span className="font-bangla font-bold text-sm">
+                পুরো পথ দেখো
+              </span>
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-primary text-white">
+                {completedBlockCount}/{TOTAL_STEPS}
+              </span>
             </div>
-            <span className="text-muted">→</span>
+            <p className="text-xs text-muted font-bangla">
+              {currentPhaseInfo ? `${currentPhaseInfo.icon} ${currentPhaseInfo.name_bn}` : "সব শেষ!"}
+            </p>
           </div>
-        </Link>
-      )}
+          <span className="text-muted">→</span>
+        </div>
+      </Link>
 
       {/* Action Buttons */}
       <div className="grid grid-cols-3 gap-2 mb-6">
@@ -176,6 +333,7 @@ export function HomeClient() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
 

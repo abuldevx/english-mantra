@@ -27,11 +27,11 @@ export function GroupCard({ group, completedCount = 0 }: GroupCardProps) {
             <span className="text-xs font-mono text-muted">Group {group.id}</span>
             <DifficultyBadge difficulty={group.difficulty} />
           </div>
-          <h3 className="font-semibold text-sm leading-tight truncate">
-            {group.name}
-          </h3>
-          <p className="font-bangla text-xs text-muted mt-0.5 truncate">
+          <h3 className="font-semibold text-sm leading-tight truncate font-bangla">
             {group.name_bn}
+          </h3>
+          <p className="text-xs text-muted mt-0.5 truncate">
+            {group.name}
           </p>
           <div className="flex items-center gap-2 mt-2">
             <div className="flex-1 h-1.5 rounded-full bg-muted-bg overflow-hidden">
@@ -41,7 +41,7 @@ export function GroupCard({ group, completedCount = 0 }: GroupCardProps) {
               />
             </div>
             <span className="text-[10px] text-muted whitespace-nowrap">
-              {totalCategories} categories
+              <span className="font-bangla">{totalCategories}টি</span>
             </span>
           </div>
         </div>

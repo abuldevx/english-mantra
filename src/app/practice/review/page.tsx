@@ -5,9 +5,9 @@ import Link from "next/link";
 import type { Pattern, PatternCategory, PatternExample, Confidence } from "@/types/pattern";
 import { useProgress } from "@/contexts/ProgressContext";
 import { useSettings } from "@/contexts/SettingsContext";
-import { categoryMeta } from "@/content/index";
+import { categoryMeta, getCategoryImportSlug } from "@/content/index";
 import { selectExerciseType, type ExerciseType } from "@/lib/exerciseSelector";
-import { getAllExamples } from "@/lib/patternHelpers";
+import { getAllExamplesWithContext, type VariationInfo } from "@/lib/patternHelpers";
 import { getMasteryLevel, masteryConfig } from "@/lib/mastery";
 import ExerciseContainer from "@/components/practice/ExerciseContainer";
 
@@ -16,6 +16,7 @@ interface PracticeItem {
   category: PatternCategory;
   example: PatternExample;
   exerciseType: ExerciseType;
+  variationInfo?: VariationInfo;
 }
 
 export default function ReviewPage() {
@@ -52,18 +53,19 @@ export default function ReviewPage() {
     const allCategoryIds = categoryMeta.map((c) => c.id);
     for (const catId of allCategoryIds) {
       try {
-        const mod = await import(`@/content/categories/${catId}`);
+        const mod = await import(`@/content/categories/${getCategoryImportSlug(catId)}`);
         const cat = mod[`category${catId}`] as PatternCategory;
         for (const pattern of cat.patterns) {
           if (dueIds.has(pattern.id)) {
-            const allExamples = getAllExamples(pattern);
-            if (allExamples.length > 0) {
-              const randomIdx = Math.floor(Math.random() * allExamples.length);
+            const allWithContext = getAllExamplesWithContext(pattern);
+            if (allWithContext.length > 0) {
+              const picked = allWithContext[Math.floor(Math.random() * allWithContext.length)];
               practiceItems.push({
                 pattern,
                 category: cat,
-                example: allExamples[randomIdx],
+                example: picked.example,
                 exerciseType: selectExerciseType(pattern, settings.practiceLevel),
+                variationInfo: picked.variation,
               });
             }
             dueIds.delete(pattern.id);
@@ -130,8 +132,8 @@ export default function ReviewPage() {
     return (
       <div className="mx-auto max-w-4xl px-4 py-6 text-center">
         <p className="text-6xl mb-4 animate-celebrate-bounce">&#127881;</p>
-        <h1 className="text-2xl font-bold mb-2">Review Complete!</h1>
-        <p className="text-muted font-bangla mb-1">রিভিউ সম্পন্ন!</p>
+        <h1 className="text-2xl font-bold mb-1 font-bangla">রিভিউ সম্পন্ন!</h1>
+        <p className="text-sm text-muted mb-2">Review Complete!</p>
         <p className="text-muted mb-6">
           You reviewed {items.length} pattern{items.length !== 1 ? "s" : ""}
         </p>
@@ -173,19 +175,22 @@ export default function ReviewPage() {
             onClick={() => { setPracticing(false); setCompleted(false); }}
             className="px-5 py-2.5 rounded-lg border border-card-border text-sm hover:bg-card transition-colors font-medium"
           >
-            Back to Review
+            <span className="font-bangla">রিভিউতে ফিরো</span>
+            <span className="block text-[10px] text-muted">Back to Review</span>
           </button>
           <Link
             href="/"
             className="px-5 py-2.5 rounded-lg border border-card-border text-sm hover:bg-card transition-colors font-medium"
           >
-            Go Home
+            <span className="font-bangla">হোমে যাও</span>
+            <span className="block text-[10px] text-muted">Go Home</span>
           </Link>
           <Link
             href="/progress"
             className="px-5 py-2.5 rounded-lg bg-primary text-white text-sm hover:bg-primary/90 transition-colors font-medium"
           >
-            View Progress
+            <span className="font-bangla">অগ্রগতি দেখো</span>
+            <span className="block text-[10px] text-white/70">View Progress</span>
           </Link>
         </div>
       </div>
@@ -218,6 +223,7 @@ export default function ReviewPage() {
           exerciseType={currentItem.exerciseType}
           practiceLevel={settings.practiceLevel}
           onComplete={handleExerciseComplete}
+          variationInfo={currentItem.variationInfo}
         />
 
         {/* Confidence rating */}
@@ -257,10 +263,10 @@ export default function ReviewPage() {
   // Browse mode (default)
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">Review Due Patterns</h1>
-      <p className="font-bangla text-muted text-sm mb-1">পুনরালোচনার প্যাটার্ন</p>
-      <p className="text-muted text-sm mb-6">
-        Patterns scheduled for review based on spaced repetition
+      <h1 className="text-2xl font-bold mb-1 font-bangla">রিভিউ করার সময় হয়েছে</h1>
+      <p className="text-sm text-muted mb-1">Review Due Patterns</p>
+      <p className="text-muted text-sm mb-6 font-bangla">
+        স্পেসড রিপিটিশন অনুযায়ী রিভিউ করার সময় হয়েছে
       </p>
 
       {/* Review All CTA */}
@@ -286,11 +292,13 @@ export default function ReviewPage() {
       {duePatterns.length === 0 && upcomingPatterns.length === 0 && (
         <div className="text-center py-16 text-muted">
           <p className="text-4xl mb-3">&#127919;</p>
-          <p className="text-lg mb-1">No patterns to review</p>
-          <p className="text-sm font-bangla mb-1">কোনো প্যাটার্ন রিভিউ করার নেই</p>
-          <p className="text-sm">Practice some patterns first, then come back for review!</p>
-          <Link href="/practice/daily" className="text-primary text-sm mt-4 inline-block hover:underline">
-            Start Daily Practice
+          <p className="text-lg mb-1 font-bangla">কোনো প্যাটার্ন রিভিউ করার নেই</p>
+          <p className="text-sm text-muted mb-1">No patterns to review</p>
+          <p className="text-sm font-bangla mb-1">আগে কিছু প্যাটার্ন অনুশীলন করো, তারপর রিভিউ করতে আসো!</p>
+          <p className="text-xs text-muted">Practice some patterns first, then come back for review!</p>
+          <Link href="/practice/daily" className="text-primary text-sm mt-4 inline-block hover:underline font-bangla">
+            দৈনিক অনুশীলন শুরু করো
+            <span className="ml-1 text-xs text-muted">Start Daily Practice</span>
           </Link>
         </div>
       )}
@@ -299,8 +307,8 @@ export default function ReviewPage() {
         <section className="mb-8">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2.5 h-2.5 rounded-full bg-danger animate-pulse" />
-            <h2 className="font-bold">Due Now ({duePatterns.length})</h2>
-            <span className="font-bangla text-xs text-muted">এখনই রিভিউ করো</span>
+            <h2 className="font-bold font-bangla">এখনই রিভিউ করো ({duePatterns.length})</h2>
+            <span className="text-xs text-muted">Due Now</span>
           </div>
           <div className="space-y-2">
             {duePatterns.map(([id, prog]) => {
@@ -331,8 +339,8 @@ export default function ReviewPage() {
 
       {upcomingPatterns.length > 0 && (
         <section>
-          <h2 className="font-bold mb-1">Coming Up</h2>
-          <p className="text-xs text-muted font-bangla mb-3">আসছে</p>
+          <h2 className="font-bold mb-1 font-bangla">আসছে</h2>
+          <p className="text-xs text-muted mb-3">Coming Up</p>
           <div className="space-y-2">
             {upcomingPatterns.map(([id, prog]) => {
               const daysUntil = Math.ceil((prog.nextReviewDate - now) / 86400000);

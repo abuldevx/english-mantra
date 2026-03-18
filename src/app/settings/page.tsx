@@ -8,8 +8,9 @@ export default function SettingsPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <h1 className="text-2xl font-bold mb-2">Settings</h1>
-      <p className="text-muted text-sm mb-6">Customize your learning experience</p>
+      <h1 className="text-2xl font-bold mb-1 font-bangla">সেটিংস</h1>
+      <p className="text-sm text-muted mb-1">Settings</p>
+      <p className="text-muted text-sm mb-6 font-bangla">তোমার শেখার অভিজ্ঞতা পরিবর্তন করো</p>
 
       <div className="space-y-6">
         {/* Language Display */}
@@ -110,8 +111,8 @@ function SettingSection({
 }) {
   return (
     <div className="p-4 rounded-xl border border-card-border bg-card">
-      <h2 className="font-bold mb-1">{title}</h2>
-      <p className="font-bangla text-xs text-muted mb-4">{title_bn}</p>
+      <h2 className="font-bold mb-1 font-bangla">{title_bn}</h2>
+      <p className="text-xs text-muted mb-4">{title}</p>
       <div className="space-y-4">{children}</div>
     </div>
   );

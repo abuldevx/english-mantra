@@ -282,6 +282,7 @@ export interface UserProgress {
   totalPracticeMinutes: number;
   achievements: string[];
   settings: UserSettings;
+  buildingBlockSteps: number[]; // Completed building block step numbers
 }
 
 // Search result type

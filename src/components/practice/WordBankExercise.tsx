@@ -9,6 +9,7 @@ interface WordBankExerciseProps {
   example: PatternExample;
   practiceLevel: PracticeLevel;
   onAnswer: (correct: boolean) => void;
+  effectiveFormula?: string;
 }
 
 function shuffle<T>(array: T[]): T[] {
@@ -64,6 +65,7 @@ export default function WordBankExercise({
   example,
   practiceLevel,
   onAnswer,
+  effectiveFormula,
 }: WordBankExerciseProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -71,12 +73,13 @@ export default function WordBankExercise({
   // Level 3: first letter hint with free typing
   const [typedAnswer, setTypedAnswer] = useState("");
 
-  const slotName = useMemo(() => getSlotInfo(pattern.formula), [pattern.formula]);
+  const formula = effectiveFormula ?? pattern.formula;
+  const slotName = useMemo(() => getSlotInfo(formula), [formula]);
   const correctAnswer = slotName ? example.slotValues[slotName] || "" : "";
 
   // Level 4 → delegate to SlotFill
   if (practiceLevel === 4) {
-    return <SlotFillExercise pattern={pattern} example={example} onAnswer={onAnswer} />;
+    return <SlotFillExercise pattern={pattern} example={example} onAnswer={onAnswer} effectiveFormula={effectiveFormula} />;
   }
 
   const wordBank = useMemo(() => {
@@ -88,8 +91,8 @@ export default function WordBankExercise({
   }, [slotName, correctAnswer, practiceLevel]);
 
   const formulaDisplay = useMemo(() => {
-    return pattern.formula.replace(/\[([A-Z_]+)\]/, "______");
-  }, [pattern.formula]);
+    return formula.replace(/\[([A-Z_]+)\]/, "______");
+  }, [formula]);
 
   const handleSelect = (word: string) => {
     const correct = word.toLowerCase().trim() === correctAnswer.toLowerCase().trim();

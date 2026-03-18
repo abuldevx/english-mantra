@@ -6,6 +6,7 @@ import { PatternFormula } from "@/components/patterns/PatternFormula";
 import { DifficultyBadge } from "@/components/patterns/DifficultyBadge";
 import { FormalityBadge } from "@/components/patterns/FormalityBadge";
 import { useSettings } from "@/contexts/SettingsContext";
+import { getCategoryImportSlug } from "@/content/index";
 
 // Pre-defined comparison sets
 const comparisonSets = [
@@ -47,7 +48,7 @@ export default function ComparePage() {
 
       for (const catId of catIds) {
         try {
-          const mod = await import(`@/content/categories/${catId}`);
+          const mod = await import(`@/content/categories/${getCategoryImportSlug(catId)}`);
           loaded[catId] = mod[`category${catId}`];
         } catch {
           // not available yet
